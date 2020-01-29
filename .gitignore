@@ -87,3 +87,5 @@ lint/tmp/
 .idea
 .package
 /.metadata
+.packages
+pubspec.lock
