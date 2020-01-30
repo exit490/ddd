@@ -3,18 +3,16 @@ import 'package:flutter_app/weather_today/weather_today_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  var weatherTodayAppBarToTest;
+  var weatherTodayPage;
 
   setUp(() {
-    weatherTodayAppBarToTest = MaterialApp(
-      home: Scaffold(
-        appBar: weatherTodayAppBar(),
-      ),
+    weatherTodayPage = MaterialApp(
+      home: WeatherTodayPage(),
     );
   });
 
   testWidgets('location text in app bar expected', (WidgetTester tester) async {
-    await tester.pumpWidget(weatherTodayAppBarToTest);
+    await tester.pumpWidget(weatherTodayPage);
 
     final textToShow = 'São Pedro Da Aldeia';
     final titleFinder = find.text(textToShow);
@@ -22,9 +20,17 @@ void main() {
   });
 
   testWidgets('add button in app bar expected', (WidgetTester tester) async {
-    await tester.pumpWidget(weatherTodayAppBarToTest);
+    await tester.pumpWidget(weatherTodayPage);
 
     final addButton = find.byIcon(Icons.add);
     expect(addButton, findsOneWidget);
+  });
+
+  testWidgets('navigation drawer button in app bar expected',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(weatherTodayPage);
+
+    final navButton = find.byIcon(Icons.menu);
+    expect(navButton, findsOneWidget);
   });
 }
