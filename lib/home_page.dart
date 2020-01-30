@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weather_of_day_page.dart';
+import 'package:flutter_app/weather_today_page.dart';
 
 void main() => runApp(HomePage());
 
@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WeatherOfDayPage(),
+      home: WeatherTodayPage(),
     );
   }
 }

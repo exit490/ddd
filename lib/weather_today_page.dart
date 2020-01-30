@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class WeatherOfDayPage extends StatelessWidget {
+class WeatherTodayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
