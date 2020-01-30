@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/weather_of_day_page.dart';
 
 void main() => runApp(HomePage());
 
@@ -9,28 +10,7 @@ class HomePage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeStruct(),
+      home: WeatherOfDayPage(),
     );
   }
-}
-
-class HomeStruct extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Scaffold(),
-        homeBackground(context),
-      ],
-    );
-  }
-}
-
-homeBackground(context) {
-  return Image.asset(
-    "assets/images/cloudy_1.jpg",
-    height: MediaQuery.of(context).size.height,
-    width: MediaQuery.of(context).size.width,
-    fit: BoxFit.cover,
-  );
 }
