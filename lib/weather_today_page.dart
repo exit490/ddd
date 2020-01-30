@@ -17,6 +17,35 @@ mainStruct() {
     appBar: appBar(),
     backgroundColor: Colors.transparent,
     drawer: buildNavigationDrawer(),
+    body: bodyStruct(),
+  );
+}
+
+bodyStruct() {
+  var column = Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisSize: MainAxisSize.max,
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: <Widget>[
+      degreeText(),
+    ],
+  );
+
+  return Padding(
+    padding: EdgeInsets.only(left: 15),
+    child: column,
+  );
+}
+
+degreeText() {
+  var degreeText = Text(
+    '28°',
+    style: TextStyle(fontSize: 150),
+  );
+
+  return Align(
+    child: degreeText,
+    alignment: Alignment.bottomLeft,
   );
 }
 
