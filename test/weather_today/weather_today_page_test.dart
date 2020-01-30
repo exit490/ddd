@@ -6,24 +6,22 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/main.dart';
+import 'package:flutter_app/weather_today/weather_today_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(HomePage());
+  testWidgets('location text in app bar expected', (WidgetTester tester) async {
+    final materialApp = MaterialApp(
+      home: Scaffold(
+        appBar: weatherTodayAppBar(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(materialApp);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    final textToShow = 'São Pedro Da Aldeia';
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    final titleFinder = find.text(textToShow);
+    expect(titleFinder, findsOneWidget);
   });
 }

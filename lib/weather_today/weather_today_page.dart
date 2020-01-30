@@ -14,7 +14,7 @@ class WeatherTodayPage extends StatelessWidget {
 
 mainStruct() {
   return Scaffold(
-    appBar: appBar(),
+    appBar: weatherTodayAppBar(),
     backgroundColor: Colors.transparent,
     drawer: buildNavigationDrawer(),
     body: bodyStruct(),
@@ -58,7 +58,7 @@ weatherBackground(context) {
   );
 }
 
-appBar() {
+weatherTodayAppBar() {
   return AppBar(
     backgroundColor: Colors.transparent,
     title: Text('São Pedro Da Aldeia'),
