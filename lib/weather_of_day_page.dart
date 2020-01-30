@@ -35,6 +35,9 @@ appBar() {
     title: Text('São Pedro Da Aldeia'),
     centerTitle: true,
     elevation: 20,
+    actions: <Widget>[
+      addButton(),
+    ],
   );
 }
 
@@ -64,5 +67,17 @@ buildNavigationDrawer() {
 
   return Drawer(
     child: listView,
+  );
+}
+
+addButton() {
+  var addIcon = Icon(
+    Icons.add,
+    size: 30,
+  );
+
+  return IconButton(
+    icon: addIcon,
+    onPressed: () {},
   );
 }
