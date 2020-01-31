@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weather_today/weather_icons_and_text_row.dart';
+import 'package:flutter_app/weather_today/view/weather_icons_and_text_row.dart';
 
 import 'min_max_degree_row.dart';
 
