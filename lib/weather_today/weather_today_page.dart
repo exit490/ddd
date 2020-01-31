@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'min_max_degree_row.dart';
+
 class WeatherTodayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ bodyStruct() {
     mainAxisSize: MainAxisSize.max,
     mainAxisAlignment: MainAxisAlignment.end,
     children: <Widget>[
+      minMaxDegreeRow(),
       degreeText(),
     ],
   );
