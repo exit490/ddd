@@ -80,7 +80,6 @@ buildNavigationDrawer() {
   );
 
   var listView = ListView(
-    padding: EdgeInsets.zero,
     children: <Widget>[
       listTile1,
       listTile2,
