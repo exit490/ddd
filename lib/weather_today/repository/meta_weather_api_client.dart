@@ -1,19 +1,22 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter_weather/models/models.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/weather/weather.dart';
 import 'package:http/http.dart' as http;
-import 'package:meta/metadart';
 
-class WeatherApiClient {
+class MetaWeatherApiClient {
   static const baseUrl = 'https://www.metaweather.com';
   final http.Client httpClient;
 
-  WeatherApiClient({@required this.httpClient}) : assert(httpClient != null);
+  MetaWeatherApiClient({
+    @required this.httpClient,
+  }) : assert(httpClient != null);
 
   Future<int> getLocationId(String city) async {
     final locationUrl = '$baseUrl/api/location/search/?query=$city';
     final locationResponse = await this.httpClient.get(locationUrl);
+
     if (locationResponse.statusCode != 200) {
       throw Exception('error getting locationId for city');
     }

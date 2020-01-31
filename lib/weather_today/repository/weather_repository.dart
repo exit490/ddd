@@ -1,18 +1,19 @@
 import 'dart:async';
 
-import 'package:flutter_weather/models/models.dart';
-import 'package:flutter_weather/repositories/meta_weather_api_client.dart';
+import 'package:flutter_app/weather/weather.dart';
 import 'package:meta/meta.dart';
 
+import 'meta_weather_api_client.dart';
+
 class WeatherRepository {
-  final WeatherApiClient weatherApiClient;
+  final MetaWeatherApiClient metaWeatherApiClient;
 
   WeatherRepository({
-    @required this.weatherApiClient,
-  }) : assert(weatherApiClient != null);
+    @required this.metaWeatherApiClient,
+  }) : assert(metaWeatherApiClient != null);
 
   Future<Weather> getWeather(String city) async {
-    final int locationId = await weatherApiClient.getLocationId(city);
-    return weatherApiClient.fetchWeather(locationId);
+    final int locationId = await metaWeatherApiClient.getLocationId(city);
+    return metaWeatherApiClient.fetchWeather(locationId);
   }
 }
