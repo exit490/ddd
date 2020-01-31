@@ -71,12 +71,6 @@ weatherTodayAppBar() {
 }
 
 buildNavigationDrawer() {
-  var drawerHeader = DrawerHeader(
-      child: Text('Drawer Header'),
-      decoration: BoxDecoration(
-        color: Colors.blue,
-      ));
-
   var listTile1 = ListTile(
     title: Text('São pedro da Aldeia'),
   );
@@ -88,7 +82,6 @@ buildNavigationDrawer() {
   var listView = ListView(
     padding: EdgeInsets.zero,
     children: <Widget>[
-      drawerHeader,
       listTile1,
       listTile2,
     ],

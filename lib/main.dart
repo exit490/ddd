@@ -13,8 +13,8 @@ class HomePage extends StatelessWidget {
 
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         textTheme: newTextTheme,
+        canvasColor: Colors.black26,
       ),
       home: WeatherTodayPage(),
     );
