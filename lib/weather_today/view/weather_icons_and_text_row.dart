@@ -4,7 +4,7 @@ import '../../weather_icons.dart';
 
 weatherIconAndTextRow() {
   var weatherIcon = Icon(
-    WeatherIcons.cloud,
+    WeatherIcons.rain,
     size: 35,
     color: Colors.white,
   );

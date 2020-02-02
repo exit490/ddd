@@ -1,0 +1,159 @@
+{
+  "consolidated_weather": [
+    {
+      "id": 5642809652543488,
+      "weather_state_name": "Light Rain",
+      "weather_state_abbr": "lr",
+      "wind_direction_compass": "S",
+      "created": "2020-02-01T15:24:49.312901Z",
+      "applicable_date": "2020-02-01",
+      "min_temp": 25.490000000000002,
+      "max_temp": 31.585,
+      "the_temp": 31.560000000000002,
+      "wind_speed": 4.740393167438161,
+      "wind_direction": 181.31335923504975,
+      "air_pressure": 1012.5,
+      "humidity": 78,
+      "visibility": 15.343829535512606,
+      "predictability": 75
+    },
+    {
+      "id": 5926728734081024,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "S",
+      "created": "2020-02-01T15:24:52.355219Z",
+      "applicable_date": "2020-02-02",
+      "min_temp": 24.885,
+      "max_temp": 26.955,
+      "the_temp": 26.83,
+      "wind_speed": 4.353489686322543,
+      "wind_direction": 174.816822901647,
+      "air_pressure": 1014.5,
+      "humidity": 89,
+      "visibility": 8.29468404517617,
+      "predictability": 77
+    },
+    {
+      "id": 5071992636047360,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "ESE",
+      "created": "2020-02-01T15:24:55.328460Z",
+      "applicable_date": "2020-02-03",
+      "min_temp": 22.735,
+      "max_temp": 26.47,
+      "the_temp": 26.5,
+      "wind_speed": 6.304166767684721,
+      "wind_direction": 123.17550226801237,
+      "air_pressure": 1014.5,
+      "humidity": 89,
+      "visibility": 6.8089855245367055,
+      "predictability": 77
+    },
+    {
+      "id": 6598786962948096,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "E",
+      "created": "2020-02-01T15:24:58.312132Z",
+      "applicable_date": "2020-02-04",
+      "min_temp": 23.115,
+      "max_temp": 25.685000000000002,
+      "the_temp": 25.595,
+      "wind_speed": 4.812083329852329,
+      "wind_direction": 82.19926182354047,
+      "air_pressure": 1015.0,
+      "humidity": 90,
+      "visibility": 8.386957667223415,
+      "predictability": 77
+    },
+    {
+      "id": 6197892542889984,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "ESE",
+      "created": "2020-02-01T15:25:01.545970Z",
+      "applicable_date": "2020-02-05",
+      "min_temp": 23.325,
+      "max_temp": 26.955,
+      "the_temp": 26.225,
+      "wind_speed": 4.673752438786819,
+      "wind_direction": 114.37554639478137,
+      "air_pressure": 1014.0,
+      "humidity": 86,
+      "visibility": 8.019727292611151,
+      "predictability": 77
+    },
+    {
+      "id": 6307995908571136,
+      "weather_state_name": "Heavy Rain",
+      "weather_state_abbr": "hr",
+      "wind_direction_compass": "SE",
+      "created": "2020-02-01T15:25:04.500995Z",
+      "applicable_date": "2020-02-06",
+      "min_temp": 23.435,
+      "max_temp": 26.5,
+      "the_temp": 25.46,
+      "wind_speed": 2.9050524934383204,
+      "wind_direction": 141.0,
+      "air_pressure": 1013.0,
+      "humidity": 84,
+      "visibility": 9.795295474429333,
+      "predictability": 77
+    }
+  ],
+  "time": "2020-02-01T14:32:23.715589-02:00",
+  "sun_rise": "2020-02-01T06:32:15.196413-02:00",
+  "sun_set": "2020-02-01T19:40:03.463026-02:00",
+  "timezone_name": "LMT",
+  "parent": {
+    "title": "Brazil",
+    "location_type": "Country",
+    "woeid": 23424768,
+    "latt_long": "-14.242920,-54.387829"
+  },
+  "sources": [
+    {
+      "title": "BBC",
+      "slug": "bbc",
+      "url": "http://www.bbc.co.uk/weather/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Forecast.io",
+      "slug": "forecast-io",
+      "url": "http://forecast.io/",
+      "crawl_rate": 480
+    },
+    {
+      "title": "Met Office",
+      "slug": "met-office",
+      "url": "http://www.metoffice.gov.uk/",
+      "crawl_rate": 180
+    },
+    {
+      "title": "OpenWeatherMap",
+      "slug": "openweathermap",
+      "url": "http://openweathermap.org/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Weather Underground",
+      "slug": "wunderground",
+      "url": "https://www.wunderground.com/?apiref=fc30dc3cd224e19b",
+      "crawl_rate": 720
+    },
+    {
+      "title": "World Weather Online",
+      "slug": "world-weather-online",
+      "url": "http://www.worldweatheronline.com/",
+      "crawl_rate": 360
+    }
+  ],
+  "title": "Rio de Janeiro",
+  "location_type": "City",
+  "woeid": 455825,
+  "latt_long": "-22.976730,-43.195080",
+  "timezone": "America/Sao_Paulo"
+}

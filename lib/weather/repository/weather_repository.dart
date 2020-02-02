@@ -1,7 +1,7 @@
 import 'package:flutter_app/weather/weather.dart';
 import 'package:meta/meta.dart';
 
-import 'meta_weather_api_client.dart';
+import '../../meta_weather/meta_weather_api_client.dart';
 
 class WeatherRepository {
   final MetaWeatherApiClient metaWeatherApiClient;

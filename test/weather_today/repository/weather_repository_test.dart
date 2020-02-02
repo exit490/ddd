@@ -1,6 +1,6 @@
+import 'package:flutter_app/meta_weather/meta_weather_api_client.dart';
+import 'package:flutter_app/weather/repository/weather_repository.dart';
 import 'package:flutter_app/weather/weather.dart';
-import 'package:flutter_app/weather_today/repository/meta_weather_api_client.dart';
-import 'package:flutter_app/weather_today/repository/weather_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
