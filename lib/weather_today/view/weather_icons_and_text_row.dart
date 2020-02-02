@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../weather_icons.dart';
+import '../../weather/weather_icons.dart';
 
 weatherIconAndTextRow() {
   var weatherIcon = Icon(

@@ -1,4 +1,4 @@
-import 'package:flutter_app/weather/weather.dart';
+import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:meta/meta.dart';
 
 import '../../meta_weather/meta_weather_api_client.dart';

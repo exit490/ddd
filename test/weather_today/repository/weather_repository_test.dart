@@ -1,6 +1,6 @@
 import 'package:flutter_app/meta_weather/meta_weather_api_client.dart';
+import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/repository/weather_repository.dart';
-import 'package:flutter_app/weather/weather.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -12,8 +12,9 @@ main() {
 
   setUp(() {
     metaWeatherApiClientMocked = MetaWeatherApiClientMocked();
-    weatherRepository =
-        WeatherRepository(metaWeatherApiClient: metaWeatherApiClientMocked);
+    weatherRepository = WeatherRepository(
+      metaWeatherApiClient: metaWeatherApiClientMocked,
+    );
   });
 
   test('expected weather from weather repository ', () async {
