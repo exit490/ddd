@@ -6,10 +6,10 @@ import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
 import 'package:meta/meta.dart';
 
-class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
+class WeatherTodayBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository weatherRepository;
 
-  WeatherBloc({@required this.weatherRepository})
+  WeatherTodayBloc({@required this.weatherRepository})
       : assert(weatherRepository != null);
 
   @override
