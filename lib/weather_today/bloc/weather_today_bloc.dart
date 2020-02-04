@@ -6,17 +6,17 @@ import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
 import 'package:meta/meta.dart';
 
-class WeatherTodayBloc extends Bloc<WeatherEvent, WeatherState> {
+class WeatherTodayBloc extends Bloc<WeatherTodayEvent, WeatherTodayState> {
   final WeatherRepository weatherRepository;
 
   WeatherTodayBloc({@required this.weatherRepository})
       : assert(weatherRepository != null);
 
   @override
-  WeatherState get initialState => WeatherEmpty();
+  WeatherTodayState get initialState => WeatherTodayEmpty();
 
   @override
-  Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
+  Stream<WeatherTodayState> mapEventToState(WeatherTodayEvent event) async* {
     if (event is FetchWeather) {
       yield* _mapFetchWeatherToState(event);
     } else if (event is RefreshWeather) {
@@ -24,27 +24,28 @@ class WeatherTodayBloc extends Bloc<WeatherEvent, WeatherState> {
     }
   }
 
-  Stream<WeatherState> _mapFetchWeatherToState(FetchWeather event) async* {
-    yield WeatherLoading();
+  Stream<WeatherTodayState> _mapFetchWeatherToState(FetchWeather event) async* {
+    yield WeatherTodayLoading();
     try {
       final weather = await weatherRepository.getWeatherFromLocation(
         event.locationId,
       );
-      yield WeatherLoaded(weather: weather);
+      yield WeatherTodayLoaded(weather: weather);
     } catch (_) {
-      yield WeatherError();
+      yield WeatherTodayError();
     }
   }
 
-  Stream<WeatherState> _mapRefreshWeatherToState(RefreshWeather event) async* {
+  Stream<WeatherTodayState> _mapRefreshWeatherToState(
+      RefreshWeather event) async* {
     try {
       final weather = await weatherRepository.getWeatherFromLocation(
         event.locationId,
       );
 
-      yield WeatherLoaded(weather: weather);
+      yield WeatherTodayLoaded(weather: weather);
     } catch (_) {
-      yield WeatherError();
+      yield WeatherTodayError();
     }
   }
 }

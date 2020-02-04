@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
 import 'package:flutter_app/weather_today/view/weather_icons_and_text_row.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'min_max_degree_row.dart';
 
@@ -25,6 +28,26 @@ mainStruct() {
 }
 
 bodyStruct() {
+  final blocBuilder = BlocBuilder<WeatherTodayBloc, WeatherTodayState>(
+    builder: (context, weatherTodayState) {
+      return selectViewFromWeatherTodayState(weatherTodayState);
+    },
+  );
+
+  return Container(
+    child: blocBuilder,
+  );
+}
+
+selectViewFromWeatherTodayState(weatherTodayState) {
+  if (weatherTodayState is WeatherTodayLoaded) {
+    return weatherLoadedBodyStruct(weatherTodayState);
+  } else {
+    return weatherLoadedBodyStruct(null);
+  }
+}
+
+weatherLoadedBodyStruct(weatherTodayState) {
   var column = Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisSize: MainAxisSize.max,
