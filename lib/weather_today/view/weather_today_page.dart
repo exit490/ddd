@@ -40,11 +40,15 @@ bodyStruct() {
 }
 
 selectViewFromWeatherTodayState(weatherTodayState) {
-  if (weatherTodayState is WeatherTodayLoaded) {
-    return weatherLoadedBodyStruct(weatherTodayState);
-  } else {
+  if (weatherTodayState is WeatherTodayEmpty) {
     return weatherLoadedBodyStruct(null);
   }
+
+  if (weatherTodayState is WeatherTodayLoaded) {
+    return weatherLoadedBodyStruct(weatherTodayState);
+  }
+
+  return weatherLoadedBodyStruct(null);
 }
 
 weatherLoadedBodyStruct(weatherTodayState) {
