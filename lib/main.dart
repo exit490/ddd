@@ -16,7 +16,7 @@ void main() {
   );
 
   final weatherTodayBlocProvider = BlocProvider(
-    create: (context) => WeatherTodayBloc(
+    create: (context) => BlocWeatherToday(
       weatherRepository: weatherRepository,
     ),
   );

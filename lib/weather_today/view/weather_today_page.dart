@@ -11,7 +11,7 @@ import 'min_max_degree_row.dart';
 class WeatherTodayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<WeatherTodayBloc>(context).add(
+    BlocProvider.of<BlocWeatherToday>(context).add(
       FetchWeatherTodayEvent(locationId: 455825),
     );
 
@@ -34,7 +34,7 @@ mainStruct() {
 }
 
 bodyStruct() {
-  final blocBuilder = BlocBuilder<WeatherTodayBloc, WeatherTodayState>(
+  final blocBuilder = BlocBuilder<BlocWeatherToday, WeatherTodayState>(
     builder: (context, weatherTodayState) {
       return selectViewFromWeatherTodayState(weatherTodayState);
     },
