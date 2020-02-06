@@ -2,14 +2,14 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
 
-abstract class WeatherTodayState extends Equatable {
-  const WeatherTodayState();
+abstract class StateWeatherToday extends Equatable {
+  const StateWeatherToday();
 
   @override
   List<Object> get props => [];
 }
 
-class LoadedStateWeatherToday extends WeatherTodayState {
+class LoadedStateWeatherToday extends StateWeatherToday {
   final Weather weather;
 
   const LoadedStateWeatherToday({
@@ -20,6 +20,6 @@ class LoadedStateWeatherToday extends WeatherTodayState {
   List<Object> get props => [weather];
 }
 
-class WeatherTodayLoading extends WeatherTodayState {}
+class WeatherTodayLoading extends StateWeatherToday {}
 
-class WeatherTodayError extends WeatherTodayState {}
+class WeatherTodayError extends StateWeatherToday {}

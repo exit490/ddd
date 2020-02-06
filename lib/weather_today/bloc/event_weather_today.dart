@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-abstract class WeatherTodayEvent extends Equatable {
-  const WeatherTodayEvent();
+abstract class EventWeatherToday extends Equatable {
+  const EventWeatherToday();
 }
 
-class FetchWeatherTodayEvent extends WeatherTodayEvent {
+class FetchWeatherTodayEvent extends EventWeatherToday {
   final int locationId;
 
   const FetchWeatherTodayEvent({@required this.locationId})
@@ -15,7 +15,7 @@ class FetchWeatherTodayEvent extends WeatherTodayEvent {
   List<Object> get props => [locationId];
 }
 
-class RefreshWeather extends WeatherTodayEvent {
+class RefreshWeather extends EventWeatherToday {
   final int locationId;
 
   const RefreshWeather({@required this.locationId})
