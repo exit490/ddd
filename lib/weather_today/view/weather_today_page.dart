@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
+import 'package:flutter_app/weather_today/bloc/bloc_weather_today.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
-import 'package:flutter_app/weather_today/view/loading.dart';
+import 'package:flutter_app/weather_today/view/loading_body_weather_today.dart';
 import 'package:flutter_app/weather_today/view/weather_icons_and_text_row.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +11,10 @@ import 'min_max_degree_row.dart';
 class WeatherTodayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<WeatherTodayBloc>(context).add(
+      FetchWeatherTodayEvent(locationId: 455825),
+    );
+
     return Stack(
       children: <Widget>[
         weatherBackground(context),

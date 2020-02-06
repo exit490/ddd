@@ -17,14 +17,15 @@ class WeatherTodayBloc extends Bloc<WeatherTodayEvent, WeatherTodayState> {
 
   @override
   Stream<WeatherTodayState> mapEventToState(WeatherTodayEvent event) async* {
-    if (event is FetchWeather) {
+    if (event is FetchWeatherTodayEvent) {
       yield* _mapFetchWeatherToState(event);
     } else if (event is RefreshWeather) {
       yield* _mapRefreshWeatherToState(event);
     }
   }
 
-  Stream<WeatherTodayState> _mapFetchWeatherToState(FetchWeather event) async* {
+  Stream<WeatherTodayState> _mapFetchWeatherToState(
+      FetchWeatherTodayEvent event) async* {
     yield WeatherTodayLoading();
     try {
       final weather = await weatherRepository.getWeatherFromLocation(
