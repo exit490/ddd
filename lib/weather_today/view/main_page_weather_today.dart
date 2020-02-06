@@ -57,18 +57,6 @@ selectViewFromWeatherTodayState(weatherTodayState) {
   return LoadingBodyWeatherToday();
 }
 
-degreeText() {
-  var degreeText = Text(
-    '28°',
-    style: TextStyle(fontSize: 150),
-  );
-
-  return Align(
-    child: degreeText,
-    alignment: Alignment.bottomLeft,
-  );
-}
-
 weatherBackground(context) {
   return Image.asset(
     "assets/images/cloudy_1.jpg",
