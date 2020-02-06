@@ -27,9 +27,9 @@ class LoadedBodyWeatherToday extends StatelessWidget {
           formattedCondition: weather.formattedCondition,
           condition: weather.condition,
         ),
-        MinMaxDegreeRow(
-          maxDegree: weather.maxTemp,
-          minDegree: weather.minTemp,
+        MinMaxTempRow(
+          minTemp: weather.minTemp,
+          maxTemp: weather.maxTemp,
         ),
         // degreeText(),
       ],

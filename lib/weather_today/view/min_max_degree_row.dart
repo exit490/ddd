@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class MinMaxDegreeRow extends StatelessWidget {
-  final double minDegree;
-  final double maxDegree;
+class MinMaxTempRow extends StatelessWidget {
+  final double minTemp;
+  final double maxTemp;
   static final fontSize = 22.0;
 
-  MinMaxDegreeRow({
-    @required this.minDegree,
-    @required this.maxDegree,
-  }) : assert(minDegree != null, maxDegree != null);
+  MinMaxTempRow({
+    @required this.minTemp,
+    @required this.maxTemp,
+  }) : assert(minTemp != null, maxTemp != null);
 
   final upIcon = Icon(
     Icons.arrow_upward,
@@ -29,12 +29,12 @@ class MinMaxDegreeRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final maxDegreeText = Text(
-      maxDegree.toString(),
+      maxTemp.toString(),
       style: TextStyle(fontSize: fontSize),
     );
 
     final minDegreeText = Text(
-      minDegree.toString(),
+      minTemp.toString(),
       style: TextStyle(fontSize: fontSize),
     );
 
