@@ -4,6 +4,7 @@ import 'package:flutter_app/weather_today/bloc/event_weather_today.dart';
 import 'package:flutter_app/weather_today/bloc/state_weather_today.dart';
 import 'package:flutter_app/weather_today/view/loaded_body_weather_today.dart';
 import 'package:flutter_app/weather_today/view/loading_body_weather_today.dart';
+import 'package:flutter_app/weather_today/view/widget/localtion_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherTodayPage extends StatelessWidget {
@@ -13,48 +14,63 @@ class WeatherTodayPage extends StatelessWidget {
       FetchWeatherTodayEvent(locationId: 455825),
     );
 
+    final blocBuilder = BlocBuilder<BlocWeatherToday, StateWeatherToday>(
+      builder: (context, weatherTodayState) {
+        return main(
+          context,
+          weatherTodayState,
+        );
+      },
+    );
+
+    return Container(
+      child: blocBuilder,
+    );
+  }
+
+  main(context, weatherTodayState) {
     return Stack(
       children: <Widget>[
         weatherBackground(context),
-        mainStruct(),
+        body(weatherTodayState),
       ],
     );
   }
-}
 
-mainStruct() {
-  return Scaffold(
-    appBar: weatherTodayAppBar(),
-    backgroundColor: Colors.transparent,
-    drawer: buildNavigationDrawer(),
-    body: bodyStruct(),
-  );
-}
-
-bodyStruct() {
-  final blocBuilder = BlocBuilder<BlocWeatherToday, StateWeatherToday>(
-    builder: (context, weatherTodayState) {
-      return selectViewFromWeatherTodayState(weatherTodayState);
-    },
-  );
-
-  return Container(
-    child: blocBuilder,
-  );
-}
-
-selectViewFromWeatherTodayState(weatherTodayState) {
-  if (weatherTodayState is WeatherTodayLoading) {
-    return LoadingBodyWeatherToday();
-  }
-
-  if (weatherTodayState is LoadedStateWeatherToday) {
-    return LoadedBodyWeatherToday(
-      weather: weatherTodayState.weather,
+  body(weatherTodayState) {
+    return Scaffold(
+      appBar: selectAppBarFromState(weatherTodayState),
+      backgroundColor: Colors.transparent,
+      drawer: buildNavigationDrawer(),
+      body: selectBodyFromState(weatherTodayState),
     );
   }
 
-  return LoadingBodyWeatherToday();
+  selectBodyFromState(weatherTodayState) {
+    if (weatherTodayState is WeatherTodayLoading) {
+      return LoadingBodyWeatherToday();
+    }
+
+    if (weatherTodayState is LoadedStateWeatherToday) {
+      return LoadedBodyWeatherToday(
+        weather: weatherTodayState.weather,
+      );
+    }
+
+    return LoadingBodyWeatherToday();
+  }
+
+  selectAppBarFromState(weatherTodayState) {
+    if (weatherTodayState is LoadedStateWeatherToday) {
+      return LocationAppBar(
+        locationName: weatherTodayState.weather.location,
+      );
+    }
+
+    return LocationAppBar(
+      locationName: '',
+    );
+  }
 }
 
 weatherBackground(context) {
@@ -63,18 +79,6 @@ weatherBackground(context) {
     height: MediaQuery.of(context).size.height,
     width: MediaQuery.of(context).size.width,
     fit: BoxFit.cover,
-  );
-}
-
-weatherTodayAppBar() {
-  return AppBar(
-    backgroundColor: Colors.transparent,
-    title: Text('São Pedro Da Aldeia'),
-    centerTitle: true,
-    elevation: 20,
-    actions: <Widget>[
-      addButton(),
-    ],
   );
 }
 
@@ -96,17 +100,5 @@ buildNavigationDrawer() {
 
   return Drawer(
     child: listView,
-  );
-}
-
-addButton() {
-  var addIcon = Icon(
-    Icons.add,
-    size: 30,
-  );
-
-  return IconButton(
-    icon: addIcon,
-    onPressed: () {},
   );
 }
