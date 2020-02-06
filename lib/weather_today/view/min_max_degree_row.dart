@@ -1,40 +1,51 @@
 import 'package:flutter/material.dart';
 
-minMaxDegreeRow() {
-  const FONT_SIZE = 22.0;
+class MinMaxDegreeRow extends StatelessWidget {
+  final double minDegree;
+  final double maxDegree;
+  static final fontSize = 22.0;
 
-  var upIcon = Icon(
+  MinMaxDegreeRow({
+    @required this.minDegree,
+    @required this.maxDegree,
+  }) : assert(minDegree != null, maxDegree != null);
+
+  final upIcon = Icon(
     Icons.arrow_upward,
-    size: FONT_SIZE,
+    size: fontSize,
     color: Colors.white,
   );
 
-  var maxDegreeText = Text(
-    '34°',
-    style: TextStyle(fontSize: FONT_SIZE),
-  );
-
-  var minDegreeText = Text(
-    '26°',
-    style: TextStyle(fontSize: FONT_SIZE),
-  );
-
-  var downIcon = Icon(
-    Icons.arrow_downward,
-    size: FONT_SIZE,
-    color: Colors.white,
-  );
-  var padding = Padding(
+  final padding = Padding(
     padding: EdgeInsets.only(left: 20),
   );
 
-  return Row(
-    children: <Widget>[
-      upIcon,
-      maxDegreeText,
-      padding,
-      downIcon,
-      minDegreeText,
-    ],
+  final downIcon = Icon(
+    Icons.arrow_downward,
+    size: fontSize,
+    color: Colors.white,
   );
+
+  @override
+  Widget build(BuildContext context) {
+    final maxDegreeText = Text(
+      maxDegree.toString(),
+      style: TextStyle(fontSize: fontSize),
+    );
+
+    final minDegreeText = Text(
+      minDegree.toString(),
+      style: TextStyle(fontSize: fontSize),
+    );
+
+    return Row(
+      children: <Widget>[
+        upIcon,
+        maxDegreeText,
+        padding,
+        downIcon,
+        minDegreeText,
+      ],
+    );
+  }
 }
