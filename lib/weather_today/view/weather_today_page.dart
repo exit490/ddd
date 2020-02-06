@@ -50,7 +50,7 @@ selectViewFromWeatherTodayState(weatherTodayState) {
 
   if (weatherTodayState is LoadedStateWeatherToday) {
     return LoadedBodyWeatherToday(
-      loadedStateWeatherToday: weatherTodayState,
+      weather: weatherTodayState.weather,
     );
   }
 

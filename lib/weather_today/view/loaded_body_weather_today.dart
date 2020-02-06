@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
+import 'package:flutter_app/weather/model/weather_model.dart';
+import 'package:flutter_app/weather_today/view/weather_icons_and_text_row.dart';
 
 class LoadedBodyWeatherToday extends StatelessWidget {
-  final LoadedStateWeatherToday loadedStateWeatherToday;
+  final Weather weather;
 
   LoadedBodyWeatherToday({
     Key key,
-    @required this.loadedStateWeatherToday,
-  })  : assert(loadedStateWeatherToday != null),
+    @required this.weather,
+  })  : assert(weather != null),
         super(key: key);
 
   @override
@@ -21,7 +22,10 @@ class LoadedBodyWeatherToday extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        // weatherIconAndTextRow(),
+        WeatherIconAndTextRow(
+          formattedCondition: weather.formattedCondition,
+          condition: weather.condition,
+        ),
         // minMaxDegreeRow(),
         // degreeText(),
       ],
