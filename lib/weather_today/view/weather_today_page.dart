@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
+import 'package:flutter_app/weather_today/view/loading.dart';
 import 'package:flutter_app/weather_today/view/weather_icons_and_text_row.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +42,7 @@ bodyStruct() {
 
 selectViewFromWeatherTodayState(weatherTodayState) {
   if (weatherTodayState is WeatherTodayEmpty) {
-    return weatherLoadedBodyStruct(null);
+    return WeatherTodayLoadingBody();
   }
 
   if (weatherTodayState is WeatherTodayLoaded) {

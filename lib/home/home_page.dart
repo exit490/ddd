@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/loading/loading_page.dart';
+import 'package:flutter_app/weather_today/view/weather_today_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
 
     return MaterialApp(
       theme: theme,
-      home: LoadingPage(),
+      home: WeatherTodayPage(),
     );
   }
 }
