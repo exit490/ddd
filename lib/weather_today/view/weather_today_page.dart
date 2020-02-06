@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/weather_today/bloc/bloc_weather_today.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
+import 'package:flutter_app/weather_today/view/loaded_body_weather_today.dart';
 import 'package:flutter_app/weather_today/view/loading_body_weather_today.dart';
-import 'package:flutter_app/weather_today/view/weather_icons_and_text_row.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'min_max_degree_row.dart';
 
 class WeatherTodayPage extends StatelessWidget {
   @override
@@ -51,28 +49,12 @@ selectViewFromWeatherTodayState(weatherTodayState) {
   }
 
   if (weatherTodayState is LoadedStateWeatherToday) {
-    return weatherLoadedBodyStruct(weatherTodayState);
+    return LoadedBodyWeatherToday(
+      loadedStateWeatherToday: weatherTodayState,
+    );
   }
 
-  return weatherLoadedBodyStruct(null);
-}
-
-weatherLoadedBodyStruct(weatherTodayState) {
-  var column = Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisSize: MainAxisSize.max,
-    mainAxisAlignment: MainAxisAlignment.end,
-    children: <Widget>[
-      weatherIconAndTextRow(),
-      minMaxDegreeRow(),
-      degreeText(),
-    ],
-  );
-
-  return Padding(
-    padding: EdgeInsets.only(left: 15),
-    child: column,
-  );
+  return LoadingBodyWeatherToday();
 }
 
 degreeText() {
