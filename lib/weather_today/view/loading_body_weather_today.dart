@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class WeatherTodayLoadingBody extends StatelessWidget {
+class LoadingBodyWeatherToday extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
