@@ -41,7 +41,7 @@ bodyStruct() {
 }
 
 selectViewFromWeatherTodayState(weatherTodayState) {
-  if (weatherTodayState is WeatherTodayEmpty) {
+  if (weatherTodayState is WeatherTodayLoading) {
     return WeatherTodayLoadingBody();
   }
 

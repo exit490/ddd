@@ -22,6 +22,4 @@ class WeatherTodayLoaded extends WeatherTodayState {
 
 class WeatherTodayLoading extends WeatherTodayState {}
 
-class WeatherTodayEmpty extends WeatherTodayState {}
-
 class WeatherTodayError extends WeatherTodayState {}
