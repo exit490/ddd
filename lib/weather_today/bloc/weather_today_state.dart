@@ -9,10 +9,10 @@ abstract class WeatherTodayState extends Equatable {
   List<Object> get props => [];
 }
 
-class WeatherTodayLoaded extends WeatherTodayState {
+class LoadedStateWeatherToday extends WeatherTodayState {
   final Weather weather;
 
-  const WeatherTodayLoaded({
+  const LoadedStateWeatherToday({
     @required this.weather,
   }) : assert(weather != null);
 

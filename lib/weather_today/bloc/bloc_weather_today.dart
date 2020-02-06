@@ -31,7 +31,7 @@ class BlocWeatherToday extends Bloc<WeatherTodayEvent, WeatherTodayState> {
       final weather = await weatherRepository.getWeatherFromLocation(
         event.locationId,
       );
-      yield WeatherTodayLoaded(weather: weather);
+      yield LoadedStateWeatherToday(weather: weather);
     } catch (_) {
       yield WeatherTodayError();
     }
@@ -44,7 +44,7 @@ class BlocWeatherToday extends Bloc<WeatherTodayEvent, WeatherTodayState> {
         event.locationId,
       );
 
-      yield WeatherTodayLoaded(weather: weather);
+      yield LoadedStateWeatherToday(weather: weather);
     } catch (_) {
       yield WeatherTodayError();
     }
