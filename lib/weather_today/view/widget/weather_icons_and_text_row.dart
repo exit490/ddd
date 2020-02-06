@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
 
-import '../../weather/weather_icons.dart';
+import '../../../weather/weather_icons.dart';
 
 class WeatherIconAndTextRow extends StatelessWidget {
   final String formattedCondition;
