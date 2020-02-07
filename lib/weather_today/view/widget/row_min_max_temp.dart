@@ -28,14 +28,16 @@ class MinMaxTempRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = TextStyle(fontSize: fontSize);
+
     final maxTempText = Text(
       maxTemp.toInt().toString(),
-      style: TextStyle(fontSize: fontSize),
+      style: textStyle,
     );
 
     final minTempText = Text(
       minTemp.toInt().toString(),
-      style: TextStyle(fontSize: fontSize),
+      style: textStyle,
     );
 
     return Row(
