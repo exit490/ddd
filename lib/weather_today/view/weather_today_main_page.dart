@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weather_today/bloc/bloc_weather_today.dart';
-import 'package:flutter_app/weather_today/bloc/event_weather_today.dart';
-import 'package:flutter_app/weather_today/bloc/state_weather_today.dart';
-import 'package:flutter_app/weather_today/view/body_loaded_weather_today.dart';
-import 'package:flutter_app/weather_today/view/body_loading_weather_today.dart';
-import 'package:flutter_app/weather_today/view/widget/app_bar_location.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
+import 'package:flutter_app/weather_today/view/loaded_weather_today_body.dart';
+import 'package:flutter_app/weather_today/view/loading_weather_today_body.dart';
+import 'package:flutter_app/weather_today/view/widget/location_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class WeatherTodayPage extends StatelessWidget {
+class WeatherTodayMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<WeatherTodayBloc>(context).add(
@@ -48,7 +48,7 @@ class WeatherTodayPage extends StatelessWidget {
 
   selectBodyFromState(weatherTodayState) {
     if (weatherTodayState is WeatherTodayLoading) {
-      return LoadingBodyWeatherToday();
+      return LoadingWeatherTodayBody();
     }
 
     if (weatherTodayState is LoadedWeatherTodayState) {
@@ -57,7 +57,7 @@ class WeatherTodayPage extends StatelessWidget {
       );
     }
 
-    return LoadingBodyWeatherToday();
+    return LoadingWeatherTodayBody();
   }
 
   selectAppBarFromState(weatherTodayState) {

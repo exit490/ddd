@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weather_today/view/page_main_weather_today.dart';
+import 'package:flutter_app/weather_today/view/weather_today_main_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -7,7 +7,7 @@ void main() {
 
   setUp(() {
     weatherTodayPage = MaterialApp(
-      home: WeatherTodayPage(),
+      home: WeatherTodayMainPage(),
     );
   });
 

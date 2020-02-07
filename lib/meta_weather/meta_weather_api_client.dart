@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/weather/model/model_weather.dart';
+import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:http/http.dart' as http;
 
 class MetaWeatherApiClient {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weather/model/model_weather.dart';
-import 'package:flutter_app/weather_today/view/widget/row_min_max_temp.dart';
-import 'package:flutter_app/weather_today/view/widget/row_temp_text.dart';
-import 'package:flutter_app/weather_today/view/widget/row_weather_icons_and_text.dart';
+import 'package:flutter_app/weather/model/weather_model.dart';
+import 'package:flutter_app/weather_today/view/widget/min_max_temp_row.dart';
+import 'package:flutter_app/weather_today/view/widget/temp_text_row.dart';
+import 'package:flutter_app/weather_today/view/widget/weather_icons_and_text_row_view.dart';
 
 class LoadedBodyWeatherToday extends StatelessWidget {
   final Weather weather;

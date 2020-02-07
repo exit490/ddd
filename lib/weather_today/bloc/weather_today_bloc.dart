@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_app/weather/repository/repository_weather.dart';
-import 'package:flutter_app/weather_today/bloc/event_weather_today.dart';
-import 'package:flutter_app/weather_today/bloc/state_weather_today.dart';
+import 'package:flutter_app/weather/repository/weather_repository.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
 import 'package:meta/meta.dart';
 
 class WeatherTodayBloc extends Bloc<WeatherTodayEvent, WeatherTodayState> {
