@@ -1,50 +1,50 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_app/weather/repository/weather_repository.dart';
+import 'package:flutter_app/weather/repository/repository_weather.dart';
 import 'package:flutter_app/weather_today/bloc/event_weather_today.dart';
 import 'package:flutter_app/weather_today/bloc/state_weather_today.dart';
 import 'package:meta/meta.dart';
 
-class BlocWeatherToday extends Bloc<EventWeatherToday, StateWeatherToday> {
+class WeatherTodayBloc extends Bloc<WeatherTodayEvent, WeatherTodayState> {
   final WeatherRepository weatherRepository;
 
-  BlocWeatherToday({@required this.weatherRepository})
+  WeatherTodayBloc({@required this.weatherRepository})
       : assert(weatherRepository != null);
 
   @override
-  StateWeatherToday get initialState => WeatherTodayLoading();
+  WeatherTodayState get initialState => WeatherTodayLoading();
 
   @override
-  Stream<StateWeatherToday> mapEventToState(EventWeatherToday event) async* {
+  Stream<WeatherTodayState> mapEventToState(WeatherTodayEvent event) async* {
     if (event is FetchWeatherTodayEvent) {
       yield* _mapFetchWeatherToState(event);
-    } else if (event is RefreshWeather) {
+    } else if (event is RefreshWeatherEvent) {
       yield* _mapRefreshWeatherToState(event);
     }
   }
 
-  Stream<StateWeatherToday> _mapFetchWeatherToState(
+  Stream<WeatherTodayState> _mapFetchWeatherToState(
       FetchWeatherTodayEvent event) async* {
     yield WeatherTodayLoading();
     try {
       final weather = await weatherRepository.getWeatherFromLocation(
         event.locationId,
       );
-      yield LoadedStateWeatherToday(weather: weather);
+      yield LoadedWeatherTodayState(weather: weather);
     } catch (_) {
       yield WeatherTodayError();
     }
   }
 
-  Stream<StateWeatherToday> _mapRefreshWeatherToState(
-      RefreshWeather event) async* {
+  Stream<WeatherTodayState> _mapRefreshWeatherToState(
+      RefreshWeatherEvent event) async* {
     try {
       final weather = await weatherRepository.getWeatherFromLocation(
         event.locationId,
       );
 
-      yield LoadedStateWeatherToday(weather: weather);
+      yield LoadedWeatherTodayState(weather: weather);
     } catch (_) {
       yield WeatherTodayError();
     }

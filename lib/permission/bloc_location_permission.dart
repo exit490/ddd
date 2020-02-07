@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_app/permission/event_permission_location.dart';
-import 'package:flutter_app/permission/state_permission_location.dart';
+import 'package:flutter_app/permission/event_location_permission.dart';
+import 'package:flutter_app/permission/state_location_permission.dart';
 import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class BlocLocationPermission
-    extends Bloc<EventLocationPermission, StateLocationPermission> {
+    extends Bloc<LocationPermissionEvent, LocationPermissionState> {
   final PermissionHandler permissionHandler;
 
   BlocLocationPermission({
@@ -15,19 +15,19 @@ class BlocLocationPermission
   }) : assert(permissionHandler != null);
 
   @override
-  StateLocationPermission get initialState => UnknownStateLocationPermission();
+  LocationPermissionState get initialState => UnknownLocationPermissionState();
 
   @override
-  Stream<StateLocationPermission> mapEventToState(
-      EventLocationPermission event) async* {
-    if (event is EventCheckLocationPermission) {
+  Stream<LocationPermissionState> mapEventToState(
+      LocationPermissionEvent event) async* {
+    if (event is CheckLocationPermissionEvent) {
       yield* checkLocationPermission();
-    } else if (event is EventRequestLocationPermission) {
+    } else if (event is RequestLocationPermissionEvent) {
       yield* requestPermission();
     }
   }
 
-  Stream<StateLocationPermission> checkLocationPermission() async* {
+  Stream<LocationPermissionState> checkLocationPermission() async* {
     try {
       final status = await permissionHandler.checkPermissionStatus(
         PermissionGroup.location,
@@ -35,11 +35,11 @@ class BlocLocationPermission
 
       yield* _mapStatusPermissionToState(status);
     } catch (_) {
-      yield UnknownStateLocationPermission();
+      yield UnknownLocationPermissionState();
     }
   }
 
-  Stream<StateLocationPermission> requestPermission() async* {
+  Stream<LocationPermissionState> requestPermission() async* {
     try {
       Map<PermissionGroup, PermissionStatus> permissions =
           await PermissionHandler()
@@ -49,30 +49,30 @@ class BlocLocationPermission
 
       yield* _mapStatusPermissionToState(status);
     } catch (_) {
-      yield UnknownStateLocationPermission();
+      yield UnknownLocationPermissionState();
     }
   }
 
-  Stream<StateLocationPermission> _mapStatusPermissionToState(
+  Stream<LocationPermissionState> _mapStatusPermissionToState(
       PermissionStatus status) async* {
     switch (status) {
       case PermissionStatus.denied:
-        yield DisabledStateLocationPermission();
+        yield DisabledLocationPermissionState();
         break;
       case PermissionStatus.granted:
-        yield GrantedStateLocationPermission();
+        yield GrantedLocationPermissionState();
         break;
       case PermissionStatus.disabled:
-        yield DisabledStateLocationPermission();
+        yield DisabledLocationPermissionState();
         break;
       case PermissionStatus.restricted:
-        yield RestrictedStateLocationPermission();
+        yield RestrictedLocationPermissionState();
         break;
       case PermissionStatus.neverAskAgain:
-        yield NeverAskAgainStateLocationPermission();
+        yield NeverAskAgainLocationPermissionState();
         break;
       default:
-        yield UnknownStateLocationPermission();
+        yield UnknownLocationPermissionState();
     }
   }
 }

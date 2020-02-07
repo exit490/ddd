@@ -10,11 +10,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class WeatherTodayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<BlocWeatherToday>(context).add(
+    BlocProvider.of<WeatherTodayBloc>(context).add(
       FetchWeatherTodayEvent(locationId: 455825),
     );
 
-    final blocBuilder = BlocBuilder<BlocWeatherToday, StateWeatherToday>(
+    final blocBuilder = BlocBuilder<WeatherTodayBloc, WeatherTodayState>(
       builder: (context, weatherTodayState) {
         return main(
           context,
@@ -51,7 +51,7 @@ class WeatherTodayPage extends StatelessWidget {
       return LoadingBodyWeatherToday();
     }
 
-    if (weatherTodayState is LoadedStateWeatherToday) {
+    if (weatherTodayState is LoadedWeatherTodayState) {
       return LoadedBodyWeatherToday(
         weather: weatherTodayState.weather,
       );
@@ -61,7 +61,7 @@ class WeatherTodayPage extends StatelessWidget {
   }
 
   selectAppBarFromState(weatherTodayState) {
-    if (weatherTodayState is LoadedStateWeatherToday) {
+    if (weatherTodayState is LoadedWeatherTodayState) {
       return LocationAppBar(
         locationName: weatherTodayState.weather.location,
         hasAddButton: true,

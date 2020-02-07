@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/home/home_page.dart';
 import 'package:flutter_app/meta_weather/api_client_meta_weather.dart';
-import 'package:flutter_app/permission/bloc_permission_location.dart';
-import 'package:flutter_app/weather/repository/weather_repository.dart';
+import 'package:flutter_app/permission/bloc_location_permission.dart';
+import 'package:flutter_app/weather/repository/repository_weather.dart';
 import 'package:flutter_app/weather_today/bloc/bloc_weather_today.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +18,7 @@ void main() {
   );
 
   final blocWeatherToday = BlocProvider(
-    create: (context) => BlocWeatherToday(
+    create: (context) => WeatherTodayBloc(
       weatherRepository: weatherRepository,
     ),
   );
