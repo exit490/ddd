@@ -42,8 +42,9 @@ class BlocLocationPermission
   Stream<LocationPermissionState> requestPermission() async* {
     try {
       Map<PermissionGroup, PermissionStatus> permissions =
-          await PermissionHandler()
-              .requestPermissions([PermissionGroup.location]);
+          await PermissionHandler().requestPermissions([
+        PermissionGroup.location,
+      ]);
 
       final status = permissions[PermissionGroup.location];
 

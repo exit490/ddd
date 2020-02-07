@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weather_today/view/weather_today_main_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -16,7 +15,37 @@ class HomePage extends StatelessWidget {
 
     return MaterialApp(
       theme: theme,
-      home: WeatherTodayMainPage(),
+      home: main(),
+    );
+  }
+
+  main() {
+    final textStyle = TextStyle(fontSize: 50);
+    final text1 = Text(
+      'FLUTTER',
+      style: textStyle,
+    );
+    final text2 = Text(
+      'WEATHER APP',
+      style: textStyle,
+    );
+
+    final column = Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        text1,
+        text2,
+      ],
+    );
+
+    final center = Center(
+      child: column,
+    );
+
+    return Scaffold(
+      body: center,
     );
   }
 }
