@@ -19,6 +19,7 @@ class DisabledLocationPermissionDialog extends AlertDialog {
       child: Text('YES'),
       onPressed: () {
         Navigator.of(context).pop();
+        // PermissionHandler().openAppSettings();
       },
     );
   }
