@@ -28,23 +28,23 @@ class MinMaxTempRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxDegreeText = Text(
-      maxTemp.toString(),
+    final maxTempText = Text(
+      maxTemp.toInt().toString(),
       style: TextStyle(fontSize: fontSize),
     );
 
-    final minDegreeText = Text(
-      minTemp.toString(),
+    final minTempText = Text(
+      minTemp.toInt().toString(),
       style: TextStyle(fontSize: fontSize),
     );
 
     return Row(
       children: <Widget>[
         upIcon,
-        maxDegreeText,
+        maxTempText,
         padding,
         downIcon,
-        minDegreeText,
+        minTempText,
       ],
     );
   }
