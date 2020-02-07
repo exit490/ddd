@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/permission/location_permission_event.dart';
+import 'package:flutter_app/permission/location_permission_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -25,7 +27,17 @@ class HomePage extends StatelessWidget {
   }
 
   main() {
+    final blocBuilder =
+        BlocBuilder<BlocLocationPermission, LocationPermissionState>(
+      builder: (context, locationPermissionState) {
+        _handlerLocationPermissionState(locationPermissionState);
+        return body();
+      },
+    );
 
+    return Container(
+      child: blocBuilder,
+    );
   }
 
   body() {
@@ -66,5 +78,21 @@ class HomePage extends StatelessWidget {
   checkLocationPermission(context) {
     BlocProvider.of<BlocLocationPermission>(context)
         .add(CheckLocationPermissionEvent());
+  }
+
+  _handlerLocationPermissionState(locationPermissionState) {
+    switch (locationPermissionState) {
+      case PermissionStatus.denied:
+        break;
+      case PermissionStatus.granted:
+        break;
+      case PermissionStatus.disabled:
+        break;
+      case PermissionStatus.restricted:
+        break;
+      case PermissionStatus.neverAskAgain:
+        break;
+      default:
+    }
   }
 }
