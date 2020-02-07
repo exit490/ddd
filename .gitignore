@@ -90,3 +90,5 @@ lint/tmp/
 .packages
 pubspec.lock
 coverage
+.flutter-plugins
+.flutter-plugins-dependencies
