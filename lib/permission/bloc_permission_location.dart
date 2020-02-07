@@ -10,8 +10,9 @@ class BlocLocationPermission
     extends Bloc<EventLocationPermission, StateLocationPermission> {
   final PermissionHandler permissionHandler;
 
-  BlocLocationPermission({@required this.permissionHandler})
-      : assert(permissionHandler != null);
+  BlocLocationPermission({
+    @required this.permissionHandler,
+  }) : assert(permissionHandler != null);
 
   @override
   StateLocationPermission get initialState => UnknownStateLocationPermission();
