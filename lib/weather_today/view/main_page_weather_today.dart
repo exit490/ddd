@@ -64,13 +64,13 @@ class WeatherTodayPage extends StatelessWidget {
     if (weatherTodayState is LoadedWeatherTodayState) {
       return LocationAppBar(
         locationName: weatherTodayState.weather.location,
-        hasAddButton: true,
+        enableAddButton: true,
       );
     }
 
     return LocationAppBar(
       locationName: '',
-      hasAddButton: false,
+      enableAddButton: false,
     );
   }
 }
