@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/weather_today/bloc/bloc_weather_today.dart';
 import 'package:flutter_app/weather_today/bloc/event_weather_today.dart';
 import 'package:flutter_app/weather_today/bloc/state_weather_today.dart';
-import 'package:flutter_app/weather_today/view/loaded_body_weather_today.dart';
-import 'package:flutter_app/weather_today/view/loading_body_weather_today.dart';
+import 'package:flutter_app/weather_today/view/body_loaded_weather_today.dart';
+import 'package:flutter_app/weather_today/view/body_loading_weather_today.dart';
 import 'package:flutter_app/weather_today/view/widget/app_bar_location.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
