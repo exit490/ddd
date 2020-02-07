@@ -2,19 +2,33 @@ import 'package:flutter/material.dart';
 
 class LocationAppBar extends AppBar {
   final String locationName;
+  final hasAddButton;
 
   LocationAppBar({
     @required this.locationName,
-  })  : assert(locationName != null),
+    @required this.hasAddButton,
+  })  : assert(
+          locationName != null,
+          hasAddButton != null,
+        ),
         super(
           title: Text(locationName),
           elevation: 20,
           centerTitle: true,
           backgroundColor: Colors.transparent,
-          actions: <Widget>[
-            addButton(),
-          ],
+          actions: whatActions(hasAddButton),
         );
+
+  static whatActions(hasAddButton) {
+    final actions = <Widget>[];
+    if (hasAddButton) {
+      actions.add(
+        addButton(),
+      );
+    }
+
+    return actions;
+  }
 
   static addButton() {
     var addIcon = Icon(
