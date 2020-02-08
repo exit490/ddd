@@ -38,9 +38,13 @@ void main() async {
     ),
   );
 
+  final locationRepository = await configureLocationRepository(
+    metaWeatherApiClient,
+  );
+
   final locationBloc = BlocProvider(
     create: (context) => LocationBloc(
-      locationRepository: configureLocationRepository(metaWeatherApiClient),
+      locationRepository: locationRepository,
     ),
   );
 
@@ -57,7 +61,8 @@ void main() async {
 }
 
 configureLocationRepository(metaWeatherApiClient) async {
-  final locationBox = await Hive.openBox<LocationModel>('LocationModel');
+  final Box<LocationModel> locationBox =
+      await Hive.openBox<LocationModel>('LocationModel');
 
   final locationNoSqlClient = LocationNoSqlClient(locationBox: locationBox);
 
