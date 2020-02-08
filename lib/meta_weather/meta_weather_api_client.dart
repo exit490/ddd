@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -35,5 +36,26 @@ class MetaWeatherApiClient {
 
     final weatherJson = jsonDecode(weatherResponse.body);
     return Weather.fromJson(weatherJson);
+  }
+
+  Future<List<LocationModel>> fetchLocationsByLatLong(
+      double lat, double long) async {
+    final locationsUrl = '$baseUrl/api/location/search/?lattlong=$lat,$long';
+    final locationResponse = await this.httpClient.get(locationsUrl);
+
+    if (locationResponse.statusCode != 200) {
+      throw Exception('error getting  locations');
+    }
+
+    final locationJsonList = jsonDecode(locationResponse.body) as List;
+
+    List<LocationModel> locationModelList = [];
+
+    for (final locationJson in locationJsonList) {
+      final locationModel = LocationModel.fromJson(locationJson);
+      locationModelList.add(locationModel);
+    }
+
+    return locationModelList;
   }
 }
