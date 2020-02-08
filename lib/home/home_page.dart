@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/location/bloc/location_bloc.dart';
+import 'package:flutter_app/location/bloc/location_event.dart';
+import 'package:flutter_app/location/bloc/location_state.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/permission/location_permission_event.dart';
 import 'package:flutter_app/permission/location_permission_state.dart';
@@ -26,7 +29,7 @@ class HomePage extends StatelessWidget {
 
   main() {
     final blocBuilder =
-        BlocBuilder<BlocLocationPermission, LocationPermissionState>(
+        BlocBuilder<LocationPermissionBloc, LocationPermissionState>(
       builder: (context, locationPermissionState) {
         return _handlerCheckLocationPermissionState(
           context,
@@ -70,13 +73,34 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  locationBlocBuilder() {
+    return BlocBuilder<LocationBloc, LocationState>(
+      builder: (context, locationState) {
+        return _handlerLocationsState(context, locationState);
+      },
+    );
+  }
+
+  _handlerLocationsState(context, locationState) {
+    if (locationState is InitialLocationState) {
+      BlocProvider.of<LocationBloc>(context).add(DefaultLocationEvent());
+      return body();
+    }
+
+    if (locationState is DefaultLocationState) {
+      return WeatherTodayMainPage(
+        defaultLocation: locationState.location,
+      );
+    }
+  }
+
   requestLocationPermission(context) {
-    BlocProvider.of<BlocLocationPermission>(context)
+    BlocProvider.of<LocationPermissionBloc>(context)
         .add(RequestLocationPermissionEvent());
   }
 
   checkLocationPermission(context) {
-    BlocProvider.of<BlocLocationPermission>(context)
+    BlocProvider.of<LocationPermissionBloc>(context)
         .add(CheckLocationPermissionEvent());
   }
 
@@ -92,15 +116,15 @@ class HomePage extends StatelessWidget {
     }
 
     if (locationPermissionState is GrantedLocationPermissionState) {
-      return WeatherTodayMainPage();
+      return locationBlocBuilder();
     }
 
     if (locationPermissionState is NeverAskAgainLocationPermissionState) {
-      return WeatherTodayMainPage();
+      return locationBlocBuilder();
     }
 
     if (locationPermissionState is RestrictedLocationPermissionState) {
-      return WeatherTodayMainPage();
+      return;
     }
   }
 }
