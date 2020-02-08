@@ -15,7 +15,7 @@ class BlocLocationPermission
   }) : assert(permissionHandler != null);
 
   @override
-  LocationPermissionState get initialState => UnknownLocationPermissionState();
+  LocationPermissionState get initialState => InitialLocationPermissionState();
 
   @override
   Stream<LocationPermissionState> mapEventToState(
