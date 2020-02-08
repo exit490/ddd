@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/permission/location_permission_event.dart';
 import 'package:flutter_app/permission/location_permission_state.dart';
+import 'package:flutter_app/weather_today/view/weather_today_main_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    checkLocationPermission(context);
-
     final newTextTheme = Theme.of(context).textTheme.apply(
           bodyColor: Colors.white,
           displayColor: Colors.white,
@@ -29,9 +28,10 @@ class HomePage extends StatelessWidget {
     final blocBuilder =
         BlocBuilder<BlocLocationPermission, LocationPermissionState>(
       builder: (context, locationPermissionState) {
-        _handlerCheckLocationPermissionState(context, locationPermissionState);
-
-        return body();
+        return _handlerCheckLocationPermissionState(
+          context,
+          locationPermissionState,
+        );
       },
     );
 
@@ -81,22 +81,26 @@ class HomePage extends StatelessWidget {
   }
 
   _handlerCheckLocationPermissionState(context, locationPermissionState) {
-    if (locationPermissionState is DisabledLocationPermissionState) {
-      requestLocationPermission(context);
+    if (locationPermissionState is InitialLocationPermissionState) {
+      checkLocationPermission(context);
+      return body();
     }
 
-//      case is Di:
-//        requestLocationPermission(context);
-//        break;
-//      case PermissionStatus.granted:
-//        break;
-//      case PermissionStatus.disabled:
-//        break;
-//      case PermissionStatus.restricted:
-//        break;
-//      case PermissionStatus.neverAskAgain:
-//        break;
-//      default:
-//    }
+    if (locationPermissionState is DisabledLocationPermissionState) {
+      requestLocationPermission(context);
+      return body();
+    }
+
+    if (locationPermissionState is GrantedLocationPermissionState) {
+      return WeatherTodayMainPage();
+    }
+
+    if (locationPermissionState is NeverAskAgainLocationPermissionState) {
+      return WeatherTodayMainPage();
+    }
+
+    if (locationPermissionState is RestrictedLocationPermissionState) {
+      return WeatherTodayMainPage();
+    }
   }
 }
