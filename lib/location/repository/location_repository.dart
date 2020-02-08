@@ -1,18 +1,22 @@
 import 'package:flutter_app/location/geo_location/geo_location_client.dart';
 import 'package:flutter_app/location/model/location_model.dart';
+import 'package:flutter_app/location/no_sql/location_nosql_client.dart';
 import 'package:flutter_app/meta_weather/meta_weather_api_client.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationRepository {
   final GeoLocationApiClient geoLocationApiClient;
   final MetaWeatherApiClient metaWeatherApiClient;
+  final LocationNoSqlClient locationNoSqlClient;
 
   LocationRepository(
     this.geoLocationApiClient,
     this.metaWeatherApiClient,
+    this.locationNoSqlClient,
   ) : assert(
-          geoLocationApiClient != null,
-          metaWeatherApiClient != null,
+          geoLocationApiClient != null &&
+              metaWeatherApiClient != null &&
+              locationNoSqlClient != null,
         );
 
   getDefaultLocation() async {
@@ -34,5 +38,7 @@ class LocationRepository {
     return locations[0];
   }
 
-  getAllLocation() {}
+  getAllLocationCached() {
+    return locationNoSqlClient.restoreAll();
+  }
 }
