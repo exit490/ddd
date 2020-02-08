@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';
+import 'package:flutter_app/location/search/bloc/search_location_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchLocationPage extends StatelessWidget {
   final TextEditingController _searchQuery = new TextEditingController();
@@ -9,13 +12,7 @@ class SearchLocationPage extends StatelessWidget {
     String _searchText = "";
 
     _searchQuery.addListener(() {
-      if (_searchQuery.text.isEmpty) {
-        _isSearching = false;
-        _searchText = "";
-      } else {
-        _isSearching = true;
-        _searchText = _searchQuery.text;
-      }
+      searchLocation(context, _searchQuery.text.toString());
     });
 
     return Scaffold(
@@ -92,6 +89,12 @@ class SearchLocationPage extends StatelessWidget {
     _list.add("Java");
     _list.add("RxAndroid");
     return _list;
+  }
+
+  searchLocation(context, location) {
+    BlocProvider.of<SearchLocationBloc>(context).add(TypingLocationEvent(
+      location: location,
+    ));
   }
 }
 

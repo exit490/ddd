@@ -5,6 +5,7 @@ import 'package:flutter_app/location/geo_location/geo_location_client.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/no_sql/location_nosql_client.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
+import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/meta_weather/meta_weather_api_client.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/weather/repository/weather_repository.dart';
@@ -48,11 +49,18 @@ void main() async {
     ),
   );
 
+  final searchLocationBloc = BlocProvider(
+    create: (context) => SearchLocationBloc(
+      locationRepository: locationRepository,
+    ),
+  );
+
   final multiBlocProvider = MultiBlocProvider(
     providers: [
       weatherTodayBloc,
       locationPermissionBloc,
       locationBloc,
+      searchLocationBloc,
     ],
     child: HomePage(),
   );

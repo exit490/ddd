@@ -5,7 +5,7 @@ class SearchLocationEvent extends Equatable {
 
   const SearchLocationEvent({
     this.location,
-  }) : assert(location != null);
+  });
 
   @override
   List<Object> get props => [location];
