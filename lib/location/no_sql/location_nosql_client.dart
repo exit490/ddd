@@ -10,6 +10,10 @@ class LocationNoSqlClient {
     locationBox.add(locationModel);
   }
 
+  restore(int locationIndex) {
+    return locationBox.getAt(locationIndex);
+  }
+
   restoreAll() {
     List<LocationModel> locationModelList = [];
 
