@@ -8,9 +8,6 @@ class SearchLocationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _isSearching = false;
-    String _searchText = "";
-
     _searchQuery.addListener(() {
       searchLocation(context, _searchQuery.text.toString());
     });
@@ -20,32 +17,9 @@ class SearchLocationPage extends StatelessWidget {
       appBar: buildBar(context),
       body: new ListView(
         padding: new EdgeInsets.symmetric(vertical: 8.0),
-        children: _isSearching ? _buildSearchList(_searchText) : _buildList(),
+        children: [],
       ),
     );
-  }
-
-  List<ChildItem> _buildList() {
-    return getList()
-        .map(
-          (contact) => new ChildItem(contact),
-        )
-        .toList();
-  }
-
-  List<ChildItem> _buildSearchList(_searchText) {
-    if (_searchText.isEmpty) {
-      return getList().map((contact) => new ChildItem(contact)).toList();
-    } else {
-      List<String> _searchList = List();
-      for (int i = 0; i < getList().length; i++) {
-        String name = getList().elementAt(i);
-        if (name.toLowerCase().contains(_searchText.toLowerCase())) {
-          _searchList.add(name);
-        }
-      }
-      return _searchList.map((contact) => ChildItem(contact)).toList();
-    }
   }
 
   Widget buildBar(BuildContext context) {
@@ -73,22 +47,6 @@ class SearchLocationPage extends StatelessWidget {
             )),
       ),
     );
-  }
-
-  List<String> getList() {
-    final List<String> _list = List();
-    _list.add("Google");
-    _list.add("IOS");
-    _list.add("Andorid");
-    _list.add("Dart");
-    _list.add("Flutter");
-    _list.add("Python");
-    _list.add("React");
-    _list.add("Xamarin");
-    _list.add("Kotlin");
-    _list.add("Java");
-    _list.add("RxAndroid");
-    return _list;
   }
 
   searchLocation(context, location) {
