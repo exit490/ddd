@@ -38,6 +38,10 @@ class LocationRepository {
     return locations[0];
   }
 
+  getLocation(int locationIndex) {
+    return locationNoSqlClient.restore(locationIndex);
+  }
+
   getAllLocationCached() {
     return locationNoSqlClient.restoreAll();
   }

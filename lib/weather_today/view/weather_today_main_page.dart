@@ -91,6 +91,7 @@ buildNavigationDrawer() {
 
   var listTile2 = ListTile(
     title: Text('São pedro da Aldeia'),
+    onTap: () {},
   );
 
   var listView = ListView(
