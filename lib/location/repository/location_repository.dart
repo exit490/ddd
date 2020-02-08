@@ -9,11 +9,11 @@ class LocationRepository {
   final MetaWeatherApiClient metaWeatherApiClient;
   final LocationNoSqlClient locationNoSqlClient;
 
-  LocationRepository(
+  LocationRepository({
     this.geoLocationApiClient,
     this.metaWeatherApiClient,
     this.locationNoSqlClient,
-  ) : assert(
+  }) : assert(
           geoLocationApiClient != null &&
               metaWeatherApiClient != null &&
               locationNoSqlClient != null,
