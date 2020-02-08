@@ -4,6 +4,9 @@ import 'package:flutter_app/location/model/location_model.dart';
 
 abstract class LocationEvent extends Equatable {
   const LocationEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
 class SelectLocationEvent extends LocationEvent {
@@ -28,13 +31,4 @@ class SaveLocationEvent extends LocationEvent {
   List<Object> get props => [location];
 }
 
-class RestoreAllLocationEvent extends LocationEvent {
-  final List<LocationModel> locations;
-
-  const RestoreAllLocationEvent({
-    @required this.locations,
-  }) : assert(locations != null);
-
-  @override
-  List<Object> get props => [locations];
-}
+class RestoreAllLocationEvent extends LocationEvent {}
