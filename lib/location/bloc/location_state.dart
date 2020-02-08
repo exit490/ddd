@@ -9,6 +9,8 @@ abstract class LocationState extends Equatable {
   List<Object> get props => [];
 }
 
+class InitialLocationState extends LocationState {}
+
 class DefaultLocationState extends LocationState {
   final LocationModel location;
 
