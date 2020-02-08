@@ -1,25 +1,43 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/weather/model/weather_model.dart';
+import 'package:flutter_app/location/model/location_model.dart';
 
-abstract class WeatherTodayState extends Equatable {
-  const WeatherTodayState();
+abstract class LocationState extends Equatable {
+  const LocationState();
 
   @override
   List<Object> get props => [];
 }
 
-class LoadedWeatherTodayState extends WeatherTodayState {
-  final Weather weather;
+class DefaultLocationState extends LocationState {
+  final LocationModel location;
 
-  const LoadedWeatherTodayState({
-    @required this.weather,
-  }) : assert(weather != null);
+  const DefaultLocationState({
+    @required this.location,
+  }) : assert(location != null);
 
   @override
-  List<Object> get props => [weather];
+  List<Object> get props => [location];
 }
 
-class WeatherTodayLoading extends WeatherTodayState {}
+class LocationRestoredState extends LocationState {
+  final LocationModel location;
 
-class WeatherTodayError extends WeatherTodayState {}
+  const LocationRestoredState({
+    @required this.location,
+  }) : assert(location != null);
+
+  @override
+  List<Object> get props => [location];
+}
+
+class AllLocationsRestoredState extends LocationState {
+  final List<LocationModel> locations;
+
+  const AllLocationsRestoredState({
+    @required this.locations,
+  }) : assert(locations != null);
+
+  @override
+  List<Object> get props => [locations];
+}
