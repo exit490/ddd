@@ -13,7 +13,7 @@ class WeatherTodayBloc extends Bloc<WeatherTodayEvent, WeatherTodayState> {
       : assert(weatherRepository != null);
 
   @override
-  WeatherTodayState get initialState => WeatherTodayLoading();
+  WeatherTodayState get initialState => InitialWeatherTodayState();
 
   @override
   Stream<WeatherTodayState> mapEventToState(WeatherTodayEvent event) async* {

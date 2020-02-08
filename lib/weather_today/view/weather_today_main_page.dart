@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
@@ -8,12 +9,14 @@ import 'package:flutter_app/weather_today/view/widget/location_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherTodayMainPage extends StatelessWidget {
+  final LocationModel defaultLocation;
+
+  WeatherTodayMainPage({
+    this.defaultLocation,
+  }) : assert(defaultLocation != null);
+
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<WeatherTodayBloc>(context).add(
-      FetchWeatherTodayEvent(locationId: 455825),
-    );
-
     final blocBuilder = BlocBuilder<WeatherTodayBloc, WeatherTodayState>(
       builder: (context, weatherTodayState) {
         return main(
@@ -32,21 +35,27 @@ class WeatherTodayMainPage extends StatelessWidget {
     return Stack(
       children: <Widget>[
         weatherBackground(context),
-        body(weatherTodayState),
+        body(context, weatherTodayState),
       ],
     );
   }
 
-  body(weatherTodayState) {
+  body(context, weatherTodayState) {
     return Scaffold(
       appBar: selectAppBarFromState(weatherTodayState),
       backgroundColor: Colors.transparent,
       drawer: buildNavigationDrawer(),
-      body: selectBodyFromState(weatherTodayState),
+      body: selectBodyFromState(context, weatherTodayState),
     );
   }
 
-  selectBodyFromState(weatherTodayState) {
+  selectBodyFromState(context, weatherTodayState) {
+    if (weatherTodayState is InitialWeatherTodayState) {
+      BlocProvider.of<WeatherTodayBloc>(context).add(
+        FetchWeatherTodayEvent(locationId: 455825),
+      );
+    }
+
     if (weatherTodayState is WeatherTodayLoading) {
       return LoadingWeatherTodayBody();
     }

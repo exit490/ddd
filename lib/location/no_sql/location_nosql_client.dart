@@ -4,7 +4,9 @@ import 'package:hive/hive.dart';
 class LocationNoSqlClient {
   Box<LocationModel> locationBox;
 
-  LocationNoSqlClient(this.locationBox) : assert(locationBox != null);
+  LocationNoSqlClient({
+    this.locationBox,
+  }) : assert(locationBox != null);
 
   save(LocationModel locationModel) {
     locationBox.add(locationModel);

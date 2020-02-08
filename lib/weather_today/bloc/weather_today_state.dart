@@ -9,6 +9,8 @@ abstract class WeatherTodayState extends Equatable {
   List<Object> get props => [];
 }
 
+class InitialWeatherTodayState extends WeatherTodayState {}
+
 class LoadedWeatherTodayState extends WeatherTodayState {
   final Weather weather;
 
