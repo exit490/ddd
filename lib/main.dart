@@ -11,8 +11,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 
-void main() {
-  initiatingNoSqlHive();
+void main() async {
+  await initiatingNoSqlHive();
+
+  final locationBox = Hive.openBox<LocationModel>('LocationModel');
 
   final metaWeatherApiClient = MetaWeatherApiClient(
     httpClient: http.Client(),
