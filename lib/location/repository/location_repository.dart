@@ -38,11 +38,15 @@ class LocationRepository {
     return locations[0];
   }
 
+  getLocationsByCityName(city) async {
+    return await metaWeatherApiClient.fetchLocationsByCityName(city);
+  }
+
   getLocation(int locationIndex) {
     return locationNoSqlClient.restore(locationIndex);
   }
 
-  getAllLocationCached() {
+  getAllLocationsCached() {
     return locationNoSqlClient.restoreAll();
   }
 }
