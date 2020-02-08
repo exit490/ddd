@@ -1,68 +1,72 @@
 [
   {
-    "title": "San Francisco",
+    "distance": 16744,
+    "title": "Penzance",
     "location_type": "City",
-    "woeid": 2487956,
-    "latt_long": "37.777119, -122.41964"
+    "woeid": 31889,
+    "latt_long": "50.11861,-5.53723"
   },
   {
-    "title": "San Diego",
+    "distance": 19287,
+    "title": "Falmouth",
     "location_type": "City",
-    "woeid": 2487889,
-    "latt_long": "32.715691,-117.161720"
+    "woeid": 19894,
+    "latt_long": "50.151001,-5.07832"
   },
   {
-    "title": "San Jose",
+    "distance": 19904,
+    "title": "St Ives",
     "location_type": "City",
-    "woeid": 2488042,
-    "latt_long": "37.338581,-121.885567"
+    "woeid": 35662,
+    "latt_long": "50.21032,-5.48569"
   },
   {
-    "title": "San Antonio",
+    "distance": 28619,
+    "title": "Truro",
     "location_type": "City",
-    "woeid": 2487796,
-    "latt_long": "29.424580,-98.494614"
+    "woeid": 38283,
+    "latt_long": "50.263691,-5.054610"
   },
   {
-    "title": "Santa Cruz",
+    "distance": 90542,
+    "title": "Plymouth",
     "location_type": "City",
-    "woeid": 2488853,
-    "latt_long": "36.974018,-122.030952"
+    "woeid": 32185,
+    "latt_long": "50.375801,-4.136890"
   },
   {
-    "title": "Santiago",
+    "distance": 146738,
+    "title": "Exeter",
     "location_type": "City",
-    "woeid": 349859,
-    "latt_long": "-33.463039,-70.647942"
+    "woeid": 19792,
+    "latt_long": "50.720760,-3.515340"
   },
   {
-    "title": "Santorini",
+    "distance": 162575,
+    "title": "Sidmouth",
     "location_type": "City",
-    "woeid": 56558361,
-    "latt_long": "36.406651,25.456530"
+    "woeid": 34811,
+    "latt_long": "50.687439,-3.23757"
   },
   {
-    "title": "Santander",
+    "distance": 197916,
+    "title": "Swansea",
     "location_type": "City",
-    "woeid": 773964,
-    "latt_long": "43.461498,-3.810010"
+    "woeid": 36758,
+    "latt_long": "51.623150,-3.940930"
   },
   {
-    "title": "Busan",
+    "distance": 217189,
+    "title": "Cardiff",
     "location_type": "City",
-    "woeid": 1132447,
-    "latt_long": "35.170429,128.999481"
+    "woeid": 15127,
+    "latt_long": "51.481251,-3.180730"
   },
   {
-    "title": "Santa Cruz de Tenerife",
+    "distance": 245712,
+    "title": "Bristol",
     "location_type": "City",
-    "woeid": 773692,
-    "latt_long": "28.46163,-16.267059"
-  },
-  {
-    "title": "Santa Fe",
-    "location_type": "City",
-    "woeid": 2488867,
-    "latt_long": "35.666431,-105.972572"
+    "woeid": 13963,
+    "latt_long": "51.453732,-2.591560"
   }
 ]
