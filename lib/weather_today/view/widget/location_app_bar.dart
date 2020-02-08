@@ -1,36 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/location/search/view/location_search_page.dart';
 
 class LocationAppBar extends AppBar {
   final String locationName;
   final enableAddButton;
+  final context;
 
   LocationAppBar({
     @required this.locationName,
     @required this.enableAddButton,
-  })  : assert(
-          locationName != null,
-          enableAddButton != null,
-        ),
-        super(
+    @required this.context,
+  }) : super(
           title: Text(locationName),
           elevation: 20,
           centerTitle: true,
           backgroundColor: Colors.transparent,
-          actions: whatActions(enableAddButton),
+          actions: whatActions(
+            context,
+            enableAddButton,
+          ),
         );
 
-  static whatActions(enableAddButton) {
+  static whatActions(context, enableAddButton) {
     final actions = <Widget>[];
     if (enableAddButton) {
       actions.add(
-        addButton(),
+        addButton(context),
       );
     }
 
     return actions;
   }
 
-  static addButton() {
+  static addButton(context) {
     var addIcon = Icon(
       Icons.add,
       size: 30,
@@ -38,7 +40,16 @@ class LocationAppBar extends AppBar {
 
     return IconButton(
       icon: addIcon,
-      onPressed: () {},
+      onPressed: () {
+        callSearchLocationPage(context);
+      },
+    );
+  }
+
+  static callSearchLocationPage(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SearchLocationPage()),
     );
   }
 }

@@ -42,7 +42,7 @@ class WeatherTodayMainPage extends StatelessWidget {
 
   body(context, weatherTodayState) {
     return Scaffold(
-      appBar: selectAppBarFromState(weatherTodayState),
+      appBar: selectAppBarFromState(context, weatherTodayState),
       backgroundColor: Colors.transparent,
       drawer: buildNavigationDrawer(),
       body: selectBodyFromState(context, weatherTodayState),
@@ -69,17 +69,19 @@ class WeatherTodayMainPage extends StatelessWidget {
     return LoadingWeatherTodayBody();
   }
 
-  selectAppBarFromState(weatherTodayState) {
+  selectAppBarFromState(context, weatherTodayState) {
     if (weatherTodayState is LoadedWeatherTodayState) {
       return LocationAppBar(
         locationName: weatherTodayState.weather.location,
         enableAddButton: true,
+        context: context,
       );
     }
 
     return LocationAppBar(
       locationName: '',
       enableAddButton: false,
+      context: context,
     );
   }
 }
