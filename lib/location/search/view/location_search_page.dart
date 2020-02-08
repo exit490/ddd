@@ -8,14 +8,6 @@ class SearchLocationPage extends StatefulWidget {
 }
 
 class _SearchLocationPageState extends State<SearchLocationPage> {
-  Widget appBarTitle = new Text(
-    "Search Sample",
-    style: new TextStyle(color: Colors.white),
-  );
-  Icon actionIcon = new Icon(
-    Icons.search,
-    color: Colors.white,
-  );
   final key = new GlobalKey<ScaffoldState>();
   final TextEditingController _searchQuery = new TextEditingController();
   List<String> _list;
@@ -62,7 +54,7 @@ class _SearchLocationPageState extends State<SearchLocationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       key: key,
       appBar: buildBar(context),
       body: new ListView(
@@ -73,7 +65,11 @@ class _SearchLocationPageState extends State<SearchLocationPage> {
   }
 
   List<ChildItem> _buildList() {
-    return _list.map((contact) => new ChildItem(contact)).toList();
+    return _list
+        .map(
+          (contact) => new ChildItem(contact),
+        )
+        .toList();
   }
 
   List<ChildItem> _buildSearchList() {
@@ -87,60 +83,35 @@ class _SearchLocationPageState extends State<SearchLocationPage> {
           _searchList.add(name);
         }
       }
-      return _searchList.map((contact) => new ChildItem(contact)).toList();
+      return _searchList.map((contact) => ChildItem(contact)).toList();
     }
   }
 
   Widget buildBar(BuildContext context) {
-    return new AppBar(centerTitle: true, title: appBarTitle, actions: <Widget>[
-      new IconButton(
-        icon: actionIcon,
-        onPressed: () {
-          setState(() {
-            if (this.actionIcon.icon == Icons.search) {
-              this.actionIcon = new Icon(
-                Icons.close,
-                color: Colors.white,
-              );
-              this.appBarTitle = new TextField(
-                controller: _searchQuery,
-                style: new TextStyle(
-                  color: Colors.white,
-                ),
-                decoration: new InputDecoration(
-                    prefixIcon: new Icon(Icons.search, color: Colors.white),
-                    hintText: "Search...",
-                    hintStyle: new TextStyle(color: Colors.white)),
-              );
-              _handleSearchStart();
-            } else {
-              _handleSearchEnd();
-            }
-          });
-        },
+    return AppBar(
+      automaticallyImplyLeading: false,
+      centerTitle: true,
+      backgroundColor: Colors.transparent,
+      title: TextField(
+        controller: _searchQuery,
+        cursorColor: Colors.white,
+        style: TextStyle(
+          color: Colors.white,
+        ),
+        decoration: InputDecoration(
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            hintText: "Enter city name ..",
+            focusColor: Colors.white,
+            fillColor: Colors.white,
+            hoverColor: Colors.white,
+            hintStyle: TextStyle(
+              color: Colors.white,
+            )),
       ),
-    ]);
-  }
-
-  void _handleSearchStart() {
-    setState(() {
-      _isSearching = true;
-    });
-  }
-
-  void _handleSearchEnd() {
-    setState(() {
-      this.actionIcon = new Icon(
-        Icons.search,
-        color: Colors.white,
-      );
-      this.appBarTitle = new Text(
-        "Search Sample",
-        style: new TextStyle(color: Colors.white),
-      );
-      _isSearching = false;
-      _searchQuery.clear();
-    });
+    );
   }
 }
 
@@ -151,6 +122,6 @@ class ChildItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ListTile(title: new Text(this.name));
+    return ListTile(title: Text(this.name));
   }
 }
