@@ -6,11 +6,11 @@ import 'package:flutter_app/permission/location_permission_state.dart';
 import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class BlocLocationPermission
+class LocationPermissionBloc
     extends Bloc<LocationPermissionEvent, LocationPermissionState> {
   final PermissionHandler permissionHandler;
 
-  BlocLocationPermission({
+  LocationPermissionBloc({
     @required this.permissionHandler,
   }) : assert(permissionHandler != null);
 
