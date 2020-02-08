@@ -13,27 +13,15 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   }) : assert(locationRepository != null);
 
   @override
-  LocationState get initialState => getLocationDefaultState();
+  LocationState get initialState => InitialLocationState();
 
   @override
   Stream<LocationState> mapEventToState(LocationEvent event) async* {
-    if (event is LocationRestoredState) {
-      // yield* _mapFetchWeatherToState(event);
+    if (event is DefaultLocationEvent) {
+      yield* emitsLocationDefaultState();
     }
   }
 
-//  Stream<WeatherTodayState> _mapFetchWeatherToState(
-//      FetchWeatherTodayEvent event) async* {
-//    yield WeatherTodayLoading();
-//    try {
-//      final weather = await weatherRepository.getWeatherFromLocation(
-//        event.locationId,
-//      );
-//      yield LoadedWeatherTodayState(weather: weather);
-//    } catch (_) {
-//      yield WeatherTodayError();
-//    }
-//  }
 //
 //  Stream<WeatherTodayState> _mapRefreshWeatherToState(
 //      RefreshWeatherEvent event) async* {
@@ -48,8 +36,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 //    }
 //  }
 
-  getLocationDefaultState() async {
+  emitsLocationDefaultState() async* {
     final defaultLocation = await locationRepository.getDefaultLocation();
-    return DefaultLocationState(location: defaultLocation);
+    yield DefaultLocationState(location: defaultLocation);
   }
 }
