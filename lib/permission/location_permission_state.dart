@@ -7,6 +7,8 @@ abstract class LocationPermissionState extends Equatable {
   List<Object> get props => [];
 }
 
+class InitialLocationPermissionState extends LocationPermissionState {}
+
 /// Permission to access the requested feature is denied by the user.
 class DeniedLocationPermissionState extends LocationPermissionState {}
 
