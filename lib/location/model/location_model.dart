@@ -22,4 +22,13 @@ class LocationModel {
     this.woeid,
     this.latLong,
   );
+
+  static LocationModel fromJson(dynamic json) {
+    return LocationModel(
+      json['title'],
+      json['location_type'],
+      json['woeid'],
+      json['latt_long'],
+    );
+  }
 }
