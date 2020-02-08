@@ -32,3 +32,5 @@ class SaveLocationEvent extends LocationEvent {
 }
 
 class RestoreAllLocationEvent extends LocationEvent {}
+
+class DefaultLocationEvent extends LocationEvent {}
