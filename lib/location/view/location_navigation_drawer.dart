@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LocationsNavigationDrawer extends Drawer {
   final context;
-  final locations;
+  final List<LocationModel> locations;
 
   LocationsNavigationDrawer(
     this.context,
@@ -16,7 +16,7 @@ class LocationsNavigationDrawer extends Drawer {
           child: buildLocationList(context, locations),
         );
 
-  static buildLocationList(context, locations) {
+  static buildLocationList(context, List<LocationModel> locations) {
     if (locations.isEmpty) {
       return ListView(
         padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -24,7 +24,7 @@ class LocationsNavigationDrawer extends Drawer {
       );
     }
 
-    final childItemList = locations
+    final List<LocationChildItem> childItemList = locations
         .toList()
         .map(
           (location) => LocationChildItem(location),

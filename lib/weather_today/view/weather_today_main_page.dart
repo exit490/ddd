@@ -45,7 +45,7 @@ class WeatherTodayMainPage extends StatelessWidget {
     return Scaffold(
       appBar: selectAppBarFromState(context, weatherTodayState),
       backgroundColor: Colors.transparent,
-      drawer: LocationsNavigationDrawer(context, []),
+      drawer: LocationsNavigationDrawer(context, locations),
       body: selectBodyFromState(context, weatherTodayState),
     );
   }
