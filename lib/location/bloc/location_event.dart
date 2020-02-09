@@ -31,6 +31,6 @@ class StoreLocationOnCacheEvent extends LocationEvent {
   List<Object> get props => [location];
 }
 
-class RestoreAllLocationEvent extends LocationEvent {}
+class BuildAllLocationEvent extends LocationEvent {}
 
 class DefaultLocationEvent extends LocationEvent {}
