@@ -20,13 +20,13 @@ class WeatherForecastBloc
   Stream<WeatherForecastState> mapEventToState(
       WeatherForecastEvent event) async* {
     if (event is FetchWeatherForecastEvent) {
-      yield* _mapFetchWeatherToState(event);
+      yield* _mapFetchWeatherForecastToState(event);
     } else if (event is RefreshWeatherForecastEvent) {
-      yield* _mapRefreshWeatherToState(event);
+      yield* _mapRefreshWeatherForecastToState(event);
     }
   }
 
-  Stream<WeatherForecastState> _mapFetchWeatherToState(
+  Stream<WeatherForecastState> _mapFetchWeatherForecastToState(
       FetchWeatherForecastEvent event) async* {
     yield LoadingWeatherForecastState();
     try {
@@ -39,7 +39,7 @@ class WeatherForecastBloc
     }
   }
 
-  Stream<WeatherForecastState> _mapRefreshWeatherToState(
+  Stream<WeatherForecastState> _mapRefreshWeatherForecastToState(
       RefreshWeatherForecastEvent event) async* {
     try {
       final weather = await weatherRepository.getWeatherFromLocation(
