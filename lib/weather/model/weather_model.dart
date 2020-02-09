@@ -66,6 +66,22 @@ class Weather extends Equatable {
     );
   }
 
+  static Weather fromMetaWeather(
+      consolidatedWeather, locationId, locationName) {
+    return Weather(
+      condition:
+          _mapStringToWeatherCondition(consolidatedWeather.weatherStateAbbr),
+      formattedCondition: consolidatedWeather.weatherStateName,
+      minTemp: consolidatedWeather.minTemp,
+      temp: consolidatedWeather.theTemp,
+      maxTemp: consolidatedWeather.maxTemp,
+      locationId: locationId,
+      created: consolidatedWeather.created,
+      lastUpdated: DateTime.now(),
+      location: locationName,
+    );
+  }
+
   static WeatherCondition _mapStringToWeatherCondition(String input) {
     WeatherCondition state;
     switch (input) {
