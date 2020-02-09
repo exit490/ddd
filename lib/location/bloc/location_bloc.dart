@@ -37,7 +37,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 //  }
 
   Stream<LocationState> emitsLocationDefaultState() async* {
-    final defaultLocation = await locationRepository.getDefaultLocation();
+    final defaultLocation = await locationRepository.buildDefaultLocation();
     yield DefaultLocationState(location: defaultLocation);
   }
 }

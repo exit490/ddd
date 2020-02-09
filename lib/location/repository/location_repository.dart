@@ -19,7 +19,11 @@ class LocationRepository {
               locationNoSqlClient != null,
         );
 
-  getDefaultLocation() async {
+  toStoreLocationOnCache(locationModel) {
+    locationNoSqlClient.save(locationModel);
+  }
+
+  buildDefaultLocation() async {
     final Position myPosition = await geoLocationApiClient.getMyLocation();
     final locations = await metaWeatherApiClient.fetchLocationsByLatLong(
       myPosition.latitude,
@@ -38,7 +42,7 @@ class LocationRepository {
     return locations[0];
   }
 
-  getLocationsByCityName(city) async {
+  fetchLocationsByCityName(city) async {
     return await metaWeatherApiClient.fetchLocationsByCityName(city);
   }
 
@@ -46,7 +50,7 @@ class LocationRepository {
     return locationNoSqlClient.restore(locationIndex);
   }
 
-  getAllLocationsCached() {
+  restoreAllLocationsFromCache() {
     return locationNoSqlClient.restoreAll();
   }
 }
