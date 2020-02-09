@@ -13,4 +13,18 @@ class WeatherRepository {
   Future<Weather> getWeatherFromLocation(int locationId) async {
     return clientApiMetaWeather.fetchWeather(locationId);
   }
+
+  Future<List<Weather>> fetchingWeatherForecastFromLocation(
+      int locationId) async {
+    final metaWeatherModel =
+        await clientApiMetaWeather.fetchWeatherForecast(locationId);
+
+    return metaWeatherModel.consolidatedWeather
+        .map((consolidated) => Weather.fromMetaWeather(
+              consolidated,
+              metaWeatherModel.woeid,
+              metaWeatherModel.title,
+            ))
+        .toList();
+  }
 }
