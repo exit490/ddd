@@ -3,7 +3,7 @@ import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_state.dart';
-import 'package:flutter_app/weather_forecast/widget/weather_forecast_list_tile.dart';
+import 'package:flutter_app/weather_forecast/weather_forecast_list_tile.dart';
 import 'package:flutter_app/weather_today/view/loading_weather_today_body.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,46 +29,34 @@ class WeatherForecastMainPage extends StatelessWidget {
     }
 
     if (weatherTodayState is LoadedWeatherForecastState) {
-      return _stack(context);
+      return _stack(context, weatherTodayState.weatherForecast);
     }
 
     return LoadingWeatherTodayBody();
   }
 
-  _stack(context) {
+  _stack(context, weatherForecast) {
     return Stack(children: [
       weatherBackground(context),
-      _scaffold(),
+      _scaffold(weatherForecast),
     ]);
   }
 
-  _scaffold() {
+  _scaffold(weatherForecast) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: _weatherForecastList(),
+      body: _weatherForecastList(weatherForecast),
     );
   }
 
-  _weatherForecastList() {
-    final weather = Weather(
-      condition: WeatherCondition.hail,
-      temp: 21.2,
-      applicableDate: '2020-05-20',
-      formattedCondition: 'Heavy rain',
-      maxTemp: 39,
-      minTemp: 11.2,
-    );
+  _weatherForecastList(List<Weather> weatherForecast) {
+    final listTile = weatherForecast
+        .map((weather) => WeatherForecastListTile(weather))
+        .toList();
 
     final listView = ListView(
       physics: NeverScrollableScrollPhysics(),
-      children: <Widget>[
-        WeatherForecastListTile(weather),
-        WeatherForecastListTile(weather),
-        WeatherForecastListTile(weather),
-        WeatherForecastListTile(weather),
-        WeatherForecastListTile(weather),
-        WeatherForecastListTile(weather),
-      ],
+      children: listTile,
     );
 
     return listView;
