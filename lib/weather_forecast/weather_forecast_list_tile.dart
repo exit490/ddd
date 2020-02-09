@@ -28,6 +28,7 @@ class WeatherForecastListTile extends ListTile {
         _weatherIcon(weather.condition),
         _temp(weather.temp),
         _maxTemp(weather.maxTemp),
+        _minTemp(weather.minTemp),
       ],
     );
   }
@@ -70,10 +71,23 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _minTemp(temp) {
-    return Text(
-      temp.toInt().toString(),
-      style: TextStyle(fontSize: 50),
+  static _minTemp(minTemp) {
+    final downIcon = Icon(
+      Icons.arrow_downward,
+      size: _fontSize,
+      color: Colors.white,
+    );
+
+    final minTempText = Text(
+      minTemp.toInt().toString(),
+      style: TextStyle(fontSize: _fontSize),
+    );
+
+    return Row(
+      children: <Widget>[
+        downIcon,
+        minTempText,
+      ],
     );
   }
 
