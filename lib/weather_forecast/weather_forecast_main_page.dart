@@ -33,6 +33,7 @@ class WeatherForecastMainPage extends StatelessWidget {
 
   body(context) {
     final listView = ListView(
+      physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         WeatherForecastListTile(Weather()),
         WeatherForecastListTile(Weather()),
