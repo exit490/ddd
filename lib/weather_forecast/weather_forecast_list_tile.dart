@@ -4,6 +4,7 @@ import 'package:flutter_app/weather/weather_icons.dart';
 
 class WeatherForecastListTile extends ListTile {
   final Weather weather;
+  static final _fontSize = 22.0;
 
   WeatherForecastListTile(
     this.weather,
@@ -26,6 +27,7 @@ class WeatherForecastListTile extends ListTile {
       children: <Widget>[
         _weatherIcon(weather.condition),
         _temp(weather.temp),
+        _maxTemp(weather.maxTemp),
       ],
     );
   }
@@ -65,6 +67,33 @@ class WeatherForecastListTile extends ListTile {
     return Text(
       temp.toInt().toString(),
       style: TextStyle(fontSize: 50),
+    );
+  }
+
+  static _minTemp(temp) {
+    return Text(
+      temp.toInt().toString(),
+      style: TextStyle(fontSize: 50),
+    );
+  }
+
+  static _maxTemp(maxTemp) {
+    final upIcon = Icon(
+      Icons.arrow_upward,
+      size: _fontSize,
+      color: Colors.white,
+    );
+
+    final maxTempText = Text(
+      maxTemp.toInt().toString(),
+      style: TextStyle(fontSize: _fontSize),
+    );
+
+    return Row(
+      children: <Widget>[
+        upIcon,
+        maxTempText,
+      ],
     );
   }
 }

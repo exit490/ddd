@@ -37,6 +37,7 @@ class WeatherForecastMainPage extends StatelessWidget {
       temp: 21.2,
       applicableDate: '2020-05-20',
       formattedCondition: 'Heavy rain',
+      maxTemp: 39,
     );
 
     final listView = ListView(
