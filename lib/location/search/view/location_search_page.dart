@@ -3,6 +3,8 @@ import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/location/search/bloc/search_location_event.dart';
 import 'package:flutter_app/location/search/bloc/search_location_state.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchLocationPage extends StatelessWidget {
@@ -107,6 +109,13 @@ class ChildItem extends StatelessWidget {
   }
 
   selectCity(context) {
+    fetchWeatherTodayEventToSelectedCity(context);
     Navigator.pop(context);
+  }
+
+  fetchWeatherTodayEventToSelectedCity(context) {
+    BlocProvider.of<WeatherTodayBloc>(context).add(
+      FetchWeatherTodayEvent(locationId: locationModel.woeid),
+    );
   }
 }
