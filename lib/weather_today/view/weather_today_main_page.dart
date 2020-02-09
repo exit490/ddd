@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
+import 'package:flutter_app/location/view/location_navigation_drawer.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
@@ -44,7 +45,7 @@ class WeatherTodayMainPage extends StatelessWidget {
     return Scaffold(
       appBar: selectAppBarFromState(context, weatherTodayState),
       backgroundColor: Colors.transparent,
-      drawer: buildNavigationDrawer(),
+      drawer: LocationsNavigationDrawer(),
       body: selectBodyFromState(context, weatherTodayState),
     );
   }
@@ -92,27 +93,5 @@ weatherBackground(context) {
     height: MediaQuery.of(context).size.height,
     width: MediaQuery.of(context).size.width,
     fit: BoxFit.cover,
-  );
-}
-
-buildNavigationDrawer() {
-  var listTile1 = ListTile(
-    title: Text('São pedro da Aldeia'),
-  );
-
-  var listTile2 = ListTile(
-    title: Text('São pedro da Aldeia'),
-    onTap: () {},
-  );
-
-  var listView = ListView(
-    children: <Widget>[
-      listTile1,
-      listTile2,
-    ],
-  );
-
-  return Drawer(
-    child: listView,
   );
 }
