@@ -13,17 +13,27 @@ class WeatherForecastListTile extends ListTile {
         );
 
   static _content(Weather weather) {
-    final row = Row(
+    return Column(
+      children: <Widget>[
+        _dateAndWeatherText(weather),
+        _tempAndWeatherIcon(weather),
+      ],
+    );
+  }
+
+  static _tempAndWeatherIcon(Weather weather) {
+    return Row(
       children: <Widget>[
         _weatherIcon(weather.condition),
         _temp(weather.temp),
       ],
     );
+  }
 
-    return Column(
+  static _dateAndWeatherText(Weather weather) {
+    return Row(
       children: <Widget>[
         _date(weather.applicableDate),
-        row,
       ],
     );
   }
