@@ -99,8 +99,14 @@ class ChildItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        title: Text(
-      this.locationModel.title,
-    ));
+      title: Text(
+        this.locationModel.title,
+      ),
+      onTap: () => selectCity(context),
+    );
+  }
+
+  selectCity(context) {
+    Navigator.pop(context);
   }
 }
