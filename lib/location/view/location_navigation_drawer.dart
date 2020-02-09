@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/location/bloc/location_bloc.dart';
-import 'package:flutter_app/location/bloc/location_event.dart';
-import 'package:flutter_app/location/bloc/location_state.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
@@ -18,34 +15,6 @@ class LocationsNavigationDrawer extends Drawer {
         super(
           child: buildLocationList(context, locations),
         );
-
-  static blocBuild(context) {
-    final blocBuilder = BlocBuilder<LocationBloc, LocationState>(
-      builder: (context, locationState) {
-        return handlerLocationState(context, locationState);
-      },
-    );
-
-    return Container(
-      child: blocBuilder,
-    );
-  }
-
-  static handlerLocationState(context, locationState) {
-    if (locationState is DefaultLocationState) {
-      BlocProvider.of<LocationBloc>(context).add(
-        BuildAllLocationEvent(),
-      );
-    }
-
-    if (locationState is AllLocationsRestoredState) {
-      return buildLocationList(context, locationState.locations);
-    }
-
-    return ListView(
-      children: <Widget>[],
-    );
-  }
 
   static buildLocationList(context, locations) {
     if (locations.isEmpty) {
