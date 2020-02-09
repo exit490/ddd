@@ -22,13 +22,17 @@ class WeatherForecastListTile extends ListTile {
 
     return Column(
       children: <Widget>[
+        _date(weather.applicableDate),
         row,
       ],
     );
   }
 
-  static _date(){
-
+  static _date(applicableDate) {
+    return Text(
+      applicableDate,
+      style: TextStyle(fontSize: 25),
+    );
   }
 
   static _weatherIcon(condition) {
