@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
-import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
-import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_state.dart';
-import 'package:flutter_app/weather_forecast/weather_forecast_list_tile.dart';
+import 'package:flutter_app/weather_forecast/widget/weather_forecast_list_tile.dart';
 import 'package:flutter_app/weather_today/view/loading_weather_today_body.dart';
-import 'package:flutter_app/weather_today/view/widget/location_app_bar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherForecastMainPage extends StatelessWidget {
   final List<LocationModel> locations;
@@ -59,39 +55,13 @@ class WeatherForecastMainPage extends StatelessWidget {
   }
 
   selectBodyFromState(context, weatherTodayState) {
-    if (weatherTodayState is InitialWeatherForecastState) {
-      BlocProvider.of<WeatherForecastBloc>(context).add(
-        FetchWeatherForecastEvent(locationId: locations[0].woeid),
-      );
-    }
-
     if (weatherTodayState is LoadingWeatherForecastState) {
       return LoadingWeatherTodayBody();
     }
 
-//    if (weatherTodayState is LoadedWeatherForecastState) {
-//      return LoadedBodyWeatherToday(
-//        weather: weatherTodayState.weatherForecast[0],
-//      );
-//    }
+    if (weatherTodayState is LoadedWeatherForecastState) {}
 
     return LoadingWeatherTodayBody();
-  }
-
-  selectAppBarFromState(context, weatherTodayState) {
-    if (weatherTodayState is LoadedWeatherForecastState) {
-      return LocationAppBar(
-        locationName: weatherTodayState.weatherForecast[0].location,
-        enableAddButton: true,
-        context: context,
-      );
-    }
-
-    return LocationAppBar(
-      locationName: '',
-      enableAddButton: false,
-      context: context,
-    );
   }
 }
 
