@@ -47,7 +47,7 @@ class SearchLocationBloc
 
   Stream<SearchLocationState> _mapSearchEventToState(location) async* {
     final List<LocationModel> locations =
-        await locationRepository.getLocationsByCityName(location);
+        await locationRepository.fetchLocationsByCityName(location);
     yield FoundLocationsState(locations: locations);
   }
 }

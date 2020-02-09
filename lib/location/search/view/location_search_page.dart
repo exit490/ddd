@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/location/bloc/location_bloc.dart';
+import 'package:flutter_app/location/bloc/location_event.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/location/search/bloc/search_location_event.dart';
@@ -109,6 +111,7 @@ class ChildItem extends StatelessWidget {
   }
 
   selectCity(context) {
+    storeLocationOnCache(context);
     fetchWeatherTodayEventToSelectedCity(context);
     Navigator.pop(context);
   }
@@ -116,6 +119,12 @@ class ChildItem extends StatelessWidget {
   fetchWeatherTodayEventToSelectedCity(context) {
     BlocProvider.of<WeatherTodayBloc>(context).add(
       FetchWeatherTodayEvent(locationId: locationModel.woeid),
+    );
+  }
+
+  storeLocationOnCache(context) {
+    BlocProvider.of<LocationBloc>(context).add(
+      StoreLocationOnCacheEvent(location: locationModel),
     );
   }
 }

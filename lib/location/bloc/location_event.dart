@@ -20,10 +20,10 @@ class SelectLocationEvent extends LocationEvent {
   List<Object> get props => [locationIndex];
 }
 
-class SaveLocationEvent extends LocationEvent {
+class StoreLocationOnCacheEvent extends LocationEvent {
   final LocationModel location;
 
-  const SaveLocationEvent({
+  const StoreLocationOnCacheEvent({
     @required this.location,
   }) : assert(location != null);
 
