@@ -11,7 +11,7 @@ class LocationsNavigationDrawer extends Drawer {
 
   static blocBuild() {
     final blocBuilder = BlocBuilder<LocationBloc, LocationState>(
-      builder: (context, weatherTodayState) {
+      builder: (context, locationState) {
         return buildLocationList();
       },
     );
@@ -19,6 +19,10 @@ class LocationsNavigationDrawer extends Drawer {
     return Container(
       child: blocBuilder,
     );
+  }
+
+  static handlerLocationState(locationState) {
+    if (locationState is InitialLocationState) {}
   }
 
   static buildLocationList() {

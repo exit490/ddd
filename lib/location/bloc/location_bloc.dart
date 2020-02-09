@@ -25,20 +25,6 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     if (event is BuildAllLocationEvent) {}
   }
 
-//
-//  Stream<WeatherTodayState> _mapRefreshWeatherToState(
-//      RefreshWeatherEvent event) async* {
-//    try {
-//      final weather = await weatherRepository.getWeatherFromLocation(
-//        event.locationId,
-//      );
-//
-//      yield LoadedWeatherTodayState(weather: weather);
-//    } catch (_) {
-//      yield WeatherTodayError();
-//    }
-//  }
-
   Stream<LocationState> buildAllLocations() async* {
     final List<LocationModel> locations = List();
     final defaultLocation = await locationRepository.buildDefaultLocation();
