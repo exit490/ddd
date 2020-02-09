@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
-import 'package:flutter_app/location/view/location_navigation_drawer.dart';
+import 'package:flutter_app/weather/model/weather_model.dart';
+import 'package:flutter_app/weather_forecast/weather_forecast_list_tile.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
@@ -25,16 +26,24 @@ class WeatherForecastMainPage extends StatelessWidget {
     return Stack(
       children: <Widget>[
         weatherBackground(context),
+        body(context),
       ],
     );
   }
 
-  body(context, weatherTodayState) {
+  body(context) {
+    final listView = ListView(
+      children: <Widget>[
+        WeatherForecastListTile(Weather()),
+        WeatherForecastListTile(Weather()),
+        WeatherForecastListTile(Weather()),
+        WeatherForecastListTile(Weather())
+      ],
+    );
+
     return Scaffold(
-      appBar: selectAppBarFromState(context, weatherTodayState),
       backgroundColor: Colors.transparent,
-      drawer: LocationsNavigationDrawer(context, locations),
-      body: selectBodyFromState(context, weatherTodayState),
+      body: listView,
     );
   }
 
