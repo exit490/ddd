@@ -63,7 +63,7 @@ class WeatherTodayMainPage extends StatelessWidget {
 
     if (weatherTodayState is LoadedWeatherForecastState) {
       return LoadedBodyWeatherToday(
-        weather: weatherTodayState.weather,
+        weather: weatherTodayState.weatherForecast[0],
       );
     }
 
@@ -73,7 +73,7 @@ class WeatherTodayMainPage extends StatelessWidget {
   selectAppBarFromState(context, weatherTodayState) {
     if (weatherTodayState is LoadedWeatherForecastState) {
       return LocationAppBar(
-        locationName: weatherTodayState.weather.location,
+        locationName: weatherTodayState.weatherForecast[0].location,
         enableAddButton: true,
         context: context,
       );

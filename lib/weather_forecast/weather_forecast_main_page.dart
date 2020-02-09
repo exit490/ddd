@@ -5,7 +5,6 @@ import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_state.dart';
 import 'package:flutter_app/weather_forecast/weather_forecast_list_tile.dart';
-import 'package:flutter_app/weather_today/view/loaded_weather_today_body.dart';
 import 'package:flutter_app/weather_today/view/loading_weather_today_body.dart';
 import 'package:flutter_app/weather_today/view/widget/location_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,11 +69,11 @@ class WeatherForecastMainPage extends StatelessWidget {
       return LoadingWeatherTodayBody();
     }
 
-    if (weatherTodayState is LoadedWeatherForecastState) {
-      return LoadedBodyWeatherToday(
-        weather: weatherTodayState.weather,
-      );
-    }
+//    if (weatherTodayState is LoadedWeatherForecastState) {
+//      return LoadedBodyWeatherToday(
+//        weather: weatherTodayState.weatherForecast[0],
+//      );
+//    }
 
     return LoadingWeatherTodayBody();
   }
@@ -82,7 +81,7 @@ class WeatherForecastMainPage extends StatelessWidget {
   selectAppBarFromState(context, weatherTodayState) {
     if (weatherTodayState is LoadedWeatherForecastState) {
       return LocationAppBar(
-        locationName: weatherTodayState.weather.location,
+        locationName: weatherTodayState.weatherForecast[0].location,
         enableAddButton: true,
         context: context,
       );

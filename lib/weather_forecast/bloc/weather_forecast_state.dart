@@ -12,14 +12,14 @@ abstract class WeatherForecastState extends Equatable {
 class InitialWeatherForecastState extends WeatherForecastState {}
 
 class LoadedWeatherForecastState extends WeatherForecastState {
-  final Weather weather;
+  final List<Weather> weatherForecast;
 
   const LoadedWeatherForecastState({
-    @required this.weather,
-  }) : assert(weather != null);
+    @required this.weatherForecast,
+  }) : assert(weatherForecast != null);
 
   @override
-  List<Object> get props => [weather];
+  List<Object> get props => [weatherForecast];
 }
 
 class LoadingWeatherForecastState extends WeatherForecastState {}
