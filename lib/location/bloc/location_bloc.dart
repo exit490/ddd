@@ -23,11 +23,22 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     }
 
     if (event is StoreLocationOnCacheEvent) {
-      storeLocationOnCache(event.location);
+      yield* storeLocationOnCache(event.location);
     }
   }
 
   Stream<LocationState> buildAllLocations() async* {
+    final locations = await getAllLocations();
+    yield AllLocationsRestoredState(locations: locations);
+  }
+
+  Stream<LocationState> storeLocationOnCache(location) async* {
+    await locationRepository.toStoreLocationOnCache(location);
+    final locations = await getAllLocations();
+    yield AllLocationsRestoredState(locations: locations);
+  }
+
+  getAllLocations() async {
     final List<LocationModel> locations = List();
     final defaultLocation = await locationRepository.buildDefaultLocation();
     locations.add(defaultLocation);
@@ -36,10 +47,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         await locationRepository.restoreAllLocationsFromCache();
 
     locations.addAll(locationsRestoredFromCache);
-    yield AllLocationsRestoredState(locations: locations);
-  }
 
-  Stream<LocationState> storeLocationOnCache(location) async* {
-    await locationRepository.toStoreLocationOnCache(location);
+    return locations;
   }
 }

@@ -11,17 +11,6 @@ abstract class LocationState extends Equatable {
 
 class InitialLocationState extends LocationState {}
 
-class DefaultLocationState extends LocationState {
-  final LocationModel location;
-
-  const DefaultLocationState({
-    @required this.location,
-  }) : assert(location != null);
-
-  @override
-  List<Object> get props => [location];
-}
-
 class LocationRestoredState extends LocationState {
   final LocationModel location;
 

@@ -87,13 +87,11 @@ class HomePage extends StatelessWidget {
       return body();
     }
 
-
     if (locationState is AllLocationsRestoredState) {
       return WeatherTodayMainPage(
         locations: locationState.locations,
       );
     }
-
   }
 
   requestLocationPermission(context) {
