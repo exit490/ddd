@@ -24,6 +24,7 @@ class Weather extends Equatable {
   final String created;
   final DateTime lastUpdated;
   final String location;
+  final String applicableDate;
 
   const Weather({
     this.condition,
@@ -35,6 +36,7 @@ class Weather extends Equatable {
     this.created,
     this.lastUpdated,
     this.location,
+    this.applicableDate,
   });
 
   @override
@@ -63,6 +65,7 @@ class Weather extends Equatable {
       created: consolidatedWeather['created'],
       lastUpdated: DateTime.now(),
       location: json['title'],
+      applicableDate: consolidatedWeather['applicable_date'],
     );
   }
 
@@ -79,6 +82,7 @@ class Weather extends Equatable {
       created: consolidatedWeather.created,
       lastUpdated: DateTime.now(),
       location: locationName,
+      applicableDate: consolidatedWeather.applicableDate,
     );
   }
 

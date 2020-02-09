@@ -27,6 +27,10 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
+  static _date(){
+
+  }
+
   static _weatherIcon(condition) {
     return Icon(
       WeatherIcons.fromCondition(condition),
