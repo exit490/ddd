@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
+import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
+import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
+import 'package:flutter_app/weather_forecast/bloc/weather_forecast_state.dart';
 import 'package:flutter_app/weather_forecast/weather_forecast_list_tile.dart';
-import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
-import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
-import 'package:flutter_app/weather_today/bloc/weather_today_state.dart';
 import 'package:flutter_app/weather_today/view/loaded_weather_today_body.dart';
 import 'package:flutter_app/weather_today/view/loading_weather_today_body.dart';
 import 'package:flutter_app/weather_today/view/widget/location_app_bar.dart';
@@ -60,17 +60,17 @@ class WeatherForecastMainPage extends StatelessWidget {
   }
 
   selectBodyFromState(context, weatherTodayState) {
-    if (weatherTodayState is InitialWeatherTodayState) {
-      BlocProvider.of<WeatherTodayBloc>(context).add(
-        FetchWeatherTodayEvent(locationId: locations[0].woeid),
+    if (weatherTodayState is InitialWeatherForecastState) {
+      BlocProvider.of<WeatherForecastBloc>(context).add(
+        FetchWeatherForecastEvent(locationId: locations[0].woeid),
       );
     }
 
-    if (weatherTodayState is WeatherTodayLoading) {
+    if (weatherTodayState is LoadingWeatherForecastState) {
       return LoadingWeatherTodayBody();
     }
 
-    if (weatherTodayState is LoadedWeatherTodayState) {
+    if (weatherTodayState is LoadedWeatherForecastState) {
       return LoadedBodyWeatherToday(
         weather: weatherTodayState.weather,
       );
@@ -80,7 +80,7 @@ class WeatherForecastMainPage extends StatelessWidget {
   }
 
   selectAppBarFromState(context, weatherTodayState) {
-    if (weatherTodayState is LoadedWeatherTodayState) {
+    if (weatherTodayState is LoadedWeatherForecastState) {
       return LocationAppBar(
         locationName: weatherTodayState.weather.location,
         enableAddButton: true,

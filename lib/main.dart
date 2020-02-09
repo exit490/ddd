@@ -9,7 +9,7 @@ import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/meta_weather/meta_weather_api_client.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/weather/repository/weather_repository.dart';
-import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
+import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -28,7 +28,7 @@ void main() async {
   );
 
   final weatherTodayBloc = BlocProvider(
-    create: (context) => WeatherTodayBloc(
+    create: (context) => WeatherForecastBloc(
       weatherRepository: weatherRepository,
     ),
   );

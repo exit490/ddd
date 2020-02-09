@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
-import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
-import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
+import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
+import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LocationsNavigationDrawer extends Drawer {
@@ -59,8 +59,8 @@ class LocationChildItem extends StatelessWidget {
   }
 
   fetchWeatherTodayEventToSelectedCity(context) {
-    BlocProvider.of<WeatherTodayBloc>(context).add(
-      FetchWeatherTodayEvent(locationId: locationModel.woeid),
+    BlocProvider.of<WeatherForecastBloc>(context).add(
+      FetchWeatherForecastEvent(locationId: locationModel.woeid),
     );
   }
 }
