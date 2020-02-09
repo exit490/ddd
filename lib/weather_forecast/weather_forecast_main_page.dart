@@ -36,6 +36,7 @@ class WeatherForecastMainPage extends StatelessWidget {
       condition: WeatherCondition.hail,
       temp: 21.2,
       applicableDate: '2020-05-20',
+      formattedCondition: 'Heavy rain',
     );
 
     final listView = ListView(

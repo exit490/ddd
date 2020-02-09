@@ -34,6 +34,7 @@ class WeatherForecastListTile extends ListTile {
     return Row(
       children: <Widget>[
         _date(weather.applicableDate),
+        _weatherText(weather.formattedCondition),
       ],
     );
   }
@@ -41,6 +42,13 @@ class WeatherForecastListTile extends ListTile {
   static _date(applicableDate) {
     return Text(
       applicableDate,
+      style: TextStyle(fontSize: 25),
+    );
+  }
+
+  static _weatherText(formattedCondition) {
+    return Text(
+      formattedCondition,
       style: TextStyle(fontSize: 25),
     );
   }
