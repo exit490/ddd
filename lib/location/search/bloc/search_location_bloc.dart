@@ -36,7 +36,9 @@ class SearchLocationBloc
   }
 
   halfSecondDelay(location) {
-    return Stream.periodic(Duration(seconds: 1), (x) => x).take(1).listen(
+    return Stream.periodic(Duration(milliseconds: 1500), (x) => x)
+        .take(1)
+        .listen(
           (tick) => add(SearchLocationEvent(
             location: location,
           )),

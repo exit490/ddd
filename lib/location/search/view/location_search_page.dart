@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/location/search/bloc/search_location_event.dart';
+import 'package:flutter_app/location/search/bloc/search_location_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchLocationPage extends StatelessWidget {
@@ -15,10 +16,33 @@ class SearchLocationPage extends StatelessWidget {
     return Scaffold(
       key: key,
       appBar: buildBar(context),
-      body: new ListView(
-        padding: new EdgeInsets.symmetric(vertical: 8.0),
-        children: [],
-      ),
+      body: body(),
+    );
+  }
+
+  body() {
+    final blocBuilder = BlocBuilder<SearchLocationBloc, SearchLocationState>(
+        builder: (context, searchLocationState) {
+      return _handlerLocationState(
+        searchLocationState,
+      );
+    });
+
+    return Container(
+      child: blocBuilder,
+    );
+  }
+
+  _handlerLocationState(searchLocationState) {
+    if (searchLocationState is FoundLocationsState) {
+      buildListView(searchLocationState.locations);
+    }
+  }
+
+  buildListView(locations) {
+    ListView(
+      padding: new EdgeInsets.symmetric(vertical: 8.0),
+      children: [],
     );
   }
 
