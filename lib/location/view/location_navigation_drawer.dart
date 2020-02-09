@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/bloc/location_bloc.dart';
+import 'package:flutter_app/location/bloc/location_event.dart';
 import 'package:flutter_app/location/bloc/location_state.dart';
+import 'package:flutter_app/location/model/location_model.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_bloc.dart';
+import 'package:flutter_app/weather_today/bloc/weather_today_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LocationsNavigationDrawer extends Drawer {
-  LocationsNavigationDrawer()
-      : super(
-          child: blocBuild(),
+  final context;
+  final locations;
+
+  LocationsNavigationDrawer(
+    this.context,
+    this.locations,
+  )   : assert(context != null && locations != null),
+        super(
+          child: buildLocationList(context, locations),
         );
 
-  static blocBuild() {
+  static blocBuild(context) {
     final blocBuilder = BlocBuilder<LocationBloc, LocationState>(
       builder: (context, locationState) {
-        return buildLocationList();
+        return handlerLocationState(context, locationState);
       },
     );
 
@@ -21,27 +31,67 @@ class LocationsNavigationDrawer extends Drawer {
     );
   }
 
-  static handlerLocationState(locationState) {
-    if (locationState is InitialLocationState) {}
+  static handlerLocationState(context, locationState) {
+    if (locationState is DefaultLocationState) {
+      BlocProvider.of<LocationBloc>(context).add(
+        BuildAllLocationEvent(),
+      );
+    }
+
+    if (locationState is AllLocationsRestoredState) {
+      return buildLocationList(context, locationState.locations);
+    }
+
+    return ListView(
+      children: <Widget>[],
+    );
   }
 
-  static buildLocationList() {
-    var listTile1 = ListTile(
-      title: Text('São pedro da Aldeia'),
-    );
+  static buildLocationList(context, locations) {
+    if (locations.isEmpty) {
+      return ListView(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        children: [],
+      );
+    }
 
-    var listTile2 = ListTile(
-      title: Text('São pedro da Aldeia'),
-      onTap: () {},
+    final childItemList = locations
+        .toList()
+        .map(
+          (location) => LocationChildItem(location),
+        )
+        .toList();
+    return ListView(
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      children: childItemList,
     );
+  }
+}
 
-    var listView = ListView(
-      children: <Widget>[
-        listTile1,
-        listTile2,
-      ],
+class LocationChildItem extends StatelessWidget {
+  final LocationModel locationModel;
+
+  LocationChildItem(
+    this.locationModel,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(
+        this.locationModel.title,
+      ),
+      onTap: () => selectCity(context),
     );
+  }
 
-    return listView;
+  selectCity(context) {
+    fetchWeatherTodayEventToSelectedCity(context);
+  }
+
+  fetchWeatherTodayEventToSelectedCity(context) {
+    BlocProvider.of<WeatherTodayBloc>(context).add(
+      FetchWeatherTodayEvent(locationId: locationModel.woeid),
+    );
   }
 }

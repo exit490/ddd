@@ -83,15 +83,17 @@ class HomePage extends StatelessWidget {
 
   _handlerLocationsState(context, locationState) {
     if (locationState is InitialLocationState) {
-      BlocProvider.of<LocationBloc>(context).add(DefaultLocationEvent());
+      BlocProvider.of<LocationBloc>(context).add(BuildAllLocationEvent());
       return body();
     }
 
-    if (locationState is DefaultLocationState) {
+
+    if (locationState is AllLocationsRestoredState) {
       return WeatherTodayMainPage(
-        defaultLocation: locationState.location,
+        locations: locationState.locations,
       );
     }
+
   }
 
   requestLocationPermission(context) {

@@ -18,11 +18,9 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 
   @override
   Stream<LocationState> mapEventToState(LocationEvent event) async* {
-    if (event is DefaultLocationEvent) {
-      yield* emitsLocationDefaultState();
+    if (event is BuildAllLocationEvent) {
+      yield* buildAllLocations();
     }
-
-    if (event is BuildAllLocationEvent) {}
   }
 
   Stream<LocationState> buildAllLocations() async* {
@@ -35,10 +33,5 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 
     locations.addAll(locationsRestoredFromCache);
     yield AllLocationsRestoredState(locations: locations);
-  }
-
-  Stream<LocationState> emitsLocationDefaultState() async* {
-    final defaultLocation = await locationRepository.buildDefaultLocation();
-    yield DefaultLocationState(location: defaultLocation);
   }
 }

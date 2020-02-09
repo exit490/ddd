@@ -32,5 +32,3 @@ class StoreLocationOnCacheEvent extends LocationEvent {
 }
 
 class BuildAllLocationEvent extends LocationEvent {}
-
-class DefaultLocationEvent extends LocationEvent {}

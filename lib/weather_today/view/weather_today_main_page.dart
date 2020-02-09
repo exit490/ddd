@@ -10,11 +10,11 @@ import 'package:flutter_app/weather_today/view/widget/location_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherTodayMainPage extends StatelessWidget {
-  final LocationModel defaultLocation;
+  final List<LocationModel> locations;
 
   WeatherTodayMainPage({
-    this.defaultLocation,
-  }) : assert(defaultLocation != null);
+    this.locations,
+  }) : assert(locations != null);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class WeatherTodayMainPage extends StatelessWidget {
     return Scaffold(
       appBar: selectAppBarFromState(context, weatherTodayState),
       backgroundColor: Colors.transparent,
-      drawer: LocationsNavigationDrawer(),
+      drawer: LocationsNavigationDrawer(context, []),
       body: selectBodyFromState(context, weatherTodayState),
     );
   }
@@ -53,7 +53,7 @@ class WeatherTodayMainPage extends StatelessWidget {
   selectBodyFromState(context, weatherTodayState) {
     if (weatherTodayState is InitialWeatherTodayState) {
       BlocProvider.of<WeatherTodayBloc>(context).add(
-        FetchWeatherTodayEvent(locationId: 455825),
+        FetchWeatherTodayEvent(locationId: locations[0].woeid),
       );
     }
 
