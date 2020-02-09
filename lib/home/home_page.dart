@@ -5,6 +5,7 @@ import 'package:flutter_app/location/bloc/location_state.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/permission/location_permission_event.dart';
 import 'package:flutter_app/permission/location_permission_state.dart';
+import 'package:flutter_app/weather_forecast/weather_forecast_main_page.dart';
 import 'package:flutter_app/weather_today/view/weather_today_main_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -73,6 +74,27 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  pageView(locations) {
+    final pageController = PageController(initialPage: 0);
+
+    final weatherTodayPage = WeatherTodayMainPage(
+      locations: locations,
+    );
+
+    final weatherForecastPage = WeatherForecastMainPage(
+      locations: locations,
+    );
+
+    return PageView(
+      controller: pageController,
+      scrollDirection: Axis.vertical,
+      children: <Widget>[
+        weatherTodayPage,
+        weatherForecastPage,
+      ],
+    );
+  }
+
   locationBlocBuilder() {
     return BlocBuilder<LocationBloc, LocationState>(
       builder: (context, locationState) {
@@ -88,8 +110,8 @@ class HomePage extends StatelessWidget {
     }
 
     if (locationState is AllLocationsRestoredState) {
-      return WeatherTodayMainPage(
-        locations: locationState.locations,
+      return pageView(
+        locationState.locations,
       );
     }
   }
