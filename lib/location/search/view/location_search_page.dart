@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/location/search/bloc/search_location_event.dart';
 import 'package:flutter_app/location/search/bloc/search_location_state.dart';
@@ -35,14 +36,22 @@ class SearchLocationPage extends StatelessWidget {
 
   _handlerLocationState(searchLocationState) {
     if (searchLocationState is FoundLocationsState) {
-      buildListView(searchLocationState.locations);
+      return buildListView(searchLocationState.locations);
     }
+
+    return Container();
   }
 
-  buildListView(locations) {
-    ListView(
+  buildListView(List<LocationModel> locations) {
+    final childItemList = locations
+        .toList()
+        .map(
+          (location) => ChildItem(location),
+        )
+        .toList();
+    return ListView(
       padding: new EdgeInsets.symmetric(vertical: 8.0),
-      children: [],
+      children: childItemList,
     );
   }
 
@@ -81,12 +90,17 @@ class SearchLocationPage extends StatelessWidget {
 }
 
 class ChildItem extends StatelessWidget {
-  final String name;
+  final LocationModel locationModel;
 
-  ChildItem(this.name);
+  ChildItem(
+    this.locationModel,
+  );
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(title: Text(this.name));
+    return ListTile(
+        title: Text(
+      this.locationModel.title,
+    ));
   }
 }
