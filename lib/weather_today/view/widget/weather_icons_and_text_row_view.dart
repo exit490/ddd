@@ -25,7 +25,7 @@ class WeatherIconAndTextRow extends StatelessWidget {
 
   weatherIcon() {
     return Icon(
-      iconDataFromCondition(),
+      WeatherIcons.fromCondition(condition),
       size: 35,
       color: Colors.white,
     );
@@ -40,42 +40,5 @@ class WeatherIconAndTextRow extends StatelessWidget {
         weatherText(),
       ],
     );
-  }
-
-  IconData iconDataFromCondition() {
-    switch (condition) {
-      case WeatherCondition.snow:
-        return WeatherIcons.snow;
-        break;
-      case WeatherCondition.sleet:
-        return WeatherIcons.snow_alt;
-        break;
-      case WeatherCondition.hail:
-        return WeatherIcons.hail;
-        break;
-      case WeatherCondition.thunderstorm:
-        return WeatherIcons.clouds_flash_alt;
-        break;
-      case WeatherCondition.heavyRain:
-        return WeatherIcons.windy_rain;
-        break;
-      case WeatherCondition.lightRain:
-        return WeatherIcons.rain;
-        break;
-      case WeatherCondition.showers:
-        return WeatherIcons.rain;
-        break;
-      case WeatherCondition.heavyCloud:
-        return WeatherIcons.clouds;
-        break;
-      case WeatherCondition.lightCloud:
-        return WeatherIcons.fog_cloud;
-        break;
-      case WeatherCondition.clear:
-        return WeatherIcons.sun;
-        break;
-      default:
-        return WeatherIcons.na;
-    }
   }
 }
