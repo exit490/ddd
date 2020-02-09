@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/location/model/location_model.dart';
+import 'package:flutter_app/meta_weather/model/meta_weather_model.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -56,6 +57,18 @@ class MetaWeatherApiClient {
 
     final weatherJson = jsonDecode(weatherResponse.body);
     return Weather.fromJson(weatherJson);
+  }
+
+  Future<MetaWeatherModel> fetchWeatherForecast(int locationId) async {
+    final weatherUrl = '$baseUrl/api/location/$locationId';
+    final weatherResponse = await this.httpClient.get(weatherUrl);
+
+    if (weatherResponse.statusCode != 200) {
+      throw Exception('error getting weather forecast for location');
+    }
+
+    final metaWeatherJson = jsonDecode(weatherResponse.body);
+    return MetaWeatherModel.fromJson(metaWeatherJson);
   }
 
   Future<List<LocationModel>> fetchLocationsByLatLong(
