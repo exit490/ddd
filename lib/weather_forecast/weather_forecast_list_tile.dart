@@ -9,22 +9,36 @@ class WeatherForecastListTile extends ListTile {
     this.weather,
   )   : assert(weather != null),
         super(
-          title: content(weather),
+          title: _content(weather),
         );
 
-  static content(weather) {
-    return Row(
+  static _content(Weather weather) {
+    final row = Row(
       children: <Widget>[
-        weatherIcon(weather.condition),
+        _weatherIcon(weather.condition),
+        _temp(weather.temp),
+      ],
+    );
+
+    return Column(
+      children: <Widget>[
+        row,
       ],
     );
   }
 
-  static weatherIcon(condition) {
+  static _weatherIcon(condition) {
     return Icon(
       WeatherIcons.fromCondition(condition),
       size: 50,
       color: Colors.white,
+    );
+  }
+
+  static _temp(temp) {
+    return Text(
+      temp.toInt().toString(),
+      style: TextStyle(fontSize: 50),
     );
   }
 }

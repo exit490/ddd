@@ -34,6 +34,7 @@ class WeatherForecastMainPage extends StatelessWidget {
   body(context) {
     final weather = Weather(
       condition: WeatherCondition.hail,
+      temp: 21.2,
     );
     final listView = ListView(
       physics: NeverScrollableScrollPhysics(),
