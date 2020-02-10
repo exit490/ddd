@@ -3,8 +3,7 @@
 ![](demonstration.gif)
 
 ## PATTERNS
-* [BLOC](https://www.didierboelens.com/2018/08/reactive-programming---streams---bloc/)
-
+> [BLOC](https://www.didierboelens.com/2018/08/reactive-programming---streams---bloc/)
 >This design pattern helps to separate presentation from business logic. 
 >Following the BLoC pattern facilitates testability and reusability. 
 
