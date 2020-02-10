@@ -29,7 +29,7 @@ class LoadedBodyWeatherToday extends StatelessWidget {
       temp: weather.temp,
     );
 
-    final paddind = Padding(
+    final padding = Padding(
       padding: EdgeInsets.only(bottom: 5),
     );
 
@@ -39,7 +39,7 @@ class LoadedBodyWeatherToday extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         weatherIconAndTextRow,
-        paddind,
+        padding,
         minMaxTempRow,
         tempText,
       ],

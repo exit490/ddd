@@ -29,9 +29,11 @@ class WeatherForecastMainPage extends StatelessWidget {
     return LoadingWeatherTodayBody();
   }
 
-  _stack(context, weatherForecast) {
+  _stack(context, List<Weather> weatherForecast) {
     return Stack(children: [
-      WeatherBackground(),
+      WeatherBackground(
+        condition: weatherForecast[0].condition,
+      ),
       _scaffold(weatherForecast),
     ]);
   }

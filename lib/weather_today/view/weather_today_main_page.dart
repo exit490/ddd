@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/view/location_navigation_drawer.dart';
+import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/view/weather_backgroud.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
@@ -36,7 +37,7 @@ class WeatherTodayMainPage extends StatelessWidget {
   main(context, weatherTodayState) {
     return Stack(
       children: <Widget>[
-        WeatherBackground(),
+        selectBackgroundFromState(weatherTodayState),
         body(context, weatherTodayState),
       ],
     );
@@ -48,6 +49,30 @@ class WeatherTodayMainPage extends StatelessWidget {
       backgroundColor: Colors.transparent,
       drawer: LocationsNavigationDrawer(context, locations),
       body: selectBodyFromState(context, weatherTodayState),
+    );
+  }
+
+  selectBackgroundFromState(weatherTodayState) {
+    if (weatherTodayState is InitialWeatherForecastState) {
+      return WeatherBackground(
+        condition: WeatherCondition.clear,
+      );
+    }
+
+    if (weatherTodayState is LoadingWeatherForecastState) {
+      return WeatherBackground(
+        condition: WeatherCondition.clear,
+      );
+    }
+
+    if (weatherTodayState is LoadedWeatherForecastState) {
+      return WeatherBackground(
+        condition: weatherTodayState.weatherForecast[0].condition,
+      );
+    }
+
+    return WeatherBackground(
+      condition: WeatherCondition.clear,
     );
   }
 
