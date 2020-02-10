@@ -19,7 +19,7 @@ main() {
     );
   });
 
-  test('expected weather from weather repository ', () async {
+  test('expected weather forecast from weather repository ', () async {
     final mockedMetaWeatherModel = _mockedMetaWeatherModel();
 
     final mockedWeatherForecast = mockedMetaWeatherModel.consolidatedWeather
