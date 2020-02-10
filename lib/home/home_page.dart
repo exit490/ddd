@@ -81,16 +81,12 @@ class HomePage extends StatelessWidget {
       locations: locations,
     );
 
-    final weatherForecastPage = WeatherForecastMainPage(
-      locations: locations,
-    );
-
     return PageView(
       controller: pageController,
       scrollDirection: Axis.vertical,
       children: <Widget>[
         weatherTodayPage,
-        weatherForecastPage,
+        WeatherForecastMainPage(),
       ],
     );
   }

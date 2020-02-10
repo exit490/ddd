@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/view/weather_backgroud.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
@@ -9,12 +8,6 @@ import 'package:flutter_app/weather_today/view/loading_weather_today_body.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WeatherForecastMainPage extends StatelessWidget {
-  final List<LocationModel> locations;
-
-  WeatherForecastMainPage({
-    this.locations,
-  }) : assert(locations != null);
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherForecastBloc, WeatherForecastState>(
