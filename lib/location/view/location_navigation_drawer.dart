@@ -4,17 +4,19 @@ import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LocationsNavigationDrawer extends Drawer {
-  final context;
+class LocationsNavigationDrawer extends StatelessWidget {
   final List<LocationModel> locations;
 
   LocationsNavigationDrawer(
-    this.context,
     this.locations,
-  )   : assert(context != null && locations != null),
-        super(
-          child: buildLocationList(context, locations),
-        );
+  ) : assert(locations != null);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: buildLocationList(context, locations),
+    );
+  }
 
   static buildLocationList(context, List<LocationModel> locations) {
     if (locations.isEmpty) {
