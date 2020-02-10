@@ -40,12 +40,11 @@ class WeatherForecastMainPage extends StatelessWidget {
 
   _scaffold(weatherForecast) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: _weatherForecastList(weatherForecast),
-    );
+        backgroundColor: Colors.transparent,
+        body: _weatherForecastList(weatherForecast));
   }
 
-  _weatherForecastList(List<Weather> weatherForecast) {
+  Widget _weatherForecastList(List<Weather> weatherForecast) {
     final listTile =
         weatherForecast.map((weather) => WeatherForecastBox(weather)).toList();
 

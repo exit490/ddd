@@ -14,7 +14,9 @@ class WeatherForecastBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _content(weather);
+    return StreamBuilder(builder: (context, snapshot) {
+      return _content(weather);
+    });
   }
 
   _content(Weather weather) {
@@ -30,15 +32,6 @@ class WeatherForecastBox extends StatelessWidget {
         leftPadding,
         _temp(weather.temp),
         leftPadding,
-        _boxRow2(weather),
-      ],
-    );
-  }
-
-
-  _boxRow2(weather) {
-    return Row(
-      children: <Widget>[
         _minMaxAndWeatherText(weather),
       ],
     );
