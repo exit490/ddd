@@ -29,12 +29,17 @@ class LoadedBodyWeatherToday extends StatelessWidget {
       temp: weather.temp,
     );
 
+    final paddind = Padding(
+      padding: EdgeInsets.only(bottom: 5),
+    );
+
     final column = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         weatherIconAndTextRow,
+        paddind,
         minMaxTempRow,
         tempText,
       ],
