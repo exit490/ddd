@@ -3,12 +3,12 @@ import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/weather_icons.dart';
 import 'package:intl/intl.dart';
 
-class WeatherForecastListTile extends StatelessWidget {
+class WeatherForecastBox extends StatelessWidget {
   final Weather weather;
   static final _fontSize = 22.0;
   static final _c = '°';
 
-  WeatherForecastListTile(
+  WeatherForecastBox(
     this.weather,
   ) : assert(weather != null);
 

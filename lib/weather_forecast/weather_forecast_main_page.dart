@@ -46,9 +46,8 @@ class WeatherForecastMainPage extends StatelessWidget {
   }
 
   _weatherForecastList(List<Weather> weatherForecast) {
-    final listTile = weatherForecast
-        .map((weather) => WeatherForecastListTile(weather))
-        .toList();
+    final listTile =
+        weatherForecast.map((weather) => WeatherForecastBox(weather)).toList();
 
     final column = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
