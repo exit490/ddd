@@ -1,20 +1,22 @@
+import 'package:equatable/equatable.dart';
+
 import 'consolidate_weather.dart';
 import 'parent_model.dart';
 import 'sources_model.dart';
 
-class MetaWeatherModel {
-  List<ConsolidatedWeather> consolidatedWeather;
-  String time;
-  String sunRise;
-  String sunSet;
-  String timezoneName;
-  Parent parent;
-  List<Sources> sources;
-  String title;
-  String locationType;
-  int woeid;
-  String lattLong;
-  String timezone;
+class MetaWeatherModel extends Equatable {
+  final List<ConsolidatedWeather> consolidatedWeather;
+  final String time;
+  final String sunRise;
+  final String sunSet;
+  final String timezoneName;
+  final Parent parent;
+  final List<Sources> sources;
+  final String title;
+  final String locationType;
+  final int woeid;
+  final String lattLong;
+  final String timezone;
 
   MetaWeatherModel({
     this.consolidatedWeather,
@@ -31,30 +33,62 @@ class MetaWeatherModel {
     this.timezone,
   });
 
-  MetaWeatherModel.fromJson(Map<String, dynamic> json) {
+  @override
+  List<Object> get props => [
+        consolidatedWeather,
+        time,
+        sunRise,
+        sunSet,
+        timezoneName,
+        parent,
+        sources,
+        title,
+        locationType,
+        woeid,
+        lattLong,
+        timezone,
+      ];
+
+  static fromJson(Map<String, dynamic> json) {
+    var consolidatedWeather = List<ConsolidatedWeather>();
     if (json['consolidated_weather'] != null) {
-      consolidatedWeather = new List<ConsolidatedWeather>();
       json['consolidated_weather'].forEach((v) {
-        consolidatedWeather.add(new ConsolidatedWeather.fromJson(v));
+        consolidatedWeather.add(ConsolidatedWeather.fromJson(v));
       });
     }
-    time = json['time'];
-    sunRise = json['sun_rise'];
-    sunSet = json['sun_set'];
-    timezoneName = json['timezone_name'];
-    parent =
+    var time = json['time'];
+    var sunRise = json['sun_rise'];
+    var sunSet = json['sun_set'];
+    var timezoneName = json['timezone_name'];
+    var parent =
         json['parent'] != null ? new Parent.fromJson(json['parent']) : null;
+
+    var sources = new List<Sources>();
     if (json['sources'] != null) {
-      sources = new List<Sources>();
       json['sources'].forEach((v) {
-        sources.add(new Sources.fromJson(v));
+        sources.add(Sources.fromJson(v));
       });
     }
-    title = json['title'];
-    locationType = json['location_type'];
-    woeid = json['woeid'];
-    lattLong = json['latt_long'];
-    timezone = json['timezone'];
+    var title = json['title'];
+    var locationType = json['location_type'];
+    var woeid = json['woeid'];
+    var lattLong = json['latt_long'];
+    var timezone = json['timezone'];
+
+    return MetaWeatherModel(
+      title: title,
+      consolidatedWeather: consolidatedWeather,
+      lattLong: lattLong,
+      locationType: locationType,
+      parent: parent,
+      sources: sources,
+      sunRise: sunRise,
+      sunSet: sunSet,
+      time: time,
+      timezone: timezone,
+      timezoneName: timezoneName,
+      woeid: woeid,
+    );
   }
 
   Map<String, dynamic> toJson() {

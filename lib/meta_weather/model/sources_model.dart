@@ -1,16 +1,38 @@
-class Sources {
-  String title;
-  String slug;
-  String url;
-  int crawlRate;
+import 'package:equatable/equatable.dart';
 
-  Sources({this.title, this.slug, this.url, this.crawlRate});
+class Sources extends Equatable {
+  final String title;
+  final String slug;
+  final String url;
+  final int crawlRate;
 
-  Sources.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    slug = json['slug'];
-    url = json['url'];
-    crawlRate = json['crawl_rate'];
+  @override
+  List<Object> get props => [
+        title,
+        slug,
+        url,
+        crawlRate,
+      ];
+
+  Sources({
+    this.title,
+    this.slug,
+    this.url,
+    this.crawlRate,
+  });
+
+  static fromJson(Map<String, dynamic> json) {
+    var title = json['title'];
+    var slug = json['slug'];
+    var url = json['url'];
+    var crawlRate = json['crawl_rate'];
+
+    return Sources(
+      title: title,
+      slug: slug,
+      url: url,
+      crawlRate: crawlRate,
+    );
   }
 
   Map<String, dynamic> toJson() {

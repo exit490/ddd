@@ -1,53 +1,93 @@
-class ConsolidatedWeather {
-  int id;
-  String weatherStateName;
-  String weatherStateAbbr;
-  String windDirectionCompass;
-  String created;
-  String applicableDate;
-  double minTemp;
-  double maxTemp;
-  double theTemp;
-  double windSpeed;
-  double windDirection;
-  double airPressure;
-  int humidity;
-  double visibility;
-  int predictability;
+import 'package:equatable/equatable.dart';
 
-  ConsolidatedWeather(
-      {this.id,
-      this.weatherStateName,
-      this.weatherStateAbbr,
-      this.windDirectionCompass,
-      this.created,
-      this.applicableDate,
-      this.minTemp,
-      this.maxTemp,
-      this.theTemp,
-      this.windSpeed,
-      this.windDirection,
-      this.airPressure,
-      this.humidity,
-      this.visibility,
-      this.predictability});
+class ConsolidatedWeather extends Equatable {
+  final int id;
+  final String weatherStateName;
+  final String weatherStateAbbr;
+  final String windDirectionCompass;
+  final String created;
+  final String applicableDate;
+  final double minTemp;
+  final double maxTemp;
+  final double theTemp;
+  final double windSpeed;
+  final double windDirection;
+  final double airPressure;
+  final int humidity;
+  final double visibility;
+  final int predictability;
 
-  ConsolidatedWeather.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    weatherStateName = json['weather_state_name'];
-    weatherStateAbbr = json['weather_state_abbr'];
-    windDirectionCompass = json['wind_direction_compass'];
-    created = json['created'];
-    applicableDate = json['applicable_date'];
-    minTemp = json['min_temp'];
-    maxTemp = json['max_temp'];
-    theTemp = json['the_temp'];
-    windSpeed = json['wind_speed'];
-    windDirection = json['wind_direction'];
-    airPressure = json['air_pressure'];
-    humidity = json['humidity'];
-    visibility = json['visibility'];
-    predictability = json['predictability'];
+  @override
+  List<Object> get props => [
+        id,
+        weatherStateName,
+        weatherStateAbbr,
+        windDirectionCompass,
+        created,
+        applicableDate,
+        minTemp,
+        maxTemp,
+        theTemp,
+        windSpeed,
+        windDirection,
+        airPressure,
+        humidity,
+        visibility,
+        predictability,
+      ];
+
+  ConsolidatedWeather({
+    this.id,
+    this.weatherStateName,
+    this.weatherStateAbbr,
+    this.windDirectionCompass,
+    this.created,
+    this.applicableDate,
+    this.minTemp,
+    this.maxTemp,
+    this.theTemp,
+    this.windSpeed,
+    this.windDirection,
+    this.airPressure,
+    this.humidity,
+    this.visibility,
+    this.predictability,
+  });
+
+  static fromJson(Map<String, dynamic> json) {
+    var id = json['id'];
+    var weatherStateName = json['weather_state_name'];
+    var weatherStateAbbr = json['weather_state_abbr'];
+    var windDirectionCompass = json['wind_direction_compass'];
+    var created = json['created'];
+    var applicableDate = json['applicable_date'];
+    var minTemp = json['min_temp'];
+    var maxTemp = json['max_temp'];
+    var theTemp = json['the_temp'];
+    var windSpeed = json['wind_speed'];
+    var windDirection = json['wind_direction'];
+    var airPressure = json['air_pressure'];
+    var humidity = json['humidity'];
+    var visibility = json['visibility'];
+    var predictability = json['predictability'];
+
+    return ConsolidatedWeather(
+      minTemp: minTemp,
+      maxTemp: maxTemp,
+      applicableDate: applicableDate,
+      airPressure: airPressure,
+      created: created,
+      humidity: humidity,
+      id: id,
+      predictability: predictability,
+      theTemp: theTemp,
+      visibility: visibility,
+      weatherStateAbbr: weatherStateAbbr,
+      windDirection: windDirection,
+      weatherStateName: weatherStateName,
+      windDirectionCompass: windDirectionCompass,
+      windSpeed: windSpeed,
+    );
   }
 
   Map<String, dynamic> toJson() {
