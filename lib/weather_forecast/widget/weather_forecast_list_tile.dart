@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/weather_icons.dart';
+import 'package:intl/intl.dart';
 
 class WeatherForecastListTile extends ListTile {
   final Weather weather;
@@ -42,9 +43,9 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _date(applicableDate) {
+  static _date(String applicableDate) {
     return Text(
-      applicableDate,
+      _formatDate(applicableDate),
       style: TextStyle(fontSize: 25),
     );
   }
@@ -109,5 +110,15 @@ class WeatherForecastListTile extends ListTile {
         maxTempText,
       ],
     );
+  }
+
+  static _formatDate(applicableDate) {
+    final dateSlitted = applicableDate.split('-');
+    final year = int.parse(dateSlitted[0]);
+    final month = int.parse(dateSlitted[1]);
+    final day = int.parse(dateSlitted[2]);
+
+    final date = DateTime(year, month, day);
+    return DateFormat.EEEE().format(date);
   }
 }
