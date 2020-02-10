@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/home/home_material_app.dart';
 import 'package:flutter_app/location/bloc/location_bloc.dart';
 import 'package:flutter_app/location/bloc/location_event.dart';
 import 'package:flutter_app/location/bloc/location_state.dart';
@@ -14,18 +15,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final newTextTheme = Theme.of(context).textTheme.apply(
-          bodyColor: Colors.white,
-          displayColor: Colors.white,
-        );
-
-    final theme = ThemeData(
-      textTheme: newTextTheme,
-      canvasColor: Colors.black26,
-    );
-
-    return MaterialApp(
-      theme: theme,
+    return HomeMaterialApp(
+      context: context,
       home: main(),
     );
   }
