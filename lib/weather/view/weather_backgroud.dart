@@ -16,20 +16,31 @@ class WeatherBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final images = Image.asset(
-      _imagePath(),
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      fit: BoxFit.cover,
+    final streamBuilder = StreamBuilder(
+      builder: (context, snapshot) {
+        return backGroundImage(context);
+      },
     );
 
     return Stack(
       children: <Widget>[
-        images,
+        streamBuilder,
         Container(
           color: Colors.black26,
         )
       ],
+    );
+  }
+
+  backGroundImage(context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
+    return Image.asset(
+      _imagePath(),
+      height: height,
+      width: width,
+      fit: BoxFit.cover,
     );
   }
 
