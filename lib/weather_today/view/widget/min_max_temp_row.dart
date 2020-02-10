@@ -4,6 +4,7 @@ class MinMaxTempRow extends StatelessWidget {
   final double minTemp;
   final double maxTemp;
   static final fontSize = 22.0;
+  static final _c = '°';
 
   MinMaxTempRow({
     @required this.minTemp,
@@ -31,12 +32,12 @@ class MinMaxTempRow extends StatelessWidget {
     final textStyle = TextStyle(fontSize: fontSize);
 
     final maxTempText = Text(
-      maxTemp.toInt().toString(),
+      maxTemp.toInt().toString() + _c,
       style: textStyle,
     );
 
     final minTempText = Text(
-      minTemp.toInt().toString(),
+      minTemp.toInt().toString() + _c,
       style: textStyle,
     );
 
