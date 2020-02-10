@@ -32,10 +32,10 @@ class LocationRepository {
 
     if (locations.isEmpty) {
       return LocationModel(
-        'Rio de Janeiro',
-        'City',
-        455825,
-        '-22.976730,-43.195080',
+        title: 'Rio de Janeiro',
+        locationType: 'City',
+        woeid: 455825,
+        latLong: '-22.976730,-43.195080',
       );
     }
 

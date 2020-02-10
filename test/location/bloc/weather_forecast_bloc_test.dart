@@ -1,8 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_app/location/bloc/location_bloc.dart';
+import 'package:flutter_app/location/bloc/location_event.dart';
 import 'package:flutter_app/location/bloc/location_state.dart';
+import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
-import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -14,11 +15,17 @@ void main() {
   setUp(() {
     _locationRepository = _LocationRepository();
 
-//    when(
-//      _weatherRepository.fetchingWeatherForecastFromLocation(0101),
-//    ).thenAnswer(
-//      (_) => Future.value(_mockedWeatherList()),
-//    );
+    when(
+      _locationRepository.buildDefaultLocation(),
+    ).thenAnswer(
+      (_) => Future.value(_mockedDefaultLocation()),
+    );
+
+    when(
+      _locationRepository.restoreAllLocationsFromCache(),
+    ).thenAnswer(
+      (_) => Future.value(_mockedRestoredListLocationList()),
+    );
   });
 
   blocTest(
@@ -27,17 +34,14 @@ void main() {
     expect: [InitialLocationState()],
   );
 
-//  test('if add FetchWeatherForecastEvent', () async {
-//    final bloc = WeatherForecastBloc(weatherRepository: _weatherRepository);
-//    bloc.add(FetchWeatherForecastEvent(locationId: 0101));
-//    await emitsExactly(bloc, [
-//      InitialWeatherForecastState(),
-//      LoadingWeatherForecastState(),
-//      LoadedWeatherForecastState(
-//        weatherForecast: _mockedWeatherList(),
-//      )
-//    ]);
-//  });
+  test('if add BuildAllLocationEvent', () async {
+    final bloc = LocationBloc(locationRepository: _locationRepository);
+    bloc.add(BuildAllLocationEvent());
+    await emitsExactly(bloc, [
+      InitialLocationState(),
+      AllLocationsRestoredState(locations: _mockedLocationList()),
+    ]);
+  });
 //
 //  test('if add RefreshWeatherForecastEvent', () async {
 //    final bloc = WeatherForecastBloc(weatherRepository: _weatherRepository);
@@ -52,14 +56,34 @@ void main() {
 //  });
 }
 
-List<Weather> _mockedWeatherList() {
-  List<Weather> mockedWeather = List();
+List<LocationModel> _mockedLocationList() {
+  List<LocationModel> mockedLocationList = List();
+  mockedLocationList.add(_mockedDefaultLocation());
+  mockedLocationList.addAll(_mockedRestoredListLocationList());
+  return mockedLocationList;
+}
 
-  final weather = Weather();
+List<LocationModel> _mockedRestoredListLocationList() {
+  List<LocationModel> mockedLocationList = List();
+  final mockedLocation = LocationModel(
+    title: 'Rio de Janeiro',
+    locationType: 'City',
+    woeid: 455825,
+    latLong: '-22.976730,-43.195080',
+  );
 
-  mockedWeather.add(weather);
-  mockedWeather.add(weather);
-  mockedWeather.add(weather);
+  mockedLocationList.add(mockedLocation);
+  mockedLocationList.add(mockedLocation);
+  mockedLocationList.add(mockedLocation);
 
-  return mockedWeather;
+  return mockedLocationList;
+}
+
+LocationModel _mockedDefaultLocation() {
+  return LocationModel(
+    title: 'New York',
+    locationType: 'City',
+    woeid: 455825,
+    latLong: '-22.976730,-43.195080',
+  );
 }

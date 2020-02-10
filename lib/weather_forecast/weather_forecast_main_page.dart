@@ -3,7 +3,7 @@ import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_state.dart';
-import 'package:flutter_app/weather_forecast/weather_forecast_list_tile.dart';
+import 'package:flutter_app/weather_forecast/widget/weather_forecast_list_tile.dart';
 import 'package:flutter_app/weather_today/view/loading_weather_today_body.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

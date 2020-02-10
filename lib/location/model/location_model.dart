@@ -1,34 +1,43 @@
+import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
 part 'location_model.g.dart';
 
 @HiveType(typeId: 0)
-class LocationModel {
+class LocationModel extends Equatable {
   @HiveField(0)
-  String title;
+  final String title;
 
   @HiveField(1)
-  String locationType;
+  final String locationType;
 
   @HiveField(2)
-  int woeid;
+  final int woeid;
 
   @HiveField(3)
-  String latLong;
+  final String latLong;
 
-  LocationModel(
+  LocationModel({
     this.title,
     this.locationType,
     this.woeid,
     this.latLong,
-  );
+  });
 
   static LocationModel fromJson(dynamic json) {
     return LocationModel(
-      json['title'],
-      json['location_type'],
-      json['woeid'],
-      json['latt_long'],
+      title: json['title'],
+      locationType: json['location_type'],
+      woeid: json['woeid'],
+      latLong: json['latt_long'],
     );
   }
+
+  @override
+  List<Object> get props => [
+        title,
+        locationType,
+        woeid,
+        latLong,
+      ];
 }

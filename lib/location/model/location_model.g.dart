@@ -17,10 +17,10 @@ class LocationModelAdapter extends TypeAdapter<LocationModel> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return LocationModel(
-      fields[0] as String,
-      fields[1] as String,
-      fields[2] as int,
-      fields[3] as String,
+      title: fields[0] as String,
+      locationType: fields[1] as String,
+      woeid: fields[2] as int,
+      latLong: fields[3] as String,
     );
   }
 
