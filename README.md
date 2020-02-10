@@ -24,6 +24,6 @@
 
 ## LICENSE
 
-Copyright 2019 Mauricio Pimenta / exit490
+Copyright 2019 Mauricio Pimenta (exit490)
 
 The scripts of repository may be freely distributed under the [MIT license](LICENSE).
