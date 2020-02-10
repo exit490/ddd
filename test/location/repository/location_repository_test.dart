@@ -84,4 +84,22 @@ main() {
 
     expect(locationModel, location);
   });
+
+  test('if position is null', () async {
+    when(
+      geoLocationApiClientMocked.getMyLocation(),
+    ).thenAnswer(
+      (_) => null,
+    );
+
+    final location = await locationRepository.buildDefaultLocation();
+    final locationModel = LocationModel(
+      title: 'Rio de Janeiro',
+      locationType: 'City',
+      woeid: 455825,
+      latLong: '-22.976730,-43.195080',
+    );
+
+    expect(locationModel, location);
+  });
 }
