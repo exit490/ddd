@@ -14,6 +14,12 @@ void main() {
 
   setUp(() {
     _weatherRepository = _WeatherRepository();
+
+    when(
+      _weatherRepository.fetchingWeatherForecastFromLocation(0101),
+    ).thenAnswer(
+      (_) => Future.value(_mockedWeatherList()),
+    );
   });
 
   blocTest(
@@ -23,12 +29,6 @@ void main() {
   );
 
   test('if add FetchWeatherForecastEvent', () async {
-    when(
-      _weatherRepository.fetchingWeatherForecastFromLocation(0101),
-    ).thenAnswer(
-      (_) => Future.value(_mockedWeatherList()),
-    );
-
     final bloc = WeatherForecastBloc(weatherRepository: _weatherRepository);
     bloc.add(FetchWeatherForecastEvent(locationId: 0101));
     await emitsExactly(bloc, [
@@ -41,12 +41,6 @@ void main() {
   });
 
   test('if add RefreshWeatherForecastEvent', () async {
-    when(
-      _weatherRepository.fetchingWeatherForecastFromLocation(0101),
-    ).thenAnswer(
-      (_) => Future.value(_mockedWeatherList()),
-    );
-
     final bloc = WeatherForecastBloc(weatherRepository: _weatherRepository);
     bloc.add(RefreshWeatherForecastEvent(locationId: 0101));
     await emitsExactly(bloc, [
