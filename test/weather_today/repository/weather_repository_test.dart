@@ -4,14 +4,15 @@ import 'package:flutter_app/weather/repository/weather_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MetaWeatherApiClientMocked extends Mock implements MetaWeatherApiClient {}
+class _MetaWeatherApiClientMocked extends Mock implements MetaWeatherApiClient {
+}
 
 main() {
-  MetaWeatherApiClientMocked metaWeatherApiClientMocked;
+  _MetaWeatherApiClientMocked metaWeatherApiClientMocked;
   WeatherRepository weatherRepository;
 
   setUp(() {
-    metaWeatherApiClientMocked = MetaWeatherApiClientMocked();
+    metaWeatherApiClientMocked = _MetaWeatherApiClientMocked();
     weatherRepository = WeatherRepository(
       clientApiMetaWeather: metaWeatherApiClientMocked,
     );

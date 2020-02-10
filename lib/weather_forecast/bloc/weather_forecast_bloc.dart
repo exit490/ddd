@@ -42,6 +42,7 @@ class WeatherForecastBloc
 
   Stream<WeatherForecastState> _mapRefreshWeatherForecastToState(
       RefreshWeatherForecastEvent event) async* {
+    yield LoadingWeatherForecastState();
     try {
       final weatherForecast =
           await weatherRepository.fetchingWeatherForecastFromLocation(
