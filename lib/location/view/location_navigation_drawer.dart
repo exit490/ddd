@@ -14,11 +14,11 @@ class LocationsNavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: buildLocationList(context, locations),
+      child: _buildLocationList(context, locations),
     );
   }
 
-  static buildLocationList(context, List<LocationModel> locations) {
+  _buildLocationList(context, List<LocationModel> locations) {
     if (locations.isEmpty) {
       return ListView(
         padding: EdgeInsets.symmetric(vertical: 8.0),
