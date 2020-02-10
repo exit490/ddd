@@ -14,9 +14,7 @@ class WeatherForecastListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: _content(weather),
-    );
+    return _content(weather);
   }
 
   _content(Weather weather) {
@@ -25,6 +23,7 @@ class WeatherForecastListTile extends StatelessWidget {
     );
 
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         _boxRow1(weather),
         leftPadding,

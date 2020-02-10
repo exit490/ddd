@@ -50,16 +50,15 @@ class WeatherForecastMainPage extends StatelessWidget {
         .map((weather) => WeatherForecastListTile(weather))
         .toList();
 
-    final listView = ListView(
-      physics: NeverScrollableScrollPhysics(),
+    final column = Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: listTile,
     );
 
-    return Padding(
-      padding: EdgeInsets.all(8),
-      child: Center(
-        child: listView,
-      ),
+    return Center(
+      child: column,
     );
   }
 }
