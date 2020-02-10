@@ -18,7 +18,7 @@ class WeatherBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final streamBuilder = StreamBuilder(
       builder: (context, snapshot) {
-        return backGroundImage(context);
+        return _backGroundImage(context);
       },
     );
 
@@ -32,7 +32,7 @@ class WeatherBackground extends StatelessWidget {
     );
   }
 
-  backGroundImage(context) {
+  _backGroundImage(context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
