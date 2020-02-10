@@ -42,18 +42,21 @@ void main() {
       AllLocationsRestoredState(locations: _mockedLocationList()),
     ]);
   });
-//
-//  test('if add RefreshWeatherForecastEvent', () async {
-//    final bloc = WeatherForecastBloc(weatherRepository: _weatherRepository);
-//    bloc.add(RefreshWeatherForecastEvent(locationId: 0101));
-//    await emitsExactly(bloc, [
-//      InitialWeatherForecastState(),
-//      LoadingWeatherForecastState(),
-//      LoadedWeatherForecastState(
-//        weatherForecast: _mockedWeatherList(),
-//      )
-//    ]);
-//  });
+
+  test('if add StoreLocationOnCacheEvent', () async {
+    final bloc = LocationBloc(locationRepository: _locationRepository);
+    bloc.add(StoreLocationOnCacheEvent(
+      location: _mockedDefaultLocation(),
+    ));
+    await emitsExactly(bloc, [
+      InitialLocationState(),
+      AllLocationsRestoredState(locations: _mockedLocationList()),
+    ]);
+
+    verify(
+      _locationRepository.toStoreLocationOnCache(_mockedDefaultLocation()),
+    ).called(1);
+  });
 }
 
 List<LocationModel> _mockedLocationList() {
