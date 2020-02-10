@@ -4,7 +4,10 @@ import 'package:flutter_app/location/no_sql/location_nosql_client.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
 import 'package:flutter_app/meta_weather/meta_weather_api_client.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mockito/mockito.dart';
+
+import '../util_t.dart';
 
 class _GeoLocationApiClientMocked extends Mock implements GeoLocationApiClient {
 }
@@ -38,5 +41,23 @@ main() {
     verify(
       locationNoSqlClientMocked.save(localModel),
     ).called(1);
+  });
+
+  test('if location from my position is expected', () async {
+    when(
+      geoLocationApiClientMocked.getMyLocation(),
+    ).thenAnswer(
+      (_) => Position(latitude: 1, longitude: 2),
+    );
+
+    when(
+      metaWeatherApiClientMocked.fetchLocationsByLatLong(1, 2),
+    ).thenAnswer(
+      (_) => Future.value(mockedLocationList()),
+    );
+
+    final location = await locationRepository.buildDefaultLocation();
+
+    expect(mockedLocationList()[0], location);
   });
 }
