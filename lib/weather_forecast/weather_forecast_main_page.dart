@@ -59,7 +59,12 @@ class WeatherForecastMainPage extends StatelessWidget {
       children: listTile,
     );
 
-    return listView;
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Center(
+        child: listView,
+      ),
+    );
   }
 }
 
