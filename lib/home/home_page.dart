@@ -57,6 +57,10 @@ class HomePage extends StatelessWidget {
       style: textStyle,
     );
 
+    final padding = Padding(
+      padding: EdgeInsets.only(top: 10),
+    );
+
     final column = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
@@ -64,6 +68,7 @@ class HomePage extends StatelessWidget {
       children: <Widget>[
         text1,
         text2,
+        padding,
         CircularProgressIndicator(
           backgroundColor: Colors.white,
         ),
