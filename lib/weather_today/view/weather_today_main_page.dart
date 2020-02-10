@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/view/location_navigation_drawer.dart';
+import 'package:flutter_app/weather/view/weather_backgroud.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_state.dart';
@@ -35,7 +36,7 @@ class WeatherTodayMainPage extends StatelessWidget {
   main(context, weatherTodayState) {
     return Stack(
       children: <Widget>[
-        weatherBackground(context),
+        WeatherBackground(),
         body(context, weatherTodayState),
       ],
     );
@@ -85,13 +86,4 @@ class WeatherTodayMainPage extends StatelessWidget {
       context: context,
     );
   }
-}
-
-weatherBackground(context) {
-  return Image.asset(
-    "assets/images/cloudy_1.jpg",
-    height: MediaQuery.of(context).size.height,
-    width: MediaQuery.of(context).size.width,
-    fit: BoxFit.cover,
-  );
 }
