@@ -45,8 +45,9 @@ class WeatherForecastMainPage extends StatelessWidget {
   }
 
   Widget _weatherForecastList(List<Weather> weatherForecast) {
-    final listTile =
-        weatherForecast.map((weather) => WeatherForecastBox(weather)).toList();
+    final listTile = weatherForecast
+        .map((weather) => _weatherForecastBoxStreamBuilder(weather))
+        .toList();
 
     final column = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,6 +58,14 @@ class WeatherForecastMainPage extends StatelessWidget {
 
     return Center(
       child: column,
+    );
+  }
+
+  StreamBuilder _weatherForecastBoxStreamBuilder(weather) {
+    return StreamBuilder(
+      builder: (context, snapshot) {
+        return WeatherForecastBox(weather);
+      },
     );
   }
 }

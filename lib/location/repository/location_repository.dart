@@ -24,19 +24,26 @@ class LocationRepository {
   }
 
   buildDefaultLocation() async {
+    final defaultModel = LocationModel(
+      title: 'Rio de Janeiro',
+      locationType: 'City',
+      woeid: 455825,
+      latLong: '-22.976730,-43.195080',
+    );
+
     final Position myPosition = await geoLocationApiClient.getMyLocation();
+
+    if (myPosition == null) {
+      return defaultModel;
+    }
+
     final locations = await metaWeatherApiClient.fetchLocationsByLatLong(
       myPosition.latitude,
       myPosition.longitude,
     );
 
     if (locations.isEmpty) {
-      return LocationModel(
-        title: 'Rio de Janeiro',
-        locationType: 'City',
-        woeid: 455825,
-        latLong: '-22.976730,-43.195080',
-      );
+      return defaultModel;
     }
 
     return locations[0];
