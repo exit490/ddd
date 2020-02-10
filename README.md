@@ -2,10 +2,10 @@
 
 ![](demonstration.gif)
 
-# PATTERNS
+## PATTERNS
 * [BLOC](https://www.didierboelens.com/2018/08/reactive-programming---streams---bloc/)
 
-# DEPENDENCIES
+## DEPENDENCIES
 
 * [flutter_bloc](https://pub.dev/packages/flutter_bloc)
 * [permission_handler](https://pub.dev/packages/permission_handler)
@@ -14,3 +14,8 @@
 * [geolocator](https://pub.dev/packages/geolocator)
 * [intl](https://pub.dev/packages/intl)
 
+## LICENSE
+
+Copyright 2019 Mauricio Pimenta / exit490
+
+The scripts of repository may be freely distributed under the [MIT license](LICENSE).
