@@ -3,19 +3,23 @@ import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/weather_icons.dart';
 import 'package:intl/intl.dart';
 
-class WeatherForecastListTile extends ListTile {
+class WeatherForecastListTile extends StatelessWidget {
   final Weather weather;
   static final _fontSize = 22.0;
   static final _c = '°';
 
   WeatherForecastListTile(
     this.weather,
-  )   : assert(weather != null),
-        super(
-          title: _content(weather),
-        );
+  ) : assert(weather != null);
 
-  static _content(Weather weather) {
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: _content(weather),
+    );
+  }
+
+  _content(Weather weather) {
     final leftPadding = Padding(
       padding: EdgeInsets.only(left: 10),
     );
@@ -32,7 +36,7 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _boxRow1(weather) {
+  _boxRow1(weather) {
     return Row(
       children: <Widget>[
         _dateAndWeatherIcon(weather),
@@ -40,7 +44,7 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _boxRow2(weather) {
+  _boxRow2(weather) {
     return Row(
       children: <Widget>[
         _minMaxAndWeatherText(weather),
@@ -48,7 +52,7 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _dateAndWeatherIcon(Weather weather) {
+  _dateAndWeatherIcon(Weather weather) {
     return Column(
       children: <Widget>[
         _date(weather.applicableDate),
@@ -57,7 +61,7 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _minMaxAndWeatherText(Weather weather) {
+  _minMaxAndWeatherText(Weather weather) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -67,14 +71,14 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _date(String applicableDate) {
+  _date(String applicableDate) {
     return Text(
       _formatDate(applicableDate),
       style: TextStyle(fontSize: 25),
     );
   }
 
-  static _minMaxTemps(Weather weather) {
+  _minMaxTemps(Weather weather) {
     final leftPadding = Padding(
       padding: EdgeInsets.only(left: 5),
     );
@@ -87,14 +91,14 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _weatherText(formattedCondition) {
+  _weatherText(formattedCondition) {
     return Text(
       formattedCondition,
       style: TextStyle(fontSize: 25),
     );
   }
 
-  static _weatherIcon(condition) {
+  _weatherIcon(condition) {
     return Icon(
       WeatherIcons.fromCondition(condition),
       size: 50,
@@ -102,14 +106,14 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _temp(temp) {
+  _temp(temp) {
     return Text(
       temp.toInt().toString() + _c,
       style: TextStyle(fontSize: 70),
     );
   }
 
-  static _minTemp(minTemp) {
+  _minTemp(minTemp) {
     final downIcon = Icon(
       Icons.arrow_downward,
       size: _fontSize,
@@ -129,7 +133,7 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _maxTemp(maxTemp) {
+  _maxTemp(maxTemp) {
     final upIcon = Icon(
       Icons.arrow_upward,
       size: _fontSize,
@@ -149,7 +153,7 @@ class WeatherForecastListTile extends ListTile {
     );
   }
 
-  static _formatDate(applicableDate) {
+  _formatDate(applicableDate) {
     final dateSlitted = applicableDate.split('-');
     final year = int.parse(dateSlitted[0]);
     final month = int.parse(dateSlitted[1]);
