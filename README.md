@@ -17,6 +17,11 @@
 * [geolocator](https://pub.dev/packages/geolocator)
 * [intl](https://pub.dev/packages/intl)
 
+## TEST DEPENDENCIES
+
+* [mockito](https://pub.dev/packages/mockito)
+* [bloc_test](https://pub.dev/packages/bloc_test)
+
 ## LICENSE
 
 Copyright 2019 Mauricio Pimenta / exit490
