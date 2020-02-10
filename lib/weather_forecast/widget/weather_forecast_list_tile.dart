@@ -25,7 +25,7 @@ class WeatherForecastBox extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        _boxRow1(weather),
+        _dateAndWeatherIcon(weather),
         leftPadding,
         leftPadding,
         _temp(weather.temp),
@@ -35,13 +35,6 @@ class WeatherForecastBox extends StatelessWidget {
     );
   }
 
-  _boxRow1(weather) {
-    return Row(
-      children: <Widget>[
-        _dateAndWeatherIcon(weather),
-      ],
-    );
-  }
 
   _boxRow2(weather) {
     return Row(
