@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/weather/model/weather_model.dart';
-import 'package:flutter_app/weather/view/weather_backgroud.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_state.dart';
 import 'package:flutter_app/weather_forecast/widget/weather_forecast_list_tile.dart';
@@ -30,12 +29,7 @@ class WeatherForecastMainPage extends StatelessWidget {
   }
 
   _stack(context, List<Weather> weatherForecast) {
-    return Stack(children: [
-      WeatherBackground(
-        condition: weatherForecast[0].condition,
-      ),
-      _scaffold(weatherForecast),
-    ]);
+    return _scaffold(weatherForecast);
   }
 
   _scaffold(weatherForecast) {

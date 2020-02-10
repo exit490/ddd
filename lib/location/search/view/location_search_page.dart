@@ -5,7 +5,6 @@ import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/location/search/bloc/search_location_event.dart';
 import 'package:flutter_app/location/search/bloc/search_location_state.dart';
-import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/view/weather_backgroud.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
@@ -28,9 +27,7 @@ class SearchLocationPage extends StatelessWidget {
 
     return Stack(
       children: <Widget>[
-        WeatherBackground(
-          condition: WeatherCondition.clear,
-        ),
+        WeatherBackground(),
         scaffold,
       ],
     );

@@ -6,7 +6,6 @@ import 'package:flutter_app/location/bloc/location_state.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/permission/location_permission_event.dart';
 import 'package:flutter_app/permission/location_permission_state.dart';
-import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/view/weather_backgroud.dart';
 import 'package:flutter_app/weather_forecast/weather_forecast_main_page.dart';
 import 'package:flutter_app/weather_today/view/weather_today_main_page.dart';
@@ -74,10 +73,8 @@ class HomePage extends StatelessWidget {
     );
     return Stack(
       children: <Widget>[
-        WeatherBackground(
-          condition: WeatherCondition.clear,
-        ),
-        scaffold
+        WeatherBackground(),
+        scaffold,
       ],
     );
   }
@@ -89,12 +86,19 @@ class HomePage extends StatelessWidget {
       locations: locations,
     );
 
-    return PageView(
+    final pageView = PageView(
       controller: pageController,
       scrollDirection: Axis.vertical,
       children: <Widget>[
         weatherTodayPage,
         WeatherForecastMainPage(),
+      ],
+    );
+
+    return Stack(
+      children: <Widget>[
+        WeatherBackground(),
+        pageView,
       ],
     );
   }
