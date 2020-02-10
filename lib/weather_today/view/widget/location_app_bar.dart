@@ -12,7 +12,7 @@ class LocationAppBar extends AppBar {
     @required this.context,
   }) : super(
           title: Text(locationName),
-          elevation: 20,
+          elevation: 0,
           centerTitle: true,
           backgroundColor: Colors.transparent,
           actions: whatActions(

@@ -20,25 +20,38 @@ class WeatherForecastBox extends StatelessWidget {
   }
 
   _content(Weather weather) {
-    final leftPadding = Padding(
-      padding: EdgeInsets.only(left: 10),
-    );
-
-    return Row(
+    final body = Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        _dateAndWeatherIcon(weather),
-        leftPadding,
-        leftPadding,
-        _temp(weather.temp),
-        leftPadding,
-        _minMaxAndWeatherText(weather),
+        Expanded(
+          flex: 1,
+          child: _dateAndWeatherIcon(weather),
+        ),
+        Expanded(
+          flex: 1,
+          child: _temp(weather.temp),
+        ),
+        Expanded(
+          flex: 2,
+          child: _minMaxAndWeatherText(weather),
+        )
       ],
+    );
+
+    final padding = Padding(
+      padding: EdgeInsets.only(top: 15),
+    );
+
+    return Column(
+      children: <Widget>[padding, body],
     );
   }
 
   _dateAndWeatherIcon(Weather weather) {
     return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         _date(weather.applicableDate),
         _weatherIcon(weather.condition),
@@ -63,23 +76,10 @@ class WeatherForecastBox extends StatelessWidget {
     );
   }
 
-  _minMaxTemps(Weather weather) {
-    final leftPadding = Padding(
-      padding: EdgeInsets.only(left: 5),
-    );
-    return Row(
-      children: <Widget>[
-        _maxTemp(weather.maxTemp),
-        leftPadding,
-        _minTemp(weather.minTemp),
-      ],
-    );
-  }
-
   _weatherText(formattedCondition) {
     return Text(
       formattedCondition,
-      style: TextStyle(fontSize: 25),
+      style: TextStyle(fontSize: 22),
     );
   }
 
@@ -92,33 +92,17 @@ class WeatherForecastBox extends StatelessWidget {
   }
 
   _temp(temp) {
-    return Text(
+    final text = Text(
       temp.toInt().toString() + _c,
-      style: TextStyle(fontSize: 70),
+      style: TextStyle(fontSize: 50),
+    );
+
+    return Center(
+      child: text,
     );
   }
 
-  _minTemp(minTemp) {
-    final downIcon = Icon(
-      Icons.arrow_downward,
-      size: _fontSize,
-      color: Colors.white,
-    );
-
-    final minTempText = Text(
-      minTemp.toInt().toString() + _c,
-      style: TextStyle(fontSize: _fontSize),
-    );
-
-    return Row(
-      children: <Widget>[
-        downIcon,
-        minTempText,
-      ],
-    );
-  }
-
-  _maxTemp(maxTemp) {
+  _minMaxTemps(weather) {
     final upIcon = Icon(
       Icons.arrow_upward,
       size: _fontSize,
@@ -126,14 +110,28 @@ class WeatherForecastBox extends StatelessWidget {
     );
 
     final maxTempText = Text(
-      maxTemp.toInt().toString() + _c,
+      weather.maxTemp.toInt().toString() + _c,
+      style: TextStyle(fontSize: _fontSize),
+    );
+
+    final downIcon = Icon(
+      Icons.arrow_downward,
+      size: _fontSize,
+      color: Colors.white,
+    );
+
+    final minTempText = Text(
+      weather.minTemp.toInt().toString() + _c,
       style: TextStyle(fontSize: _fontSize),
     );
 
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         upIcon,
         maxTempText,
+        downIcon,
+        minTempText,
       ],
     );
   }
