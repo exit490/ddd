@@ -32,17 +32,8 @@ class SearchLocationBloc
 
   delaySearch(event) {
     subscription?.cancel();
-    subscription = halfSecondDelay(event.location);
-  }
-
-  halfSecondDelay(location) {
-    return Stream.periodic(Duration(milliseconds: 1500), (x) => x)
-        .take(1)
-        .listen(
-          (tick) => add(SearchLocationEvent(
-            location: location,
-          )),
-        );
+    subscription = Stream.periodic(Duration(seconds: 1))
+        .listen((x) => add(SearchLocationEvent(location: event.location)));
   }
 
   Stream<SearchLocationState> _mapSearchEventToState(location) async* {
