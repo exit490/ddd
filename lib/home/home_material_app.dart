@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
-class HomeMaterialApp extends MaterialApp {
-  final context;
+class HomeMaterialApp extends StatelessWidget {
+  final home;
 
   HomeMaterialApp({
-    home,
-    this.context,
-  })  : assert(context != null),
-        super(
-          theme: _buildTheme(context),
-          home: home,
-        );
+    this.home,
+  }) : assert(home != null);
 
-  static _buildTheme(context) {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: home,
+      theme: _buildTheme(context),
+    );
+  }
+
+  _buildTheme(context) {
     final newTextTheme = Theme.of(context).textTheme.apply(
           bodyColor: Colors.white,
           displayColor: Colors.white,
