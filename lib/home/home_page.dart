@@ -42,12 +42,13 @@ class HomePage extends StatelessWidget {
       style: textStyle,
     );
     final text2 = Text(
-      'WEATHER APP',
+      'WEATHER',
       style: textStyle,
     );
 
-    final padding = Padding(
-      padding: EdgeInsets.only(top: 10),
+    final text3 = Text(
+      'APP',
+      style: textStyle,
     );
 
     final column = Column(
@@ -57,10 +58,7 @@ class HomePage extends StatelessWidget {
       children: <Widget>[
         text1,
         text2,
-        padding,
-        CircularProgressIndicator(
-          backgroundColor: Colors.white,
-        ),
+        text3,
       ],
     );
 

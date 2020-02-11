@@ -46,7 +46,7 @@ class WeatherBackground extends StatelessWidget {
       );
     }
 
-    return _backGroundImage(context, WeatherCondition.clear);
+    return _backGroundImage(context, WeatherCondition.unknown);
   }
 
   _backGroundImage(context, condition) {
@@ -62,6 +62,10 @@ class WeatherBackground extends StatelessWidget {
   }
 
   String _imagePath(condition) {
+    if (condition == WeatherCondition.unknown) {
+      return _assetsPath + 'sun_time_lapse.gif';
+    }
+
     return _assetsPath + _getStringConditional(condition) + '/' + _randomJpg();
   }
 
