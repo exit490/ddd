@@ -19,33 +19,37 @@ class WeatherForecastBox extends StatefulWidget {
 class _WeatherForecastBoxState extends State<WeatherForecastBox> {
   static final _fontSize = 22.0;
   static final _c = '°';
-  Weather weather;
+  Weather _weather;
 
   _WeatherForecastBoxState();
 
-  @override
-  Widget build(BuildContext context) {
+  _weatherState() {
     setState(() {
-      weather = widget.weather;
+      _weather = widget.weather;
     });
-    return _content(weather);
   }
 
-  _content(weather) {
+  @override
+  Widget build(BuildContext context) {
+    _weatherState();
+    return _content();
+  }
+
+  _content() {
     final body = Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Expanded(
           flex: 1,
-          child: _dateAndWeatherIcon(weather),
+          child: _dateAndWeatherIcon(),
         ),
         Expanded(
           flex: 1,
-          child: _temp(weather.temp),
+          child: _temp(_weather.temp),
         ),
         Expanded(
           flex: 2,
-          child: _minMaxAndWeatherText(weather),
+          child: _minMaxAndWeatherText(),
         )
       ],
     );
@@ -59,45 +63,45 @@ class _WeatherForecastBoxState extends State<WeatherForecastBox> {
     );
   }
 
-  _dateAndWeatherIcon(Weather weather) {
+  _dateAndWeatherIcon() {
     return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        _date(weather.applicableDate),
-        _weatherIcon(weather.condition),
+        _date(),
+        _weatherIcon(),
       ],
     );
   }
 
-  _minMaxAndWeatherText(Weather weather) {
+  _minMaxAndWeatherText() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _weatherText(weather.formattedCondition),
-        _minMaxTemps(weather),
+        _weatherText(),
+        _minMaxTemps(),
       ],
     );
   }
 
-  _date(String applicableDate) {
+  _date() {
     return Text(
-      _formatDate(applicableDate),
+      _formatDate(_weather.applicableDate),
       style: TextStyle(fontSize: 25),
     );
   }
 
-  _weatherText(formattedCondition) {
+  _weatherText() {
     return Text(
-      formattedCondition,
+      _weather.formattedCondition,
       style: TextStyle(fontSize: 22),
     );
   }
 
-  _weatherIcon(condition) {
+  _weatherIcon() {
     return Icon(
-      WeatherIcons.fromCondition(condition),
+      WeatherIcons.fromCondition(_weather.condition),
       size: 50,
       color: Colors.white,
     );
@@ -114,7 +118,7 @@ class _WeatherForecastBoxState extends State<WeatherForecastBox> {
     );
   }
 
-  _minMaxTemps(weather) {
+  _minMaxTemps() {
     final upIcon = Icon(
       Icons.arrow_upward,
       size: _fontSize,
@@ -122,7 +126,7 @@ class _WeatherForecastBoxState extends State<WeatherForecastBox> {
     );
 
     final maxTempText = Text(
-      weather.maxTemp.toInt().toString() + _c,
+      _weather.maxTemp.toInt().toString() + _c,
       style: TextStyle(fontSize: _fontSize),
     );
 
@@ -133,7 +137,7 @@ class _WeatherForecastBoxState extends State<WeatherForecastBox> {
     );
 
     final minTempText = Text(
-      weather.minTemp.toInt().toString() + _c,
+      _weather.minTemp.toInt().toString() + _c,
       style: TextStyle(fontSize: _fontSize),
     );
 

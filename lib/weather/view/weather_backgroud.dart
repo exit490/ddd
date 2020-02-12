@@ -22,15 +22,9 @@ class WeatherBackground extends StatelessWidget {
       },
     );
 
-    final streamBuilder = StreamBuilder(
-      builder: (context, snapshot) {
-        return blocBuilder;
-      },
-    );
-
     return Stack(
       children: <Widget>[
-        streamBuilder,
+        blocBuilder,
         Container(
           color: Colors.black26,
         )
