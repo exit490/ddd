@@ -38,37 +38,18 @@ class HomePage extends StatelessWidget {
   body() {
     final textStyle = TextStyle(fontSize: 50);
     final text1 = Text(
-      'FLUTTER',
+      'FLUTTER \nWEATHER \nAPP',
       style: textStyle,
-    );
-    final text2 = Text(
-      'WEATHER',
-      style: textStyle,
-    );
-
-    final text3 = Text(
-      'APP',
-      style: textStyle,
-    );
-
-    final column = Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        text1,
-        text2,
-        text3,
-      ],
     );
 
     final center = Center(
-      child: column,
+      child: text1,
     );
 
     final scaffold = Scaffold(
       body: center,
     );
+
     return Stack(
       children: <Widget>[
         WeatherBackground(),
