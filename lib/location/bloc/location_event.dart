@@ -32,3 +32,14 @@ class StoreLocationOnCacheEvent extends LocationEvent {
 }
 
 class BuildAllLocationEvent extends LocationEvent {}
+
+class AllLocationsFromCacheEvent extends LocationEvent {
+  final List<LocationModel> locations;
+
+  const AllLocationsFromCacheEvent({
+    @required this.locations,
+  }) : assert(locations != null);
+
+  @override
+  List<Object> get props => [locations];
+}

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/location/search/view/location_search_page.dart';
+import 'package:flutter_app/search/view/search_location_page.dart';
 
 class LocationAppBar extends AppBar {
   final String locationName;

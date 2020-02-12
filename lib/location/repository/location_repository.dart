@@ -23,7 +23,7 @@ class LocationRepository {
     locationNoSqlClient.save(locationModel);
   }
 
-  buildDefaultLocation() async {
+  Future<LocationModel> buildDefaultLocation() async {
     final defaultModel = LocationModel(
       title: 'Rio de Janeiro',
       locationType: 'City',
@@ -57,7 +57,17 @@ class LocationRepository {
     return locationNoSqlClient.restore(locationIndex);
   }
 
-  restoreAllLocationsFromCache() {
+  Future<List<LocationModel>> restoreAllLocationsFromCache() {
     return locationNoSqlClient.restoreAll();
+  }
+
+  Stream<List<LocationModel>>
+      attachDefaultLocationWithAllLocationsFromCache() async* {
+    final List<LocationModel> locations = List();
+    final defaultLocation = await buildDefaultLocation();
+    final allLocationsFromCache = locationNoSqlClient.restoreAll();
+    locations.add(defaultLocation);
+    locations.addAll(allLocationsFromCache);
+    yield locations;
   }
 }

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
-import 'package:flutter_app/location/search/bloc/search_location_event.dart';
-import 'package:flutter_app/location/search/bloc/search_location_state.dart';
+import 'package:flutter_app/search/bloc/search_location_event.dart';
+import 'package:flutter_app/search/bloc/search_location_state.dart';
 
 class SearchLocationBloc
     extends Bloc<SearchLocationEvent, SearchLocationState> {
