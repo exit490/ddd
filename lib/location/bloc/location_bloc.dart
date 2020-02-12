@@ -35,9 +35,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     locationRepository
         .attachDefaultLocationWithAllLocationsFromCache()
         .listen((locations) {
-      add(
-        AllLocationsFromCacheEvent(locations: locations),
-      );
+      add(AllLocationsFromCacheEvent(locations: locations));
     });
   }
 
