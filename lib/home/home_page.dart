@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/home/home_body.dart';
+import 'package:flutter_app/home/home_location_builder.dart';
 import 'package:flutter_app/home/home_material_app.dart';
-import 'package:flutter_app/location/bloc/location_bloc.dart';
-import 'package:flutter_app/location/bloc/location_event.dart';
-import 'package:flutter_app/location/bloc/location_state.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/permission/location_permission_event.dart';
 import 'package:flutter_app/permission/location_permission_state.dart';
-import 'package:flutter_app/weather/view/weather_backgroud.dart';
-import 'package:flutter_app/weather_forecast/weather_forecast_main_page.dart';
-import 'package:flutter_app/weather_today/view/weather_today_main_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,74 +31,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  body() {
-    final textStyle = TextStyle(fontSize: 50);
-    final text1 = Text(
-      'FLUTTER \nWEATHER \nAPP',
-      style: textStyle,
-    );
-
-    final center = Center(
-      child: text1,
-    );
-
-    final scaffold = Scaffold(
-      body: center,
-    );
-
-    return Stack(
-      children: <Widget>[
-        WeatherBackground(),
-        scaffold,
-      ],
-    );
-  }
-
-  pageView(locations) {
-    final pageController = PageController(initialPage: 0);
-
-    final weatherTodayPage = WeatherTodayMainPage(
-      locations: locations,
-    );
-
-    final pageView = PageView(
-      controller: pageController,
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        weatherTodayPage,
-        WeatherForecastMainPage(),
-      ],
-    );
-
-    return Stack(
-      children: <Widget>[
-        WeatherBackground(),
-        pageView,
-      ],
-    );
-  }
-
-  locationBlocBuilder() {
-    return BlocBuilder<LocationBloc, LocationState>(
-      builder: (context, locationState) {
-        return _handlerLocationsState(context, locationState);
-      },
-    );
-  }
-
-  _handlerLocationsState(context, locationState) {
-    if (locationState is InitialLocationState) {
-      BlocProvider.of<LocationBloc>(context).add(BuildAllLocationEvent());
-      return body();
-    }
-
-    if (locationState is AllLocationsRestoredState) {
-      return pageView(
-        locationState.locations,
-      );
-    }
-  }
-
   requestLocationPermission(context) {
     BlocProvider.of<LocationPermissionBloc>(context)
         .add(RequestLocationPermissionEvent());
@@ -116,24 +44,24 @@ class HomePage extends StatelessWidget {
   _handlerCheckLocationPermissionState(context, locationPermissionState) {
     if (locationPermissionState is InitialLocationPermissionState) {
       checkLocationPermission(context);
-      return body();
+      return HomeBody();
     }
 
     if (locationPermissionState is DisabledLocationPermissionState) {
       requestLocationPermission(context);
-      return body();
+      return HomeBody();
     }
 
     if (locationPermissionState is GrantedLocationPermissionState) {
-      return locationBlocBuilder();
+      return HomeLocationBuilder.handlerState();
     }
 
     if (locationPermissionState is NeverAskAgainLocationPermissionState) {
-      return locationBlocBuilder();
+      return HomeLocationBuilder.handlerState();
     }
 
     if (locationPermissionState is RestrictedLocationPermissionState) {
-      return;
+      return HomeBody();
     }
   }
 }
