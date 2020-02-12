@@ -1,10 +1,5 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
-part of 'location_model.dart';
-
-// **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
+import 'package:flutter_app/location/model/location_model.dart';
+import 'package:hive/hive.dart';
 
 class LocationModelAdapter extends TypeAdapter<LocationModel> {
   @override

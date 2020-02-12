@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
-part 'location_model.g.dart';
-
 @HiveType(typeId: 0)
 class LocationModel extends Equatable {
   @HiveField(0)

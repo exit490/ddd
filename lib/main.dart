@@ -3,6 +3,7 @@ import 'package:flutter_app/home/home_page.dart';
 import 'package:flutter_app/location/bloc/location_bloc.dart';
 import 'package:flutter_app/location/geo_location/geo_location_client.dart';
 import 'package:flutter_app/location/model/location_model.dart';
+import 'package:flutter_app/location/model/location_model_hive_adapter.dart';
 import 'package:flutter_app/location/no_sql/location_nosql_client.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
 import 'package:flutter_app/location/search/bloc/search_location_bloc.dart';

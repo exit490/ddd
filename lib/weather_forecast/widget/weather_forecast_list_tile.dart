@@ -3,23 +3,35 @@ import 'package:flutter_app/weather/model/weather_model.dart';
 import 'package:flutter_app/weather/weather_icons.dart';
 import 'package:intl/intl.dart';
 
-class WeatherForecastBox extends StatelessWidget {
+class WeatherForecastBox extends StatefulWidget {
   final Weather weather;
-  static final _fontSize = 22.0;
-  static final _c = '°';
 
   WeatherForecastBox(
     this.weather,
   ) : assert(weather != null);
 
   @override
+  State<StatefulWidget> createState() {
+    return _WeatherForecastBoxState();
+  }
+}
+
+class _WeatherForecastBoxState extends State<WeatherForecastBox> {
+  static final _fontSize = 22.0;
+  static final _c = '°';
+  Weather weather;
+
+  _WeatherForecastBoxState();
+
+  @override
   Widget build(BuildContext context) {
-    return StreamBuilder(builder: (context, snapshot) {
-      return _content(weather);
+    setState(() {
+      weather = widget.weather;
     });
+    return _content(weather);
   }
 
-  _content(Weather weather) {
+  _content(weather) {
     final body = Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
