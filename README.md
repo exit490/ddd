@@ -27,4 +27,4 @@
 
 Copyright 2019 Mauricio Pimenta (exit490)
 
-The scripts of repository may be freely distributed under the [MIT license](LICENSE).
+The codes and scripts of repository may be freely distributed under the [MIT license](LICENSE).
