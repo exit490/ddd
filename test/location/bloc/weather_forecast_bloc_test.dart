@@ -16,17 +16,17 @@ void main() {
   setUp(() {
     _locationRepository = _LocationRepository();
 
-//    when(
-//      _locationRepository.buildDefaultLocation(),
-//    ).thenAnswer(
-//      (_) => Future.value(mockedDefaultLocation()),
-//    );
-//
-//    when(
-//      _locationRepository.restoreAllLocationsFromCache(),
-//    ).thenAnswer(
-//      (_) => Future.value(mockedRestoredListLocationList()),
-//    );
+    when(
+      _locationRepository.buildDefaultLocation(),
+    ).thenAnswer(
+      (_) => Future.value(mockedDefaultLocation()),
+    );
+
+    when(
+      _locationRepository.restoreAllLocationsFromCache(),
+    ).thenAnswer(
+      (_) => Future.value(mockedRestoredListLocationList()),
+    );
   });
 
   blocTest(
