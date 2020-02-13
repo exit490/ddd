@@ -23,8 +23,9 @@ class LocationRepository {
     @required this.locationNoSqlClient,
   });
 
-  toStoreLocationOnCache(locationModel) {
+  Stream<List<LocationModel>> toStoreLocationInCache(locationModel) async* {
     locationNoSqlClient.save(locationModel);
+    yield* _attachDefaultLocationWithAllLocationsFromCache();
   }
 
   Future<LocationModel> getDefaultLocation() async {

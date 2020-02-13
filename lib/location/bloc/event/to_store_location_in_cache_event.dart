@@ -3,10 +3,10 @@ import 'package:flutter_app/location/model/location_model.dart';
 
 import 'location_event.dart';
 
-class StoreLocationOnCacheEvent extends LocationEvent {
+class ToStoreLocationInCacheEvent extends LocationEvent {
   final LocationModel location;
 
-  const StoreLocationOnCacheEvent({
+  const ToStoreLocationInCacheEvent({
     @required this.location,
   }) : assert(location != null);
 
