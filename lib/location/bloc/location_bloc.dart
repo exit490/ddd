@@ -5,7 +5,9 @@ import 'package:flutter_app/location/bloc/event/all_locations_from_cache_event.d
 import 'package:flutter_app/location/bloc/event/location_event.dart';
 import 'package:flutter_app/location/bloc/event/request_all_locations_event.dart';
 import 'package:flutter_app/location/bloc/event/store_location_on_cache_event.dart';
-import 'package:flutter_app/location/bloc/location_state.dart';
+import 'package:flutter_app/location/bloc/state/all_locations_restored_state.dart';
+import 'package:flutter_app/location/bloc/state/initial_location_state.dart';
+import 'package:flutter_app/location/bloc/state/location_state.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
 
