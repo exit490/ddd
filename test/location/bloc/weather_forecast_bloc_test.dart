@@ -35,14 +35,32 @@ void main() {
     expect: [InitialLocationState()],
   );
 
-  test('if add BuildAllLocationEvent', () async {
-    final bloc = LocationBloc(locationRepository: _locationRepository);
-    bloc.add(BuildAllLocationEvent());
-    await emitsExactly(bloc, [
+  blocTest(
+    'when build all location event',
+    build: () {
+      _locationRepository = _LocationRepository();
+      when(
+        _locationRepository.attachDefaultLocationWithAllLocationsFromCache(),
+      ).thenAnswer(
+        (_) => Stream.value(mockedRestoredListLocationList()),
+      );
+      return LocationBloc(locationRepository: _locationRepository);
+    },
+    act: (bloc) => bloc.add(BuildAllLocationEvent()),
+    wait: Duration(seconds: 1),
+    expect: [
       InitialLocationState(),
-      AllLocationsRestoredState(locations: mockedLocationList()),
-    ]);
-  });
+      AllLocationsRestoredState(locations: mockedRestoredListLocationList())
+    ],
+  );
+
+//  test('if add BuildAllLocationEvent', () async {
+//    final bloc = LocationBloc(locationRepository: _locationRepository);
+//    bloc.add(BuildAllLocationEvent());
+//    await emitsExactly(bloc, [
+//      InitialLocationState(),
+//    ]);
+//  });
 
   test('if add StoreLocationOnCacheEvent', () async {
     final bloc = LocationBloc(locationRepository: _locationRepository);
