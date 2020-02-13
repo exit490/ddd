@@ -56,7 +56,7 @@ main() {
       (_) => Future.value(mockedLocationList()),
     );
 
-    final location = await locationRepository.buildDefaultLocation();
+    final location = await locationRepository.getDefaultLocation();
 
     expect(mockedLocationList()[0], location);
   });
@@ -74,7 +74,7 @@ main() {
       (_) => Future.value([]),
     );
 
-    final location = await locationRepository.buildDefaultLocation();
+    final location = await locationRepository.getDefaultLocation();
     final locationModel = LocationModel(
       title: 'Rio de Janeiro',
       locationType: 'City',
@@ -92,7 +92,7 @@ main() {
       (_) => null,
     );
 
-    final location = await locationRepository.buildDefaultLocation();
+    final location = await locationRepository.getDefaultLocation();
     final locationModel = LocationModel(
       title: 'Rio de Janeiro',
       locationType: 'City',

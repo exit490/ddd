@@ -17,7 +17,7 @@ void main() {
     _locationRepository = _LocationRepository();
 
     when(
-      _locationRepository.buildDefaultLocation(),
+      _locationRepository.getDefaultLocation(),
     ).thenAnswer(
       (_) => Future.value(mockedDefaultLocation()),
     );

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_app/location/geo_location/geo_location_client.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/no_sql/location_nosql_client.dart';
@@ -9,44 +10,25 @@ class LocationRepository {
   final MetaWeatherApiClient metaWeatherApiClient;
   final LocationNoSqlClient locationNoSqlClient;
 
+  final _defaultLocationModel = LocationModel(
+    title: 'Rio de Janeiro',
+    locationType: 'City',
+    woeid: 455825,
+    latLong: '-22.976730,-43.195080',
+  );
+
   LocationRepository({
-    this.geoLocationApiClient,
-    this.metaWeatherApiClient,
-    this.locationNoSqlClient,
-  }) : assert(
-          geoLocationApiClient != null &&
-              metaWeatherApiClient != null &&
-              locationNoSqlClient != null,
-        );
+    @required this.geoLocationApiClient,
+    @required this.metaWeatherApiClient,
+    @required this.locationNoSqlClient,
+  });
 
   toStoreLocationOnCache(locationModel) {
     locationNoSqlClient.save(locationModel);
   }
 
-  Future<LocationModel> buildDefaultLocation() async {
-    final defaultModel = LocationModel(
-      title: 'Rio de Janeiro',
-      locationType: 'City',
-      woeid: 455825,
-      latLong: '-22.976730,-43.195080',
-    );
-
-    final Position myPosition = await geoLocationApiClient.getMyLocation();
-
-    if (myPosition == null) {
-      return defaultModel;
-    }
-
-    final locations = await metaWeatherApiClient.fetchLocationsByLatLong(
-      myPosition.latitude,
-      myPosition.longitude,
-    );
-
-    if (locations.isEmpty) {
-      return defaultModel;
-    }
-
-    return locations[0];
+  Future<LocationModel> getDefaultLocation() async {
+    return await _whatDefaultLocation();
   }
 
   fetchLocationsByCityName(city) async {
@@ -64,10 +46,31 @@ class LocationRepository {
   Stream<List<LocationModel>>
       attachDefaultLocationWithAllLocationsFromCache() async* {
     final List<LocationModel> locations = List();
-    final defaultLocation = await buildDefaultLocation();
+    final defaultLocation = await getDefaultLocation();
     final allLocationsFromCache = locationNoSqlClient.restoreAll();
     locations.add(defaultLocation);
     locations.addAll(allLocationsFromCache);
     yield locations;
+  }
+
+  Future<LocationModel> _whatDefaultLocation() async {
+    final Position myPosition = await geoLocationApiClient.getMyLocation();
+
+    if (myPosition == null) {
+      return _defaultLocationModel;
+    }
+
+    final locations = await metaWeatherApiClient.fetchLocationsByLatLong(
+      myPosition.latitude,
+      myPosition.longitude,
+    );
+
+    if (locations.isEmpty) {
+      return _defaultLocationModel;
+    }
+
+    final myLocation = locations[0];
+
+    return myLocation;
   }
 }

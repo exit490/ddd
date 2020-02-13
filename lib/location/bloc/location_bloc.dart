@@ -47,7 +47,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
 
   getAllLocations() async {
     final List<LocationModel> locations = List();
-    final defaultLocation = await locationRepository.buildDefaultLocation();
+    final defaultLocation = await locationRepository.getDefaultLocation();
     locations.add(defaultLocation);
 
     final locationsRestoredFromCache =
