@@ -20,7 +20,7 @@ class HomeLocationBuilder extends BlocBuilder<LocationBloc, LocationState> {
       return HomeBody();
     }
 
-    if (locationState is AllLocationsRestoredState) {
+    if (locationState is AllLocationsRequestedState) {
       return HomePageView(
         locationState.locations,
       );

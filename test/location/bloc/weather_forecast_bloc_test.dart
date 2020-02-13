@@ -42,7 +42,7 @@ void main() {
     build: () {
       _locationRepository = _LocationRepository();
       when(
-        _locationRepository.attachDefaultLocationWithAllLocationsFromCache(),
+        _locationRepository.requestAllLocations(),
       ).thenAnswer(
         (_) => Stream.value(mockedRestoredListLocationList()),
       );
@@ -52,17 +52,9 @@ void main() {
     wait: Duration(seconds: 1),
     expect: [
       InitialLocationState(),
-      AllLocationsRestoredState(locations: mockedRestoredListLocationList())
+      AllLocationsRequestedState(locations: mockedRestoredListLocationList())
     ],
   );
-
-//  test('if add BuildAllLocationEvent', () async {
-//    final bloc = LocationBloc(locationRepository: _locationRepository);
-//    bloc.add(BuildAllLocationEvent());
-//    await emitsExactly(bloc, [
-//      InitialLocationState(),
-//    ]);
-//  });
 
   test('if add StoreLocationOnCacheEvent', () async {
     final bloc = LocationBloc(locationRepository: _locationRepository);
@@ -71,7 +63,7 @@ void main() {
     ));
     await emitsExactly(bloc, [
       InitialLocationState(),
-      AllLocationsRestoredState(locations: mockedLocationList()),
+      AllLocationsRequestedState(locations: mockedLocationList()),
     ]);
 
     verify(

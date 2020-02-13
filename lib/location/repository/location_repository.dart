@@ -43,8 +43,12 @@ class LocationRepository {
     return locationNoSqlClient.restoreAll();
   }
 
+  Stream<List<LocationModel>> requestAllLocations() async* {
+    yield* _attachDefaultLocationWithAllLocationsFromCache();
+  }
+
   Stream<List<LocationModel>>
-      attachDefaultLocationWithAllLocationsFromCache() async* {
+      _attachDefaultLocationWithAllLocationsFromCache() async* {
     final List<LocationModel> locations = List();
     final defaultLocation = await getDefaultLocation();
     final allLocationsFromCache = locationNoSqlClient.restoreAll();
