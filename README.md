@@ -1,3 +1,4 @@
+![Build](https://github.com/exit490/flutter_weather_app/workflows/Build/badge.svg?branch=master)
 # FLUTTER WEATHER APP
 
 ![](demonstration.gif)
