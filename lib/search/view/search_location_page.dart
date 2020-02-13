@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/location/bloc/event/store_location_on_cache_event.dart';
 import 'package:flutter_app/location/bloc/location_bloc.dart';
-import 'package:flutter_app/location/bloc/location_event.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/search/bloc/search_location_event.dart';

@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_app/location/bloc/event/request_all_locations_event.dart';
+import 'package:flutter_app/location/bloc/event/store_location_on_cache_event.dart';
 import 'package:flutter_app/location/bloc/location_bloc.dart';
-import 'package:flutter_app/location/bloc/location_event.dart';
 import 'package:flutter_app/location/bloc/location_state.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -46,7 +47,7 @@ void main() {
       );
       return LocationBloc(locationRepository: _locationRepository);
     },
-    act: (bloc) => bloc.add(BuildAllLocationEvent()),
+    act: (bloc) => bloc.add(RequestAllLocationsEvent()),
     wait: Duration(seconds: 1),
     expect: [
       InitialLocationState(),

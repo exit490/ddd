@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_app/location/bloc/location_event.dart';
+import 'package:flutter_app/location/bloc/event/all_locations_from_cache_event.dart';
+import 'package:flutter_app/location/bloc/event/location_event.dart';
+import 'package:flutter_app/location/bloc/event/request_all_locations_event.dart';
+import 'package:flutter_app/location/bloc/event/store_location_on_cache_event.dart';
 import 'package:flutter_app/location/bloc/location_state.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
@@ -22,8 +25,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
       yield AllLocationsRestoredState(locations: event.locations);
     }
 
-    if (event is BuildAllLocationEvent) {
-      yield* buildAllLocations();
+    if (event is RequestAllLocationsEvent) {
+      buildAllLocations();
     }
 
     if (event is StoreLocationOnCacheEvent) {
@@ -31,7 +34,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     }
   }
 
-  Stream<LocationState> buildAllLocations() async* {
+  buildAllLocations() async {
     locationRepository
         .attachDefaultLocationWithAllLocationsFromCache()
         .listen((locations) {
