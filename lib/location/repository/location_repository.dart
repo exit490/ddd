@@ -28,10 +28,6 @@ class LocationRepository {
     yield* _attachDefaultLocationWithAllLocationsFromCache();
   }
 
-  Future<LocationModel> getDefaultLocation() async {
-    return await _whatDefaultLocation();
-  }
-
   fetchLocationsByCityName(city) async {
     return await metaWeatherApiClient.fetchLocationsByCityName(city);
   }
@@ -50,12 +46,17 @@ class LocationRepository {
 
   Stream<List<LocationModel>>
       _attachDefaultLocationWithAllLocationsFromCache() async* {
-    final List<LocationModel> locations = List();
-    final defaultLocation = await getDefaultLocation();
-    final allLocationsFromCache = locationNoSqlClient.restoreAll();
-    locations.add(defaultLocation);
-    locations.addAll(allLocationsFromCache);
+    final locations = List<LocationModel>.from(
+      locationNoSqlClient.restoreAll(),
+    );
+
+    locations.add(await _getDefaultLocation());
+
     yield locations;
+  }
+
+  Future<LocationModel> _getDefaultLocation() async {
+    return await _whatDefaultLocation();
   }
 
   Future<LocationModel> _whatDefaultLocation() async {

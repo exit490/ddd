@@ -9,13 +9,13 @@ import 'package:mockito/mockito.dart';
 
 import '../util_t.dart';
 
-class _LocationRepository extends Mock implements LocationRepository {}
+class _LocationRepositoryMocked extends Mock implements LocationRepository {}
 
 void main() {
-  _LocationRepository _locationRepository;
+  _LocationRepositoryMocked _locationRepository;
 
   setUp(() {
-    _locationRepository = _LocationRepository();
+    _locationRepository = _LocationRepositoryMocked();
 
     when(
       _locationRepository.getDefaultLocation(),
@@ -39,7 +39,7 @@ void main() {
   blocTest(
     'when build all location event',
     build: () {
-      _locationRepository = _LocationRepository();
+      _locationRepository = _LocationRepositoryMocked();
       when(
         _locationRepository.requestAllLocations(),
       ).thenAnswer(
@@ -54,19 +54,4 @@ void main() {
       AllLocationsRequestedState(locations: mockedRestoredListLocationList())
     ],
   );
-
-//  test('if add StoreLocationOnCacheEvent', () async {
-//    final bloc = LocationBloc(locationRepository: _locationRepository);
-//    bloc.add(ToStoreLocationInCacheEvent(
-//      location: mockedDefaultLocation(),
-//    ));
-//    await emitsExactly(bloc, [
-//      InitialLocationState(),
-//      AllLocationsRequestedState(locations: mockedLocationList()),
-//    ]);
-//
-//    verify(
-//      _locationRepository.toStoreLocationInCache(mockedDefaultLocation()),
-//    ).called(1);
-//  });
 }
