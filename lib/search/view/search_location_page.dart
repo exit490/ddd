@@ -55,15 +55,10 @@ class SearchLocationPage extends StatelessWidget {
   }
 
   buildListView(List<LocationModel> locations) {
-    final childItemList = locations
-        .toList()
-        .map(
-          (location) => ChildItem(location),
-        )
-        .toList();
+    locations.toList().map((location) => ChildItem(location)).toList();
     return ListView(
       padding: new EdgeInsets.symmetric(vertical: 8.0),
-      children: childItemList,
+      children: locations.map((location) => ChildItem(location)).toList(),
     );
   }
 
@@ -96,6 +91,9 @@ class SearchLocationPage extends StatelessWidget {
   }
 
   searchLocation(context, location) {
+    if (location.isEmpty) {
+      return;
+    }
     BlocProvider.of<SearchLocationBloc>(context).add(TypingLocationEvent(
       location: location,
     ));
