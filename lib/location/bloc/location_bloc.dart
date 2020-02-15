@@ -27,7 +27,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     }
 
     if (event is ToStoreLocationInCacheEvent) {
-      _storeLocationOnCache(event.location);
+      _toStoreLocationOnCache(event.location);
     }
 
     if (event is AllLocationsRequestedEvent) {
@@ -41,7 +41,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
         );
   }
 
-  _storeLocationOnCache(location) async {
+  _toStoreLocationOnCache(location) async {
     locationRepository.toStoreLocationInCache(location).listen(
           (locations) => add(AllLocationsRequestedEvent(locations: locations)),
         );
