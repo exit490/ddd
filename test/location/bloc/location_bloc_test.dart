@@ -16,18 +16,6 @@ void main() {
 
   setUp(() {
     _locationRepository = _LocationRepositoryMocked();
-
-    when(
-      _locationRepository.getDefaultLocation(),
-    ).thenAnswer(
-      (_) => Future.value(mockedDefaultLocation()),
-    );
-
-    when(
-      _locationRepository.restoreAllLocationsFromCache(),
-    ).thenAnswer(
-      (_) => Future.value(mockedRestoredListLocationList()),
-    );
   });
 
   blocTest(
