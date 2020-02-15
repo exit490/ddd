@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mockito/mockito.dart';
 
-import '../util_t.dart';
+import '../location_repository_mocked_util.dart';
 
 class _GeoLocationApiClientMocked extends Mock implements GeoLocationApiClient {
 }
