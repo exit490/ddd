@@ -15,10 +15,7 @@ class LocationAppBar extends AppBar {
           elevation: 0,
           centerTitle: true,
           backgroundColor: Colors.transparent,
-          actions: whatActions(
-            context,
-            enableAddButton,
-          ),
+          actions: whatActions(context, enableAddButton),
         );
 
   static whatActions(context, enableAddButton) {
