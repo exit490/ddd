@@ -21,11 +21,11 @@ class SearchLocationBuilder
   }
 
   static _buildListView(List<LocationModel> locations) {
-    locations.toList().map((location) => CityNameListTile(location)).toList();
     return ListView(
       padding: new EdgeInsets.symmetric(vertical: 8.0),
-      children:
-          locations.map((location) => CityNameListTile(location)).toList(),
+      children: locations
+          .map((location) => CityNameListTile(locationModel: location))
+          .toList(),
     );
   }
 }

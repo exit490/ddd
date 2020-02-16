@@ -10,33 +10,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CityNameListTile extends StatelessWidget {
   final LocationModel locationModel;
 
-  CityNameListTile(
-    this.locationModel,
-  ) : assert(locationModel != null);
+  CityNameListTile({@required this.locationModel});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(
-        this.locationModel.title,
-      ),
-      onTap: () => selectCity(context),
+      title: Text(this.locationModel.title),
+      onTap: () => _selectCity(context),
     );
   }
 
-  selectCity(context) {
-    storeLocationOnCache(context);
-    fetchWeatherTodayEventToSelectedCity(context);
+  _selectCity(context) {
+    _storeLocationOnCache(context);
+    _fetchWeatherTodayEventToSelectedCity(context);
     Navigator.pop(context);
   }
 
-  fetchWeatherTodayEventToSelectedCity(context) {
+  _fetchWeatherTodayEventToSelectedCity(context) {
     BlocProvider.of<WeatherForecastBloc>(context).add(
       FetchWeatherForecastEvent(locationId: locationModel.woeid),
     );
   }
 
-  storeLocationOnCache(context) {
+  _storeLocationOnCache(context) {
     BlocProvider.of<LocationBloc>(context).add(
       ToStoreLocationInCacheEvent(location: locationModel),
     );
