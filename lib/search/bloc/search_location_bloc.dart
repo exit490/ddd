@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
 import 'package:flutter_app/search/bloc/search_location_event.dart';
@@ -12,8 +13,8 @@ class SearchLocationBloc
   StreamSubscription subscription;
 
   SearchLocationBloc({
-    this.locationRepository,
-  }) : assert(locationRepository != null);
+    @required this.locationRepository,
+  });
 
   @override
   SearchLocationState get initialState => InitialSearchLocationState();
@@ -25,15 +26,18 @@ class SearchLocationBloc
       delaySearch(event);
     }
 
-    if (event is SearchLocationEvent) {
+    if (event is FetchLocationEvent) {
       yield* _mapSearchEventToState(event.location);
     }
   }
 
   delaySearch(event) {
     subscription?.cancel();
-    subscription = Stream.periodic(Duration(seconds: 1))
-        .listen((x) => add(SearchLocationEvent(location: event.location)));
+    subscription = Stream<int>.periodic(Duration(seconds: 1), (x) => x)
+        .take(1)
+        .listen((x) {
+      add(FetchLocationEvent(location: event.location));
+    });
   }
 
   Stream<SearchLocationState> _mapSearchEventToState(location) async* {

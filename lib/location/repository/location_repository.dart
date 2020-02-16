@@ -29,6 +29,10 @@ class LocationRepository {
   }
 
   fetchLocationsByCityName(city) async {
+    if (city.isEmpty) {
+      return Future.value([]);
+    }
+
     return await metaWeatherApiClient.fetchLocationsByCityName(city);
   }
 
