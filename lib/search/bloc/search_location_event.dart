@@ -1,14 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class SearchLocationEvent extends Equatable {
-  final String location;
-
-  const SearchLocationEvent({
-    this.location,
-  });
+  const SearchLocationEvent();
 
   @override
-  List<Object> get props => [location];
+  List<Object> get props => [];
 }
 
 class TypingLocationEvent extends SearchLocationEvent {
@@ -16,7 +12,18 @@ class TypingLocationEvent extends SearchLocationEvent {
 
   const TypingLocationEvent({
     this.location,
-  }) : assert(location != null);
+  });
+
+  @override
+  List<Object> get props => [location];
+}
+
+class FetchLocationEvent extends SearchLocationEvent {
+  final String location;
+
+  const FetchLocationEvent({
+    this.location,
+  });
 
   @override
   List<Object> get props => [location];
