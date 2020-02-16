@@ -5,6 +5,7 @@ import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/search/bloc/search_location_event.dart';
 import 'package:flutter_app/search/bloc/search_location_state.dart';
+import 'package:flutter_app/search/view/search_location_builder.dart';
 import 'package:flutter_app/weather/view/weather_backgroud.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_event.dart';
@@ -16,13 +17,13 @@ class SearchLocationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _searchQuery.addListener(() {
-      searchLocation(context, _searchQuery.text.toString());
+      searchLocation(context, _searchQuery.text.toString().trim());
     });
 
     final scaffold = Scaffold(
       key: key,
       appBar: buildBar(context),
-      body: body(),
+      body: SearchLocationBuilder.handleState(),
     );
 
     return Stack(
@@ -30,35 +31,6 @@ class SearchLocationPage extends StatelessWidget {
         WeatherBackground(),
         scaffold,
       ],
-    );
-  }
-
-  body() {
-    final blocBuilder = BlocBuilder<SearchLocationBloc, SearchLocationState>(
-        builder: (context, searchLocationState) {
-      return _handlerLocationState(
-        searchLocationState,
-      );
-    });
-
-    return Container(
-      child: blocBuilder,
-    );
-  }
-
-  _handlerLocationState(searchLocationState) {
-    if (searchLocationState is FoundLocationsState) {
-      return buildListView(searchLocationState.locations);
-    }
-
-    return Container();
-  }
-
-  buildListView(List<LocationModel> locations) {
-    locations.toList().map((location) => ChildItem(location)).toList();
-    return ListView(
-      padding: new EdgeInsets.symmetric(vertical: 8.0),
-      children: locations.map((location) => ChildItem(location)).toList(),
     );
   }
 
@@ -97,41 +69,5 @@ class SearchLocationPage extends StatelessWidget {
     BlocProvider.of<SearchLocationBloc>(context).add(TypingLocationEvent(
       location: location,
     ));
-  }
-}
-
-class ChildItem extends StatelessWidget {
-  final LocationModel locationModel;
-
-  ChildItem(
-    this.locationModel,
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        this.locationModel.title,
-      ),
-      onTap: () => selectCity(context),
-    );
-  }
-
-  selectCity(context) {
-    storeLocationOnCache(context);
-    fetchWeatherTodayEventToSelectedCity(context);
-    Navigator.pop(context);
-  }
-
-  fetchWeatherTodayEventToSelectedCity(context) {
-    BlocProvider.of<WeatherForecastBloc>(context).add(
-      FetchWeatherForecastEvent(locationId: locationModel.woeid),
-    );
-  }
-
-  storeLocationOnCache(context) {
-    BlocProvider.of<LocationBloc>(context).add(
-      ToStoreLocationInCacheEvent(location: locationModel),
-    );
   }
 }
