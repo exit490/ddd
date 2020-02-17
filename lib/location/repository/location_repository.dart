@@ -28,12 +28,13 @@ class LocationRepository {
     yield* _attachDefaultLocationWithAllLocationsFromCache();
   }
 
-  fetchLocationsByCityName(city) async {
+  Stream<List<LocationModel>> fetchLocationsByCityName(city) async* {
     if (city.isEmpty) {
-      return Future.value([]);
+      yield [];
     }
 
-    return await metaWeatherApiClient.fetchLocationsByCityName(city);
+    final locations = await metaWeatherApiClient.fetchLocationsByCityName(city);
+    yield locations;
   }
 
   getLocation(int locationIndex) {
