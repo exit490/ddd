@@ -4,8 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
-import 'package:flutter_app/search/bloc/search_location_event.dart';
+import 'package:flutter_app/search/event/search_location_event.dart';
 import 'package:flutter_app/search/bloc/search_location_state.dart';
+import 'package:flutter_app/search/event/fetch_location_event.dart';
+import 'package:flutter_app/search/event/typing_city_name_event.dart';
 
 class SearchLocationBloc
     extends Bloc<SearchLocationEvent, SearchLocationState> {
@@ -22,12 +24,12 @@ class SearchLocationBloc
   @override
   Stream<SearchLocationState> mapEventToState(
       SearchLocationEvent event) async* {
-    if (event is TypingLocationEvent) {
+    if (event is TypingCityNameEvent) {
       delaySearch(event);
     }
 
     if (event is FetchLocationEvent) {
-      yield* _mapSearchEventToState(event.location);
+      yield* _mapSearchEventToState(event.cityName);
     }
   }
 
@@ -36,7 +38,7 @@ class SearchLocationBloc
     subscription = Stream<int>.periodic(Duration(seconds: 1), (x) => x)
         .take(1)
         .listen((x) {
-      add(FetchLocationEvent(location: event.location));
+      add(FetchLocationEvent(cityName: event.cityName));
     });
   }
 

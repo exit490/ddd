@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/search/bloc/search_location_bloc.dart';
-import 'package:flutter_app/search/bloc/search_location_event.dart';
+import 'package:flutter_app/search/event/typing_city_name_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchLocationAppBar extends AppBar {
@@ -57,6 +57,6 @@ class SearchLocationAppBar extends AppBar {
       return;
     }
     BlocProvider.of<SearchLocationBloc>(context)
-        .add(TypingLocationEvent(location: cityName));
+        .add(TypingCityNameEvent(cityName: cityName));
   }
 }
