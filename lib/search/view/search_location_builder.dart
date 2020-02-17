@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/location/model/location_model.dart';
 import 'package:flutter_app/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/search/bloc/search_location_state.dart';
+import 'package:flutter_app/search/state/found_locations_state.dart';
 import 'package:flutter_app/search/view/city_name_list_tile.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

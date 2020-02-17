@@ -10,14 +10,3 @@ abstract class SearchLocationState extends Equatable {
 }
 
 class InitialSearchLocationState extends SearchLocationState {}
-
-class FoundLocationsState extends SearchLocationState {
-  final List<LocationModel> locations;
-
-  const FoundLocationsState({
-    @required this.locations,
-  }) : assert(locations != null);
-
-  @override
-  List<Object> get props => [locations];
-}
