@@ -33,6 +33,23 @@ void main() {
         FoundLocationsState(locations: getAllLocationsMocked())
       ],
     );
+
+    blocTest('when throws twice event of typing city name',
+        build: () =>
+            SearchLocationBloc(locationRepository: _locationRepository),
+        act: (bloc) {
+          bloc.add(TypingCityNameEvent(cityName: 'a'));
+          bloc.add(TypingCityNameEvent(cityName: 'a'));
+          return;
+        },
+        wait: Duration(seconds: 2),
+        expect: [
+          InitialSearchLocationState(),
+          FoundLocationsState(locations: getAllLocationsMocked())
+        ],
+        verify: () async {
+          verify(_locationRepository.fetchLocationsByCityName('a')).called(2);
+        });
   });
 }
 
