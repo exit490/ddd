@@ -1,10 +1,10 @@
-import 'package:flutter_app/home/home_location_builder.dart';
+import 'package:flutter_app/home/bloc_builder/home_location_builder.dart';
 import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/permission/location_permission_event.dart';
 import 'package:flutter_app/permission/location_permission_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'home_body.dart';
+import '../view/home_body.dart';
 
 class HomeLocationPermissionBuilder
     extends BlocBuilder<LocationPermissionBloc, LocationPermissionState> {
