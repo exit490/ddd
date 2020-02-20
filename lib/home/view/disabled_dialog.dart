@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/permission/view/disabled_location_permission_dialog.dart';
+import 'package:flutter_app/android_permissions/view/disabled_location_permission_dialog.dart';
 
 Future<void> showDisabledDialog(context) async {
   await Future.delayed(Duration.zero); //workaround to fix a crash O.O

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/android_permissions/location_permission_bloc.dart';
 import 'package:flutter_app/home/home_page.dart';
 import 'package:flutter_app/location/bloc/location_bloc.dart';
 import 'package:flutter_app/location/geo_location/geo_location_client.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_app/location/model/location_model_hive_adapter.dart';
 import 'package:flutter_app/location/no_sql/location_nosql_client.dart';
 import 'package:flutter_app/location/repository/location_repository.dart';
 import 'package:flutter_app/meta_weather/meta_weather_api_client.dart';
-import 'package:flutter_app/permission/location_permission_bloc.dart';
 import 'package:flutter_app/search/bloc/search_location_bloc.dart';
 import 'package:flutter_app/weather/repository/weather_repository.dart';
 import 'package:flutter_app/weather_forecast/bloc/weather_forecast_bloc.dart';
@@ -18,7 +18,7 @@ import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
-  await initiatingNoSqlHive();
+  await _initiatingNoSqlHive();
 
   final metaWeatherApiClient = MetaWeatherApiClient(
     httpClient: http.Client(),
@@ -40,7 +40,7 @@ void main() async {
     ),
   );
 
-  final locationRepository = await configureLocationRepository(
+  final locationRepository = await _configureLocationRepository(
     metaWeatherApiClient,
   );
 
@@ -69,7 +69,7 @@ void main() async {
   runApp(multiBlocProvider);
 }
 
-configureLocationRepository(metaWeatherApiClient) async {
+_configureLocationRepository(metaWeatherApiClient) async {
   final Box<LocationModel> locationBox =
       await Hive.openBox<LocationModel>('LocationModel');
 
@@ -82,7 +82,7 @@ configureLocationRepository(metaWeatherApiClient) async {
   );
 }
 
-initiatingNoSqlHive() async {
+_initiatingNoSqlHive() async {
   await Hive.initFlutter();
   Hive.registerAdapter(LocationModelAdapter());
 }

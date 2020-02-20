@@ -1,7 +1,7 @@
+import 'package:flutter_app/android_permissions/location_permission_bloc.dart';
+import 'package:flutter_app/android_permissions/location_permission_event.dart';
+import 'package:flutter_app/android_permissions/location_permission_state.dart';
 import 'package:flutter_app/home/bloc_builder/home_location_builder.dart';
-import 'package:flutter_app/permission/location_permission_bloc.dart';
-import 'package:flutter_app/permission/location_permission_event.dart';
-import 'package:flutter_app/permission/location_permission_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../view/home_body.dart';
