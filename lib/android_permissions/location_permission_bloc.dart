@@ -63,9 +63,6 @@ class LocationPermissionBloc
       case PermissionStatus.granted:
         yield GrantedLocationPermissionState();
         break;
-      case PermissionStatus.disabled:
-        yield DisabledLocationPermissionState();
-        break;
       case PermissionStatus.restricted:
         yield RestrictedLocationPermissionState();
         break;
