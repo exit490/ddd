@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_app/permission/location_permission_event.dart';
-import 'package:flutter_app/permission/location_permission_state.dart';
+import 'package:flutter_app/android_permissions/location_permission_event.dart';
+import 'package:flutter_app/android_permissions/location_permission_state.dart';
 import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 
